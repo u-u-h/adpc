@@ -1,0 +1,225 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :1, tabulation: 1
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 3, usages: 1
+Nt: 5, usages: 1
+Nt: 4, usages: 1
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :1+3n, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 3n
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :4, tabulation: 1n^2
+Dependencies:
+Nt: 6, usages: 1
+Nt: 7, usages: 1
+Nt: 8, usages: 1
+Nt: 9, usages: 1
+----------------------------------------
+Nt: 6, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1
+----------------------------------------
+Nt: 7, user configuration: 2, runtime :1+3n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1n
+----------------------------------------
+Nt: 8, user configuration: 2, runtime :1+3n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 2n
+----------------------------------------
+Nt: 9, user configuration: 2, runtime :1++4n^2, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 3n^2
+----------------------------------------
+Nt: 10, user configuration: 2, runtime :4, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 1
+Nt: 12, usages: 1
+Nt: 2, usages: 1
+Nt: 13, usages: 1
+----------------------------------------
+Nt: 11, user configuration: 2, runtime :2, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 12, user configuration: 2, runtime :2, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 13, user configuration: 2, runtime :2n, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 2n
+
+
+Mode = 2, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+
+
+Calculate the optimal table configuration of an ADP-program
+
+Some information about the runtime in advance:
+  tabulate all nonterminals      : O(n^4)
+  tabulate no  nonterminals      : O(2^n)
+  optimal runtime                : O(n^4)
+Runtime with respect to the user annotation:
+  tabulate all free nonterminals : O(n^4)
+  tabulate no  free nonterminals : O(2^n)
+  optimal runtime                : O(n^4)
+
+Total number of nonterminals            : 13
+Nonterminals which are not in use       : 0
+Nonterminals requiring < square space   : 1
+  { 1c }
+Nonterminals defined by user annotation : 0
+Nonterminals defined by reductions      : 2
+  { 1c 3 }
+Nonterminals remaining for optimization : 11
+  { 2 4 5 6 7 8 9 10 11 12 13 }
+
+Running brute-force-optimization. Please wait ...
+
+Solution update no. 0 :
+Found new intermediate solution in iteration 0 : 11 Tables
+  { 2 4 5 6 7 8 9 10 11 12 13 }
+
+Solution update no. 1 :
+Found new intermediate solution in iteration 1 : 10 Tables
+  { 2 4 5 6 7 8 9 10 11 12 }
+
+Solution update no. 2 :
+Found new intermediate solution in iteration 2 : 9 Tables
+  { 2 4 5 6 7 8 9 10 11 }
+
+Solution update no. 3 :
+Found new intermediate solution in iteration 4 : 9 Tables
+  { 2 4 5 6 7 8 9 10 13 }
+
+Solution update no. 4 :
+Found new intermediate solution in iteration 5 : 8 Tables
+  { 2 4 5 6 7 8 9 10 }
+
+Solution update no. 5 :
+Found new intermediate solution in iteration 19 : 8 Tables
+  { 2 4 5 6 7 8 11 13 }
+
+Solution update no. 6 :
+Found new intermediate solution in iteration 23 : 8 Tables
+  { 2 4 5 6 7 8 12 13 }
+
+Solution update no. 7 :
+Found new intermediate solution in iteration 25 : 8 Tables
+  { 2 4 5 6 7 8 10 12 }
+
+Solution update no. 8 :
+Found new intermediate solution in iteration 26 : 7 Tables
+  { 2 4 5 6 7 8 10 }
+
+Solution update no. 9 :
+Found new intermediate solution in iteration 34 : 7 Tables
+  { 2 4 5 6 7 10 11 }
+
+Solution update no. 10 :
+Found new intermediate solution in iteration 36 : 7 Tables
+  { 2 4 5 6 7 10 13 }
+
+Solution update no. 11 :
+Found new intermediate solution in iteration 37 : 6 Tables
+  { 2 4 5 6 7 10 }
+
+Solution update no. 12 :
+Found new intermediate solution in iteration 69 : 6 Tables
+  { 2 4 5 6 9 10 }
+
+Solution update no. 13 :
+Found new intermediate solution in iteration 83 : 6 Tables
+  { 2 4 5 6 11 13 }
+
+Solution update no. 14 :
+Found new intermediate solution in iteration 87 : 6 Tables
+  { 2 4 5 6 12 13 }
+
+Solution update no. 15 :
+Found new intermediate solution in iteration 89 : 6 Tables
+  { 2 4 5 6 10 12 }
+
+Solution update no. 16 :
+Found new intermediate solution in iteration 90 : 5 Tables
+  { 2 4 5 6 10 }
+
+Solution update no. 17 :
+Found new intermediate solution in iteration 154 : 5 Tables
+  { 2 4 5 8 10 }
+
+Solution update no. 18 :
+Found new intermediate solution in iteration 162 : 5 Tables
+  { 2 4 5 10 11 }
+
+Solution update no. 19 :
+Found new intermediate solution in iteration 164 : 5 Tables
+  { 2 4 5 10 13 }
+
+Solution update no. 20 :
+Found new intermediate solution in iteration 165 : 4 Tables
+  { 2 4 5 10 }
+
+Solution update no. 21 :
+Found new intermediate solution in iteration 293 : 4 Tables
+  { 2 4 7 10 }
+
+Solution update no. 22 :
+Found new intermediate solution in iteration 325 : 4 Tables
+  { 2 4 9 10 }
+
+Solution update no. 23 :
+Found new intermediate solution in iteration 339 : 4 Tables
+  { 2 4 11 13 }
+
+Solution update no. 24 :
+Found new intermediate solution in iteration 343 : 4 Tables
+  { 2 4 12 13 }
+
+Solution update no. 25 :
+Found new intermediate solution in iteration 345 : 4 Tables
+  { 2 4 10 12 }
+
+Solution update no. 26 :
+Found new intermediate solution in iteration 346 : 3 Tables
+  { 2 4 10 }
+
+Solution update no. 27 :
+Found new intermediate solution in iteration 602 : 3 Tables
+  { 2 6 10 }
+
+Solution update no. 28 :
+Found new intermediate solution in iteration 666 : 3 Tables
+  { 2 8 10 }
+
+Solution update no. 29 :
+Found new intermediate solution in iteration 674 : 3 Tables
+  { 2 10 11 }
+
+Solution update no. 30 :
+Found new intermediate solution in iteration 676 : 3 Tables
+  { 2 10 13 }
+
+Solution update no. 31 :
+Found new intermediate solution in iteration 677 : 2 Tables
+  { 2 10 }
+
+Ready! Actual runtime        : 0 seconds
+
+Optimal runtime              : O(n^4)
+Minimum number of tables     : 2
+Optimal table configurations : 1
+  { 2 10 }  (1 + 15n^2 + 11n^3 + 4n^4)
+
+Optimal table configurations with respect to constant factors : 1
+  { 2 10 }  (1 + 15n^2 + 11n^3 + 4n^4)
+Returning: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 

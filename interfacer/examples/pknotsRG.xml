@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<!DOCTYPE interface SYSTEM "interface.dtd">
+
+<interface name="pknotsRG">
+
+<versioninfo>
+(C) 2006 Fredo Schmidt
+all rights reserved
+</versioninfo>
+
+  <option switch="h" text="Display this information">
+    <help />
+  </option>
+  
+  <option switch="v" text="Show version">
+    <version />
+  </option>
+  
+  <option switch="f" text="Read input from file">
+    <file />
+  </option>
+  
+  <option switch="e" text="Set energy range (kcal)">
+    <set var="energy" datatype="int" default="5" minval="0" />
+  </option>
+  
+  <option switch="u" text="No dangling bases">
+    <switch var="danglings" default="0" />
+  </option>
+
+
+   <option switch="z" text="Enable colored output">
+     <switch var="colored_output" />
+   <code>
+   if (opt->interactive && !opt->colored_output) printf(COLOR_DEFAULT);
+   </code>
+   </option>
+
+</interface>

@@ -1,0 +1,128 @@
+/* =========================================================================
+
+   @PROGNAME@ @VERSION@
+
+   @VERSIONINFO@
+
+========================================================================= */
+
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include "config.h"
+#include "options.h"
+#include "adplib.h"
+
+/* ====================================================================== 
+   Reset mode 
+   ====================================================================== */
+
+@C_RESET_MODE@
+
+/* ====================================================================== 
+   Init default values
+   ====================================================================== */
+
+@C_INIT_DEFAULTS@
+
+/* ====================================================================== 
+   Process arguments   
+   ====================================================================== */
+
+@C_PROCESS_ARGS@
+
+/* ====================================================================== 
+   Print settings
+   ====================================================================== */
+
+@C_PRINT_SETTINGS@
+
+/* ====================================================================== 
+   Main interface
+   ====================================================================== */
+
+int main (int argc, char **argv) {
+  toptions   *opt;
+  tsequence  *seq;
+  treadseq   *rs        = NULL; 
+  ttokenizer *tokenizer = NULL;
+  char       *command;
+
+  opt = (toptions *) calloc(1,sizeof(toptions));
+
+  init_defaults(opt);
+  process_args(opt, 0, argc, argv);
+
+  if (!opt->terminate) {
+    if (optind < argc)               rs = readseq_open(READSEQ_STRING, argv[optind]);
+    else if (opt->@FILENAMEVAR@)         rs = readseq_open(READSEQ_FILE,   opt->@FILENAMEVAR@);
+    else if (!isatty(fileno(stdin))) rs = readseq_open(READSEQ_STDIN,  NULL);
+    else {
+      printf("@INTERACTIVEMESSAGE@", argv[0]);
+      rl_init();
+      opt->interactive = 1;
+      opt->colored_output = 1 - opt->colored_output;
+      tokenizer = tokenizer_new();
+      rs = readseq_open(READSEQ_STRING, "");
+    } 
+
+    while (1) {
+      if (opt->interactive) {
+        pcolor(opt->colored_output,COLOR_RED);
+        printf("@INTERACTIVECOMMANDLINE@");
+        pcolor(opt->colored_output,COLOR_DEFAULT);
+        printf("\n");
+      
+        command = rl_gets();
+      
+        if (!command || (command[0] == '@') || ((command[0] == ':') && (command[1] == 'q'))) {
+          pcolor(opt->colored_output,COLOR_BLUE);
+          printf("Leaving @PROGNAME@.");
+          pcolor(opt->colored_output,COLOR_DEFAULT);
+          printf("\n");
+          exit(0);
+        }
+        else if (command[0] == ':') {
+          pcolor(opt->colored_output,COLOR_BLUE);
+          if (command[1] == 's') print_settings(opt);
+          if (command[1] == 'd') {
+            init_defaults(opt);
+            opt->colored_output = 1;
+            opt->interactive = 1;
+            printf("Activated default configuration.\n");
+            pcolor(opt->colored_output,COLOR_DEFAULT);
+          }
+          if (command[1] == 'e') {
+            system(command + 2);
+          }
+        }
+        else if (command[0] == '-') {
+          tokenizer_exec(tokenizer, argv[0], command);
+          process_args(opt, 1, tokenizer->count, tokenizer->token);
+          if (opt->@FILENAMEVAR@) { 
+            rs = readseq_free(rs);
+            rs = readseq_open(READSEQ_FILE, opt->@FILENAMEVAR@);
+          }
+          free(opt->@FILENAMEVAR@);
+          opt->@FILENAMEVAR@ = NULL;
+        }
+        else {
+          rs = readseq_free(rs);
+          rs = readseq_open(READSEQ_STRING, command);
+        }
+      }
+
+      while (1) {
+        seq = readseq_next_@READSEQNEXT@(rs);
+        if (!(seq->success)) break;
+        @MODULESTART@
+        sequence_free(seq);
+      }
+
+      if (!opt->interactive) break;
+    }
+  }
+  exit(0);
+}

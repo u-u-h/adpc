@@ -1,0 +1,920 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :2, tabulation: 1
+Dependencies:
+Nt: 2, usages: 1
+Nt: 3, usages: 1
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :1+18n, tabulation: 1
+Dependencies:
+Nt: 6, usages: 3n
+Nt: 5, usages: 6n
+Nt: 9, usages: 3n
+Nt: 7, usages: 1n
+Nt: 4, usages: 4n
+Nt: 3, usages: 4n
+Nt: 8, usages: 1n
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :4, tabulation: 1n
+Dependencies:
+Nt: 3, usages: 1
+Nt: 4, usages: 1
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :1+9n, tabulation: 1n
+Dependencies:
+Nt: 6, usages: 3n
+Nt: 5, usages: 3n
+Nt: 8, usages: 1n
+Nt: 4, usages: 2n
+Nt: 3, usages: 2n
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :9n, tabulation: 1n
+Dependencies:
+Nt: 7, usages: 1n
+Nt: 4, usages: 2n
+Nt: 3, usages: 2n
+Nt: 9, usages: 3n
+Nt: 5, usages: 3n
+----------------------------------------
+Nt: 6, user configuration: 2, runtime :2, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 7, user configuration: 2, runtime :2, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 8, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 9, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 10, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 1
+----------------------------------------
+Nt: 11, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 23, usages: 1
+Nt: 24, usages: 1
+Nt: 12, usages: 1
+Nt: 25, usages: 1
+Nt: 26, usages: 1
+Nt: 27, usages: 1
+----------------------------------------
+Nt: 12, user configuration: 2, runtime :57, tabulation: 1n^2
+Dependencies:
+Nt: 13, usages: 2
+Nt: 14, usages: 4
+Nt: 15, usages: 2
+Nt: 16, usages: 1
+----------------------------------------
+Nt: 13, user configuration: 2, runtime :7n, tabulation: 1n^2
+Dependencies:
+Nt: 17, usages: 3n
+Nt: 19, usages: 2n
+Nt: 18, usages: 1n
+Nt: 20, usages: 1n
+----------------------------------------
+Nt: 14, user configuration: 2, runtime :7n, tabulation: 1n^2
+Dependencies:
+Nt: 9, usages: 3n
+Nt: 19, usages: 2n
+Nt: 7, usages: 1n
+Nt: 20, usages: 1n
+----------------------------------------
+Nt: 15, user configuration: 2, runtime :7n, tabulation: 1n^2
+Dependencies:
+Nt: 7, usages: 1n
+Nt: 22, usages: 1n
+Nt: 9, usages: 3n
+Nt: 21, usages: 2n
+----------------------------------------
+Nt: 16, user configuration: 2, runtime :7n, tabulation: 1n^2
+Dependencies:
+Nt: 17, usages: 3n
+Nt: 21, usages: 2n
+Nt: 18, usages: 1n
+Nt: 22, usages: 1n
+----------------------------------------
+Nt: 17, user configuration: 2, runtime :1+2n, tabulation: 1n^2
+Dependencies:
+Nt: 6, usages: 1+1n
+----------------------------------------
+Nt: 18, user configuration: 2, runtime :1+2n, tabulation: 1n^2
+Dependencies:
+Nt: 8, usages: 1+1n
+----------------------------------------
+Nt: 19, user configuration: 2, runtime :2, tabulation: 1n^2
+Dependencies:
+Nt: 14, usages: 1
+Nt: 9, usages: 1
+----------------------------------------
+Nt: 20, user configuration: 2, runtime :2, tabulation: 1n^2
+Dependencies:
+Nt: 13, usages: 1
+Nt: 17, usages: 1
+----------------------------------------
+Nt: 21, user configuration: 2, runtime :2+2n, tabulation: 1n^2
+Dependencies:
+Nt: 15, usages: 1
+Nt: 7, usages: 1+1n
+----------------------------------------
+Nt: 22, user configuration: 2, runtime :2+2n, tabulation: 1n^2
+Dependencies:
+Nt: 16, usages: 1
+Nt: 18, usages: 1+1n
+----------------------------------------
+Nt: 23, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 1
+----------------------------------------
+Nt: 24, user configuration: 2, runtime :5, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 25, user configuration: 2, runtime :4+2n, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1n
+----------------------------------------
+Nt: 26, user configuration: 2, runtime :4+2n, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1n
+----------------------------------------
+Nt: 27, user configuration: 2, runtime :4++3n^2, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 2n^2
+
+
+Mode = 2, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+
+
+Calculate the optimal table configuration of an ADP-program
+
+Some information about the runtime in advance:
+  tabulate all nonterminals      : O(n^4)
+  tabulate no  nonterminals      : O(2^n)
+  optimal runtime                : O(n^4)
+Runtime with respect to the user annotation:
+  tabulate all free nonterminals : O(n^4)
+  tabulate no  free nonterminals : O(2^n)
+  optimal runtime                : O(n^4)
+
+Total number of nonterminals            : 27
+Nonterminals which are not in use       : 0
+Nonterminals requiring < square space   : 5
+  { 1c 2c 3l 4l 5l }
+Nonterminals defined by user annotation : 0
+Nonterminals defined by reductions      : 5
+  { 1c 2c 4l 5l 24 }
+Nonterminals remaining for optimization : 22
+  { 3l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 25 26 27 }
+
+Running brute-force-optimization. Please wait ...
+
+Solution update no. 0 :
+Found new intermediate solution in iteration 0 : 21 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 25 26 27 }
+
+Solution update no. 1 :
+Found new intermediate solution in iteration 1 : 20 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 25 26 }
+
+Solution update no. 2 :
+Found new intermediate solution in iteration 2 : 19 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 25 }
+
+Solution update no. 3 :
+Found new intermediate solution in iteration 4 : 19 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 27 }
+
+Solution update no. 4 :
+Found new intermediate solution in iteration 5 : 18 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 }
+
+Solution update no. 5 :
+Found new intermediate solution in iteration 9 : 18 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 26 }
+
+Solution update no. 6 :
+Found new intermediate solution in iteration 10 : 17 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 }
+
+Solution update no. 7 :
+Found new intermediate solution in iteration 18 : 17 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 25 }
+
+Solution update no. 8 :
+Found new intermediate solution in iteration 20 : 17 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 27 }
+
+Solution update no. 9 :
+Found new intermediate solution in iteration 21 : 16 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 }
+
+Solution update no. 10 :
+Found new intermediate solution in iteration 37 : 16 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 23 }
+
+Solution update no. 11 :
+Found new intermediate solution in iteration 41 : 16 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 26 }
+
+Solution update no. 12 :
+Found new intermediate solution in iteration 42 : 15 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 }
+
+Solution update no. 13 :
+Found new intermediate solution in iteration 74 : 15 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 22 }
+
+Solution update no. 14 :
+Found new intermediate solution in iteration 82 : 15 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 25 }
+
+Solution update no. 15 :
+Found new intermediate solution in iteration 84 : 15 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 27 }
+
+Solution update no. 16 :
+Found new intermediate solution in iteration 85 : 14 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 19 }
+
+Solution update no. 17 :
+Found new intermediate solution in iteration 149 : 14 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 21 }
+
+Solution update no. 18 :
+Found new intermediate solution in iteration 165 : 14 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 23 }
+
+Solution update no. 19 :
+Found new intermediate solution in iteration 169 : 14 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 26 }
+
+Solution update no. 20 :
+Found new intermediate solution in iteration 170 : 13 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 18 }
+
+Solution update no. 21 :
+Found new intermediate solution in iteration 330 : 13 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 17 22 }
+
+Solution update no. 22 :
+Found new intermediate solution in iteration 586 : 13 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 19 22 }
+
+Solution update no. 23 :
+Found new intermediate solution in iteration 650 : 13 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 21 22 }
+
+Solution update no. 24 :
+Found new intermediate solution in iteration 690 : 13 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 22 25 }
+
+Solution update no. 25 :
+Found new intermediate solution in iteration 692 : 13 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 22 27 }
+
+Solution update no. 26 :
+Found new intermediate solution in iteration 693 : 12 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 22 }
+
+Solution update no. 27 :
+Found new intermediate solution in iteration 853 : 12 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 16 18 }
+
+Solution update no. 28 :
+Found new intermediate solution in iteration 1205 : 12 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 18 22 }
+
+Solution update no. 29 :
+Found new intermediate solution in iteration 1333 : 12 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 20 22 }
+
+Solution update no. 30 :
+Found new intermediate solution in iteration 1349 : 12 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 22 23 }
+
+Solution update no. 31 :
+Found new intermediate solution in iteration 1353 : 12 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 22 26 }
+
+Solution update no. 32 :
+Found new intermediate solution in iteration 1354 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 15 22 }
+
+Solution update no. 33 :
+Found new intermediate solution in iteration 2698 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 14 21 22 }
+
+Solution update no. 34 :
+Found new intermediate solution in iteration 5514 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 19 21 22 }
+
+Solution update no. 35 :
+Found new intermediate solution in iteration 6730 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 13 15 19 22 }
+
+Solution update no. 36 :
+Found new intermediate solution in iteration 9674 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 15 19 20 22 }
+
+Solution update no. 37 :
+Found new intermediate solution in iteration 10762 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 19 20 21 22 }
+
+Solution update no. 38 :
+Found new intermediate solution in iteration 13578 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 14 20 21 22 }
+
+Solution update no. 39 :
+Found new intermediate solution in iteration 15050 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 12 14 15 20 22 }
+
+Solution update no. 40 :
+Found new intermediate solution in iteration 17098 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 15 16 20 22 }
+
+Solution update no. 41 :
+Found new intermediate solution in iteration 17194 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 15 16 18 20 }
+
+Solution update no. 42 :
+Found new intermediate solution in iteration 17610 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 15 18 20 22 }
+
+Solution update no. 43 :
+Found new intermediate solution in iteration 17674 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 15 20 21 22 }
+
+Solution update no. 44 :
+Found new intermediate solution in iteration 17714 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 15 20 22 25 }
+
+Solution update no. 45 :
+Found new intermediate solution in iteration 17716 : 11 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 15 20 22 27 }
+
+Solution update no. 46 :
+Found new intermediate solution in iteration 17717 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 15 20 22 }
+
+Solution update no. 47 :
+Found new intermediate solution in iteration 19189 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 14 20 21 22 }
+
+Solution update no. 48 :
+Found new intermediate solution in iteration 22005 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 19 20 21 22 }
+
+Solution update no. 49 :
+Found new intermediate solution in iteration 23093 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 15 19 20 22 }
+
+Solution update no. 50 :
+Found new intermediate solution in iteration 26037 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 13 15 19 22 }
+
+Solution update no. 51 :
+Found new intermediate solution in iteration 27253 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 13 19 21 22 }
+
+Solution update no. 52 :
+Found new intermediate solution in iteration 30069 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 13 14 21 22 }
+
+Solution update no. 53 :
+Found new intermediate solution in iteration 31413 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 10 11 13 14 15 22 }
+
+Solution update no. 54 :
+Found new intermediate solution in iteration 98997 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 15 16 22 }
+
+Solution update no. 55 :
+Found new intermediate solution in iteration 99157 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 15 16 18 }
+
+Solution update no. 56 :
+Found new intermediate solution in iteration 99509 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 15 18 22 }
+
+Solution update no. 57 :
+Found new intermediate solution in iteration 99637 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 15 20 22 }
+
+Solution update no. 58 :
+Found new intermediate solution in iteration 99653 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 15 22 23 }
+
+Solution update no. 59 :
+Found new intermediate solution in iteration 99657 : 10 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 15 22 26 }
+
+Solution update no. 60 :
+Found new intermediate solution in iteration 99658 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 15 22 }
+
+Solution update no. 61 :
+Found new intermediate solution in iteration 101002 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 14 21 22 }
+
+Solution update no. 62 :
+Found new intermediate solution in iteration 103818 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 19 21 22 }
+
+Solution update no. 63 :
+Found new intermediate solution in iteration 105034 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 13 15 19 22 }
+
+Solution update no. 64 :
+Found new intermediate solution in iteration 107978 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 15 19 20 22 }
+
+Solution update no. 65 :
+Found new intermediate solution in iteration 109066 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 19 20 21 22 }
+
+Solution update no. 66 :
+Found new intermediate solution in iteration 111882 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 14 20 21 22 }
+
+Solution update no. 67 :
+Found new intermediate solution in iteration 113354 : 9 Tables
+  { 3l 4l 5l 6 7 8 9 11 14 15 20 22 }
+
+Solution update no. 68 :
+Found new intermediate solution in iteration 132426 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 13 14 15 22 }
+
+Solution update no. 69 :
+Found new intermediate solution in iteration 133770 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 13 14 21 22 }
+
+Solution update no. 70 :
+Found new intermediate solution in iteration 136586 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 13 19 21 22 }
+
+Solution update no. 71 :
+Found new intermediate solution in iteration 137802 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 13 15 19 22 }
+
+Solution update no. 72 :
+Found new intermediate solution in iteration 140746 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 15 19 20 22 }
+
+Solution update no. 73 :
+Found new intermediate solution in iteration 141834 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 19 20 21 22 }
+
+Solution update no. 74 :
+Found new intermediate solution in iteration 144650 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 14 20 21 22 }
+
+Solution update no. 75 :
+Found new intermediate solution in iteration 146122 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 12 14 15 20 22 }
+
+Solution update no. 76 :
+Found new intermediate solution in iteration 148170 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 14 15 16 20 22 }
+
+Solution update no. 77 :
+Found new intermediate solution in iteration 148266 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 14 15 16 18 20 }
+
+Solution update no. 78 :
+Found new intermediate solution in iteration 148682 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 14 15 18 20 22 }
+
+Solution update no. 79 :
+Found new intermediate solution in iteration 148746 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 14 15 20 21 22 }
+
+Solution update no. 80 :
+Found new intermediate solution in iteration 148786 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 14 15 20 22 25 }
+
+Solution update no. 81 :
+Found new intermediate solution in iteration 148788 : 9 Tables
+  { 3l 4l 5l 6 7 8 11 14 15 20 22 27 }
+
+Solution update no. 82 :
+Found new intermediate solution in iteration 148789 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 14 15 20 22 }
+
+Solution update no. 83 :
+Found new intermediate solution in iteration 150261 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 14 20 21 22 }
+
+Solution update no. 84 :
+Found new intermediate solution in iteration 153077 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 19 20 21 22 }
+
+Solution update no. 85 :
+Found new intermediate solution in iteration 154165 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 15 19 20 22 }
+
+Solution update no. 86 :
+Found new intermediate solution in iteration 157109 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 13 15 19 22 }
+
+Solution update no. 87 :
+Found new intermediate solution in iteration 158325 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 13 19 21 22 }
+
+Solution update no. 88 :
+Found new intermediate solution in iteration 161141 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 13 14 21 22 }
+
+Solution update no. 89 :
+Found new intermediate solution in iteration 162485 : 8 Tables
+  { 3l 4l 5l 6 7 8 11 13 14 15 22 }
+
+Solution update no. 90 :
+Found new intermediate solution in iteration 279861 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 14 15 20 22 }
+
+Solution update no. 91 :
+Found new intermediate solution in iteration 281333 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 14 20 21 22 }
+
+Solution update no. 92 :
+Found new intermediate solution in iteration 284149 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 19 20 21 22 }
+
+Solution update no. 93 :
+Found new intermediate solution in iteration 285237 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 15 19 20 22 }
+
+Solution update no. 94 :
+Found new intermediate solution in iteration 288181 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 13 15 19 22 }
+
+Solution update no. 95 :
+Found new intermediate solution in iteration 289397 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 13 19 21 22 }
+
+Solution update no. 96 :
+Found new intermediate solution in iteration 292213 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 13 14 21 22 }
+
+Solution update no. 97 :
+Found new intermediate solution in iteration 293557 : 8 Tables
+  { 3l 4l 5l 6 7 10 11 13 14 15 22 }
+
+Solution update no. 98 :
+Found new intermediate solution in iteration 361141 : 8 Tables
+  { 3l 4l 5l 6 7 11 13 14 15 16 22 }
+
+Solution update no. 99 :
+Found new intermediate solution in iteration 361301 : 8 Tables
+  { 3l 4l 5l 6 7 11 13 14 15 16 18 }
+
+Solution update no. 100 :
+Found new intermediate solution in iteration 361653 : 8 Tables
+  { 3l 4l 5l 6 7 11 13 14 15 18 22 }
+
+Solution update no. 101 :
+Found new intermediate solution in iteration 361781 : 8 Tables
+  { 3l 4l 5l 6 7 11 13 14 15 20 22 }
+
+Solution update no. 102 :
+Found new intermediate solution in iteration 361797 : 8 Tables
+  { 3l 4l 5l 6 7 11 13 14 15 22 23 }
+
+Solution update no. 103 :
+Found new intermediate solution in iteration 361801 : 8 Tables
+  { 3l 4l 5l 6 7 11 13 14 15 22 26 }
+
+Solution update no. 104 :
+Found new intermediate solution in iteration 361802 : 7 Tables
+  { 3l 4l 5l 6 7 11 13 14 15 22 }
+
+Solution update no. 105 :
+Found new intermediate solution in iteration 363146 : 7 Tables
+  { 3l 4l 5l 6 7 11 13 14 21 22 }
+
+Solution update no. 106 :
+Found new intermediate solution in iteration 365962 : 7 Tables
+  { 3l 4l 5l 6 7 11 13 19 21 22 }
+
+Solution update no. 107 :
+Found new intermediate solution in iteration 367178 : 7 Tables
+  { 3l 4l 5l 6 7 11 13 15 19 22 }
+
+Solution update no. 108 :
+Found new intermediate solution in iteration 370122 : 7 Tables
+  { 3l 4l 5l 6 7 11 15 19 20 22 }
+
+Solution update no. 109 :
+Found new intermediate solution in iteration 371210 : 7 Tables
+  { 3l 4l 5l 6 7 11 19 20 21 22 }
+
+Solution update no. 110 :
+Found new intermediate solution in iteration 374026 : 7 Tables
+  { 3l 4l 5l 6 7 11 14 20 21 22 }
+
+Solution update no. 111 :
+Found new intermediate solution in iteration 375498 : 7 Tables
+  { 3l 4l 5l 6 7 11 14 15 20 22 }
+
+Solution update no. 112 :
+Found new intermediate solution in iteration 623946 : 7 Tables
+  { 3l 4l 5l 6 9 11 13 14 15 22 }
+
+Solution update no. 113 :
+Found new intermediate solution in iteration 625290 : 7 Tables
+  { 3l 4l 5l 6 9 11 13 14 21 22 }
+
+Solution update no. 114 :
+Found new intermediate solution in iteration 628106 : 7 Tables
+  { 3l 4l 5l 6 9 11 13 19 21 22 }
+
+Solution update no. 115 :
+Found new intermediate solution in iteration 629322 : 7 Tables
+  { 3l 4l 5l 6 9 11 13 15 19 22 }
+
+Solution update no. 116 :
+Found new intermediate solution in iteration 632266 : 7 Tables
+  { 3l 4l 5l 6 9 11 15 19 20 22 }
+
+Solution update no. 117 :
+Found new intermediate solution in iteration 633354 : 7 Tables
+  { 3l 4l 5l 6 9 11 19 20 21 22 }
+
+Solution update no. 118 :
+Found new intermediate solution in iteration 636170 : 7 Tables
+  { 3l 4l 5l 6 9 11 14 20 21 22 }
+
+Solution update no. 119 :
+Found new intermediate solution in iteration 637642 : 7 Tables
+  { 3l 4l 5l 6 9 11 14 15 20 22 }
+
+Solution update no. 120 :
+Found new intermediate solution in iteration 656714 : 7 Tables
+  { 3l 4l 5l 6 11 12 13 14 15 22 }
+
+Solution update no. 121 :
+Found new intermediate solution in iteration 658058 : 7 Tables
+  { 3l 4l 5l 6 11 12 13 14 21 22 }
+
+Solution update no. 122 :
+Found new intermediate solution in iteration 660874 : 7 Tables
+  { 3l 4l 5l 6 11 12 13 19 21 22 }
+
+Solution update no. 123 :
+Found new intermediate solution in iteration 662090 : 7 Tables
+  { 3l 4l 5l 6 11 12 13 15 19 22 }
+
+Solution update no. 124 :
+Found new intermediate solution in iteration 665034 : 7 Tables
+  { 3l 4l 5l 6 11 12 15 19 20 22 }
+
+Solution update no. 125 :
+Found new intermediate solution in iteration 666122 : 7 Tables
+  { 3l 4l 5l 6 11 12 19 20 21 22 }
+
+Solution update no. 126 :
+Found new intermediate solution in iteration 668938 : 7 Tables
+  { 3l 4l 5l 6 11 12 14 20 21 22 }
+
+Solution update no. 127 :
+Found new intermediate solution in iteration 670410 : 7 Tables
+  { 3l 4l 5l 6 11 12 14 15 20 22 }
+
+Solution update no. 128 :
+Found new intermediate solution in iteration 672458 : 7 Tables
+  { 3l 4l 5l 6 11 14 15 16 20 22 }
+
+Solution update no. 129 :
+Found new intermediate solution in iteration 672554 : 7 Tables
+  { 3l 4l 5l 6 11 14 15 16 18 20 }
+
+Solution update no. 130 :
+Found new intermediate solution in iteration 672970 : 7 Tables
+  { 3l 4l 5l 6 11 14 15 18 20 22 }
+
+Solution update no. 131 :
+Found new intermediate solution in iteration 673034 : 7 Tables
+  { 3l 4l 5l 6 11 14 15 20 21 22 }
+
+Solution update no. 132 :
+Found new intermediate solution in iteration 673074 : 7 Tables
+  { 3l 4l 5l 6 11 14 15 20 22 25 }
+
+Solution update no. 133 :
+Found new intermediate solution in iteration 673076 : 7 Tables
+  { 3l 4l 5l 6 11 14 15 20 22 27 }
+
+Solution update no. 134 :
+Found new intermediate solution in iteration 673077 : 6 Tables
+  { 3l 4l 5l 6 11 14 15 20 22 }
+
+Solution update no. 135 :
+Found new intermediate solution in iteration 674549 : 6 Tables
+  { 3l 4l 5l 6 11 14 20 21 22 }
+
+Solution update no. 136 :
+Found new intermediate solution in iteration 677365 : 6 Tables
+  { 3l 4l 5l 6 11 19 20 21 22 }
+
+Solution update no. 137 :
+Found new intermediate solution in iteration 678453 : 6 Tables
+  { 3l 4l 5l 6 11 15 19 20 22 }
+
+Solution update no. 138 :
+Found new intermediate solution in iteration 681397 : 6 Tables
+  { 3l 4l 5l 6 11 13 15 19 22 }
+
+Solution update no. 139 :
+Found new intermediate solution in iteration 682613 : 6 Tables
+  { 3l 4l 5l 6 11 13 19 21 22 }
+
+Solution update no. 140 :
+Found new intermediate solution in iteration 685429 : 6 Tables
+  { 3l 4l 5l 6 11 13 14 21 22 }
+
+Solution update no. 141 :
+Found new intermediate solution in iteration 686773 : 6 Tables
+  { 3l 4l 5l 6 11 13 14 15 22 }
+
+Solution update no. 142 :
+Found new intermediate solution in iteration 1197365 : 6 Tables
+  { 3l 4l 5l 8 11 14 15 20 22 }
+
+Solution update no. 143 :
+Found new intermediate solution in iteration 1198837 : 6 Tables
+  { 3l 4l 5l 8 11 14 20 21 22 }
+
+Solution update no. 144 :
+Found new intermediate solution in iteration 1201653 : 6 Tables
+  { 3l 4l 5l 8 11 19 20 21 22 }
+
+Solution update no. 145 :
+Found new intermediate solution in iteration 1202741 : 6 Tables
+  { 3l 4l 5l 8 11 15 19 20 22 }
+
+Solution update no. 146 :
+Found new intermediate solution in iteration 1205685 : 6 Tables
+  { 3l 4l 5l 8 11 13 15 19 22 }
+
+Solution update no. 147 :
+Found new intermediate solution in iteration 1206901 : 6 Tables
+  { 3l 4l 5l 8 11 13 19 21 22 }
+
+Solution update no. 148 :
+Found new intermediate solution in iteration 1209717 : 6 Tables
+  { 3l 4l 5l 8 11 13 14 21 22 }
+
+Solution update no. 149 :
+Found new intermediate solution in iteration 1211061 : 6 Tables
+  { 3l 4l 5l 8 11 13 14 15 22 }
+
+Solution update no. 150 :
+Found new intermediate solution in iteration 1328437 : 6 Tables
+  { 3l 4l 5l 10 11 14 15 20 22 }
+
+Solution update no. 151 :
+Found new intermediate solution in iteration 1329909 : 6 Tables
+  { 3l 4l 5l 10 11 14 20 21 22 }
+
+Solution update no. 152 :
+Found new intermediate solution in iteration 1332725 : 6 Tables
+  { 3l 4l 5l 10 11 19 20 21 22 }
+
+Solution update no. 153 :
+Found new intermediate solution in iteration 1333813 : 6 Tables
+  { 3l 4l 5l 10 11 15 19 20 22 }
+
+Solution update no. 154 :
+Found new intermediate solution in iteration 1336757 : 6 Tables
+  { 3l 4l 5l 10 11 13 15 19 22 }
+
+Solution update no. 155 :
+Found new intermediate solution in iteration 1337973 : 6 Tables
+  { 3l 4l 5l 10 11 13 19 21 22 }
+
+Solution update no. 156 :
+Found new intermediate solution in iteration 1340789 : 6 Tables
+  { 3l 4l 5l 10 11 13 14 21 22 }
+
+Solution update no. 157 :
+Found new intermediate solution in iteration 1342133 : 6 Tables
+  { 3l 4l 5l 10 11 13 14 15 22 }
+
+Solution update no. 158 :
+Found new intermediate solution in iteration 1409717 : 6 Tables
+  { 3l 4l 5l 11 13 14 15 16 22 }
+
+Solution update no. 159 :
+Found new intermediate solution in iteration 1409877 : 6 Tables
+  { 3l 4l 5l 11 13 14 15 16 18 }
+
+Solution update no. 160 :
+Found new intermediate solution in iteration 1410229 : 6 Tables
+  { 3l 4l 5l 11 13 14 15 18 22 }
+
+Solution update no. 161 :
+Found new intermediate solution in iteration 1410357 : 6 Tables
+  { 3l 4l 5l 11 13 14 15 20 22 }
+
+Solution update no. 162 :
+Found new intermediate solution in iteration 1410373 : 6 Tables
+  { 3l 4l 5l 11 13 14 15 22 23 }
+
+Solution update no. 163 :
+Found new intermediate solution in iteration 1410377 : 6 Tables
+  { 3l 4l 5l 11 13 14 15 22 26 }
+
+Solution update no. 164 :
+Found new intermediate solution in iteration 1410378 : 5 Tables
+  { 3l 4l 5l 11 13 14 15 22 }
+
+Solution update no. 165 :
+Found new intermediate solution in iteration 1411722 : 5 Tables
+  { 3l 4l 5l 11 13 14 21 22 }
+
+Solution update no. 166 :
+Found new intermediate solution in iteration 1414538 : 5 Tables
+  { 3l 4l 5l 11 13 19 21 22 }
+
+Solution update no. 167 :
+Found new intermediate solution in iteration 1415754 : 5 Tables
+  { 3l 4l 5l 11 13 15 19 22 }
+
+Solution update no. 168 :
+Found new intermediate solution in iteration 1418698 : 5 Tables
+  { 3l 4l 5l 11 15 19 20 22 }
+
+Solution update no. 169 :
+Found new intermediate solution in iteration 1419786 : 5 Tables
+  { 3l 4l 5l 11 19 20 21 22 }
+
+Solution update no. 170 :
+Found new intermediate solution in iteration 1422602 : 5 Tables
+  { 3l 4l 5l 11 14 20 21 22 }
+
+Solution update no. 171 :
+Found new intermediate solution in iteration 1424074 : 5 Tables
+  { 3l 4l 5l 11 14 15 20 22 }
+
+Solution update no. 172 :
+Found new intermediate solution in iteration 2770229 : 5 Tables
+  { 4l 5l 11 14 15 20 22 }
+
+Solution update no. 173 :
+Found new intermediate solution in iteration 2771701 : 5 Tables
+  { 4l 5l 11 14 20 21 22 }
+
+Solution update no. 174 :
+Found new intermediate solution in iteration 2774517 : 5 Tables
+  { 4l 5l 11 19 20 21 22 }
+
+Solution update no. 175 :
+Found new intermediate solution in iteration 2775605 : 5 Tables
+  { 4l 5l 11 15 19 20 22 }
+
+Solution update no. 176 :
+Found new intermediate solution in iteration 2778549 : 5 Tables
+  { 4l 5l 11 13 15 19 22 }
+
+Solution update no. 177 :
+Found new intermediate solution in iteration 2779765 : 5 Tables
+  { 4l 5l 11 13 19 21 22 }
+
+Solution update no. 178 :
+Found new intermediate solution in iteration 2782581 : 5 Tables
+  { 4l 5l 11 13 14 21 22 }
+
+Solution update no. 179 :
+Found new intermediate solution in iteration 2783925 : 5 Tables
+  { 4l 5l 11 13 14 15 22 }
+
+Ready! Actual runtime        : 1 seconds
+
+Optimal runtime              : O(n^4)
+Minimum number of tables     : 5
+Optimal table configurations : 16
+  { 3l 4l 5l 11 13 14 15 22 }  (2 + 29n + 103n^2 + 84n^3 + 70n^4)
+  { 3l 4l 5l 11 13 14 21 22 }  (2 + 29n + 103n^2 + 91n^3 + 52n^4)
+  { 3l 4l 5l 11 13 19 21 22 }  (2 + 29n + 100n^2 + 127n^3 + 64n^4)
+  { 3l 4l 5l 11 13 15 19 22 }  (2 + 29n + 100n^2 + 120n^3 + 82n^4)
+  { 3l 4l 5l 11 15 19 20 22 }  (2 + 29n + 100n^2 + 135n^3 + 90n^4)
+  { 3l 4l 5l 11 19 20 21 22 }  (2 + 29n + 100n^2 + 142n^3 + 72n^4)
+  { 3l 4l 5l 11 14 20 21 22 }  (2 + 29n + 103n^2 + 118n^3 + 72n^4)
+  { 3l 4l 5l 11 14 15 20 22 }  (2 + 29n + 103n^2 + 111n^3 + 90n^4)
+  { 4l 5l 11 14 15 20 22 }  (1 + 24n + 111n^2 + 123n^3 + 90n^4)
+  { 4l 5l 11 14 20 21 22 }  (1 + 24n + 111n^2 + 130n^3 + 72n^4)
+  { 4l 5l 11 19 20 21 22 }  (1 + 24n + 108n^2 + 154n^3 + 72n^4)
+  { 4l 5l 11 15 19 20 22 }  (1 + 24n + 108n^2 + 147n^3 + 90n^4)
+  { 4l 5l 11 13 15 19 22 }  (1 + 24n + 108n^2 + 132n^3 + 82n^4)
+  { 4l 5l 11 13 19 21 22 }  (1 + 24n + 108n^2 + 139n^3 + 64n^4)
+  { 4l 5l 11 13 14 21 22 }  (1 + 24n + 111n^2 + 103n^3 + 52n^4)
+  { 4l 5l 11 13 14 15 22 }  (1 + 24n + 111n^2 + 96n^3 + 70n^4)
+
+Optimal table configurations with respect to constant factors : 1
+  { 3l 4l 5l 11 13 14 21 22 }  (2 + 29n + 103n^2 + 91n^3 + 52n^4)
+Returning: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 

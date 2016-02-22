@@ -1,0 +1,82 @@
+<!DOCTYPE interface [
+<!ELEMENT interface ( versioninfo, messages, manual?, module*, option* ) >
+   <!ATTLIST interface name        CDATA          #REQUIRED
+                       version     CDATA          #REQUIRED
+                       author      CDATA          #REQUIRED
+                       design      (mono | color) #REQUIRED
+                       lib         (std  | rna)   #REQUIRED
+                       interactive (on | off)     #REQUIRED>
+
+<!ELEMENT versioninfo (#PCDATA) >
+
+<!ELEMENT messages (interactive_welcome, interactive_commandline, interactive_help_header) >
+   <!ELEMENT interactive_welcome     (#PCDATA) >
+   <!ELEMENT interactive_commandline (#PCDATA) >
+   <!ELEMENT interactive_help_header (#PCDATA) >
+
+ <!ELEMENT manual (synopsis?, introduction?, examples?)>
+   <!ELEMENT synopsis                (#PCDATA) >
+   <!ELEMENT introduction            (#PCDATA) >
+   <!ELEMENT examples                (#PCDATA) >
+
+<!ELEMENT module EMPTY >
+   <!ATTLIST module   name                  CDATA #REQUIRED
+                      source                CDATA #REQUIRED
+                      adpc                  CDATA #REQUIRED
+                      condition             CDATA #REQUIRED 
+                      output_optimal        CDATA #REQUIRED  
+                      output_subopt_start   CDATA #REQUIRED
+                      output_subopt         CDATA #REQUIRED
+                      output_subopt_end     CDATA #REQUIRED
+                      main_name             CDATA #REQUIRED>
+
+<!ELEMENT option ( (help | longhelp | version | 
+                    switch | set | switchset | file | direct |
+                    comment ), 
+                   code?, man? ) >
+    <!ATTLIST option switch CDATA #REQUIRED 
+                     argtext CDATA #IMPLIED 
+                     text   CDATA #REQUIRED >
+
+<!ELEMENT code (#PCDATA) >
+<!ELEMENT man (#PCDATA) >
+
+<!ELEMENT help EMPTY >
+<!ELEMENT longhelp EMPTY >
+
+<!ELEMENT version EMPTY >
+
+<!ELEMENT switch EMPTY >
+    <!ATTLIST switch var CDATA #REQUIRED 
+                     settext CDATA #REQUIRED
+                     infotext CDATA #REQUIRED 
+                     default  (on|off) #REQUIRED >
+
+<!ELEMENT set EMPTY >
+    <!ATTLIST set var CDATA #REQUIRED 
+                  settext CDATA #REQUIRED
+                  infotext CDATA #REQUIRED 
+                  default  CDATA #REQUIRED 
+                  datatype (int | float | string) #REQUIRED
+                  minval   CDATA #IMPLIED 
+                  maxval   CDATA #IMPLIED >
+
+<!ELEMENT switchset EMPTY >
+    <!ATTLIST switchset var CDATA #REQUIRED 
+                  swvar       CDATA #REQUIRED
+                  settext     CDATA #REQUIRED
+                  disabletext CDATA #REQUIRED
+                  infotext    CDATA #REQUIRED 
+                  defaultval  CDATA #REQUIRED 
+                  default     (on | off) #REQUIRED 
+                  datatype    (int | float | string) #REQUIRED
+                  minval      CDATA #IMPLIED 
+                  maxval      CDATA #IMPLIED >
+
+<!ELEMENT file EMPTY >
+   <!ATTLIST file var CDATA #REQUIRED >
+
+<!ELEMENT direct EMPTY >
+<!ELEMENT comment EMPTY >
+
+]>

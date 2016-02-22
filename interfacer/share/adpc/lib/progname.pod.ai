@@ -1,0 +1,69 @@
+=begin latex
+
+\documentclass{article}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex}
+
+\begin{document}
+
+\title{@PROJECT_NAME@ @PROJECT_VERSION@ manual}
+\author{@PROJECT_AUTHOR@}
+
+\maketitle
+
+=end latex
+
+=head1 NAME
+
+@PROJECT_NAME@ @PROJECT_VERSION@
+
+=head1 SYNOPSIS
+
+@PROJECT_SYNOPSIS@
+
+=head1 INTRODUCTION
+
+@PROJECT_INTRODUCTION@
+
+=head1 OPTIONS
+
+@POD_OPTIONS@
+
+=head2 Additional interactive mode commands
+
+B<:s>          Show current configuration
+
+This command shows the current settings in an interactive @PROJECT_NAME@
+session.
+
+B<:d>           Reset configuration
+
+This command sets all settings to their default values.
+
+B<:e> C<string> Execute system command
+
+Command B<:e> executes a system command. 
+
+B<:q>           Quit
+
+This command quits an interactive @PROJECT_NAME@ session.
+
+=head1 EXAMPLES
+
+@PROJECT_EXAMPLES@
+
+=head1 EXIT STATUS
+
+@PROJECT_NAME@ returns a zero exit status if it succeeds. Non zero is
+returned in case of failure.
+
+=head1 AUTHORS
+
+@PROJECT_VERSIONINFO@
+
+=begin latex
+
+\end{document}
+
+=end latex

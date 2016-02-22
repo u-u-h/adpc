@@ -1,0 +1,51 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :3, tabulation: 1
+Dependencies:
+Nt: 3, usages: 1
+Nt: 4, usages: 1
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :1+2n, tabulation: 1n^2
+Dependencies:
+Nt: 5, usages: 1+1n
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :1+4n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1+2n
+Nt: 3, usages: 1n
+Nt: 4, usages: 1n
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 5, usages: 1
+Nt: 6, usages: 1
+----------------------------------------
+Nt: 6, user configuration: 2, runtime :11+6n+3n^2, tabulation: 1n^2
+Dependencies:
+Nt: 7, usages: 1
+Nt: 5, usages: 2n+2n^2
+Nt: 2, usages: 1n
+Nt: 3, usages: 1n
+----------------------------------------
+Nt: 7, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+
+
+Mode = 3, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+Best asymptotic runtime: 4
+reduced 5 NTs.
+Nt 1 gets never tabulated
+Nt 3 have to be tabulated
+Nt 4 gets never tabulated
+Nt 5 have to be tabulated
+Nt 7 gets never tabulated
+Grammar has 7 NTs
+++++++++++++++++++++++++++++++++++++++++
+Iteration: 0	 Runtime: 3 + 17n^2 + 12n^3 + 9n^4
+{ 3 5 } #2
+++++++++++++++++++++++++++++++++++++++++
+needed 14 iterations
+0 sec, 543 usec
+Returning: 0 0 0 0 0 0 0 0 

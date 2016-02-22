@@ -1,0 +1,64 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :3+2n, tabulation: 1n
+Dependencies:
+Nt: 1, usages: 1
+Nt: 2, usages: 1+1n
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 3, usages: 1
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 4, usages: 1
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :4446, tabulation: 1n^2
+Dependencies:
+Nt: 8, usages: 4321
+Nt: 5, usages: 3481
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 6, usages: 1
+----------------------------------------
+Nt: 6, user configuration: 2, runtime :4446, tabulation: 1n^2
+Dependencies:
+Nt: 8, usages: 4321
+Nt: 7, usages: 3481
+----------------------------------------
+Nt: 7, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 9, usages: 1
+----------------------------------------
+Nt: 8, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 9, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 10, user configuration: 2, runtime :8, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+
+
+Mode = 3, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+Best asymptotic runtime: 2
+reduced 9 NTs.
+Nt 2 gets never tabulated
+Nt 3 gets never tabulated
+Nt 4 gets never tabulated
+Nt 5 gets never tabulated
+Nt 6 gets never tabulated
+Nt 7 gets never tabulated
+Nt 8 gets never tabulated
+Nt 9 gets never tabulated
+Nt 10 have to be tabulated
+Grammar has 10 NTs
+++++++++++++++++++++++++++++++++++++++++
+Iteration: 0	 Runtime: 39719178n + 39719186n^2
+{ 10 } #1
+++++++++++++++++++++++++++++++++++++++++
+needed 20 iterations
+0 sec, 2104 usec
+Returning: 0 0 0 0 0 0 0 0 0 0 0 

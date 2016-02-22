@@ -1,0 +1,22 @@
+No library given. Trying to guess...
+system call: grep energy ElMamun.lhs > energy.txt
+No energy found in input file. Using standard lib...
+reading ElMamun.lhs
+Deriving algebras....
+system call: cat ElMamun.lhs | sed '/algebra\[.*\]/s/> #algebra\[\([a-zA-Z]*\)\]/\1/w algebras.txt' > /dev/null
+Found algebras count, prettyprint, buyer, seller
+Searching for prettyprinting algebra... (testing pp, pretty, prettyprint)
+Found prettyprinting algebra: "prettyprint".
+Deriving choice functions....
+system call: cat ElMamun.lhs| grep '\[minimum\|\[maximum\|\[sum\|\[id' > choicefcts.txt
+Found choice functions sum, id, minimum, maximum
+Guessing...:
+count -> sum
+prettyprint -> id
+buyer -> minimum
+seller -> maximum
+Creating project: "ElMamun".
+[0;34mMakefile.ai -> Makefile.[0m
+[0;34mstdlib.xml.ai -> ElMamun.xml.[0m
+[0;34mprogname.h.ai -> ElMamun.h.[0m
+[0;32mPhase I successful! Type make to build.[0m

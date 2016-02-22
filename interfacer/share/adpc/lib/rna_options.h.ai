@@ -1,0 +1,21 @@
+#ifndef options_h
+#define options_h
+
+typedef struct {
+
+@C_TOPTIONS@
+
+  int window_pos;            // current window position
+  
+  int number_of_graphics;    // PS output 
+  char graphics_includeinfo; // include info
+  char graphics_highlight;   // highlight upper case characters
+  
+  int output_mode;           // output mode (-o)
+  char *format_string;       // format string
+  
+  char interactive;          // interactive mode active
+  char terminate;            // terminate program
+} toptions;
+
+#endif

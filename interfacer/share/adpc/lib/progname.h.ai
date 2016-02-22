@@ -1,0 +1,7 @@
+#ifndef @PROJECT_NAME@_h
+#define @PROJECT_NAME@_h
+
+@C_MODULE_ENTRIES@
+
+#endif
+

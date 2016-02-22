@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+{ [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$#" = "0" ]; } && \
+ { printf "call: $0 PREFIX [VERSION]\n\nCreates a distribution tarball\
+ adpc-VERION.tar.gz for an installation into \nPREFIX.\n\
+ The VERSION parameter is optional (else it reads the VERSION file).\n\
+ In creates a temporary directory distr in the cwd.\n" &&\
+ exit 0; }
+
+if [ "$#" = "2" ]; then
+  VERSION=$2
+else
+  VERSION=`cat VERSION`
+fi
+
+cd config
+make
+./config -p $1
+cd ..
+make
+sh config/install distr/$1
+tar -C distr -c -z -f adpc-$VERSION.tar.gz .

@@ -1,0 +1,13 @@
+0.9 - 2008-02-22
+  Changes:
+    - New Java backend
+        i.e. you can tranlate your ADP programs to Java source code
+        see README for more details
+    - ADP Typechecker
+        available as commandline option or standalone tool
+        see README for more details
+
+  Notes:
+    - the XML-Interfacer (needed for ADP to C compilation) is marked
+        as obsolete - most likely the next adpc version will use
+        the  Metafrontend (fe) instead.

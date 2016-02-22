@@ -1,0 +1,11 @@
+/vol/pgadptab/gs/adpc/adp2java/interfacer/adpc-bin /vol/pgadptab/gs/adpc/adp2java/interfacer -l rna sfold.xml
+reading sfold.xml
+[0;34mrna_options.h.ai -> options.h.[0m
+[0;34mprognamei.c.ai -> sfold.c.[0m
+[0;34mprogname.pod.ai -> sfold.pod.[0m
+[0;34mconfig.h.ai -> config.h.[0m
+generate global sed file:
+[0;34msfold.sed[0m
+generate sed files for every algebra:
+[0;34msfold_mfe.sed[0m
+Done.

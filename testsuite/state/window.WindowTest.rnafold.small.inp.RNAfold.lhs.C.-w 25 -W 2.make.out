@@ -1,0 +1,23 @@
+/vol/pgadptab/gs/adpc/adp2java/interfacer/adpc-bin /vol/pgadptab/gs/adpc/adp2java/interfacer -l rna RNAfold.xml
+reading RNAfold.xml
+[0;34mrna_options.h.ai -> options.h.[0m
+[0;34mprognamei.c.ai -> RNAfold.c.[0m
+[0;34mprogname.pod.ai -> RNAfold.pod.[0m
+[0;34mconfig.h.ai -> config.h.[0m
+generate global sed file:
+[0;34mRNAfold.sed[0m
+generate sed files for every algebra:
+[0;34mRNAfold_mfe.sed[0m
+Done.
+pod2text -q '<>' RNAfold.pod > RNAfold.txt
+/vol/pgadptab/gs/adpc/adp2java/interfacer/man2c '1' RNAfold.txt RNAfold-man.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c RNAfold.c
+/vol/pgadptab/gs/adpc/adp2java/adpcompile -c RNAfold.lhs -al mfe enum -cs mfe -alpp pp -O -lcf -ta bto -bt so -gc cc  -iuc -cto -tadd 3 -taddc 30  -W -o RNAfold_mfe.adpc
+sed -f RNAfold_mfe.sed RNAfold_mfe.adpc > RNAfold_mfe.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c RNAfold_mfe.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/rnalib.c
+gcc  RNAfold.o adplib.o rnalib.o  \
+              RNAfold_mfe.o -L/vol/gnu/lib -R/vol/gnu/lib -lreadline -lcurses -lm -o RNAfold 
+echo "No problems detected. Type ./RNAfold to start." 
+No problems detected. Type ./RNAfold to start.

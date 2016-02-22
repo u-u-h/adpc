@@ -1,0 +1,59 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :4, tabulation: 1n
+Dependencies:
+Nt: 2, usages: 1
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :5, tabulation: 1n
+Dependencies:
+Nt: 1, usages: 2
+
+
+Mode = 2, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+
+
+Calculate the optimal table configuration of an ADP-program
+
+Some information about the runtime in advance:
+  tabulate all nonterminals      : O(n)
+  tabulate no  nonterminals      : O(2^n)
+  optimal runtime                : O(n)
+Runtime with respect to the user annotation:
+  tabulate all free nonterminals : O(n)
+  tabulate no  free nonterminals : O(2^n)
+  optimal runtime                : O(n)
+
+Total number of nonterminals            : 2
+Nonterminals which are not in use       : 0
+Nonterminals requiring < square space   : 2
+  { 1l 2l }
+Nonterminals defined by user annotation : 0
+Nonterminals defined by reductions      : 0
+Nonterminals remaining for optimization : 2
+  { 1l 2l }
+
+Running brute-force-optimization. Please wait ...
+
+Solution update no. 0 :
+Found new intermediate solution in iteration 0 : 0 Tables
+  { 1l 2l }
+
+Solution update no. 1 :
+Found new intermediate solution in iteration 1 : 0 Tables
+  { 1l }
+
+Solution update no. 2 :
+Found new intermediate solution in iteration 3 : 0 Tables
+  { 2l }
+
+Ready! Actual runtime        : 0 seconds
+
+Optimal runtime              : O(n)
+Minimum number of tables     : 0
+Optimal table configurations : 3
+  { 1l 2l }  (9n)
+  { 1l }  (8n)
+  { 2l }  (4 + 11n)
+
+Optimal table configurations with respect to constant factors : 1
+  { 1l }  (8n)
+Returning: 0 0 0 

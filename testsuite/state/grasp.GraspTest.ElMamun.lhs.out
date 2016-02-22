@@ -1,0 +1,38 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :1+6n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1
+Nt: 1, usages: 6n
+Nt: 4, usages: 2n
+Nt: 5, usages: 2n
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 3, usages: 2
+Nt: 2, usages: 1
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :10, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+
+
+Mode = 3, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+Best asymptotic runtime: 3
+reduced 4 NTs.
+Nt 1 have to be tabulated
+Nt 3 gets never tabulated
+Nt 4 gets never tabulated
+Nt 5 gets never tabulated
+Grammar has 5 NTs
+++++++++++++++++++++++++++++++++++++++++
+Iteration: 0	 Runtime: 26n^3
+{ 1 } #1
+++++++++++++++++++++++++++++++++++++++++
+needed 10 iterations
+0 sec, 438 usec
+Returning: 0 0 0 0 0 0 

@@ -1,0 +1,220 @@
+@HEADER@ %{
+import ADPC.StdAlgebra;
+import ADPC.StdOptions;
+import ADPC.Output;
+import ADPC.DefaultOutput;
+
+%}
+
+@RNALIB_FREE@ %{%}
+
+@OUTPUT_OPTIMAL@ %{output.optimal(result_score);
+%}
+
+@OUTPUT_SUBOPT@ %{output.suboptimal(score, pp_outp);
+%}
+
+@OUTPUT_SUBOPT_START@ %{output.start(traceback_diff);
+%}
+
+@OUTPUT_SUBOPT_END@ %{output.end();
+%}
+
+@TRAILER@ %{
+
+class Seq { String unconverted; }
+
+Seq seq = new Seq();
+
+public void init(String s, StdOptions o)
+{
+  n = s.length();
+  z = " " + s;
+  traceback_diff = o.traceback_diff;
+  seq.unconverted = s;
+}
+
+/*
+public static void main(String[] argv)
+{
+  String seq = argv[0];
+
+  StdOptions opts = new StdOptions();
+  opts.traceback_diff = 5;
+  StdAlgebra alg = new StdAlgebra();
+  alg.set(seq, opts);
+  alg.traceback_diff = 5;
+  alg.mainloop();
+  alg.freeall();
+  
+}
+*/
+
+Output output = new DefaultOutput();
+
+public void setOutput(Output output)
+{
+  this.output = output;
+}
+
+public void start()
+{
+  if (enabled) {
+    output.prelude(ident);
+    mainloop();
+  }
+}
+
+public void set_traceback_diff(int i)
+{
+  traceback_diff = i;
+}
+
+%}
+
+@EXTENDS@ %{StdAlgebra%}
+
+
+@SEQUENCE@ %{String z;%}
+
+
+// add package
+// add Algebra imports
+
+
+@MAIN_HEADER@ %{
+
+import optparse.OptionParser;
+import optparse.Option;
+import optparse.HelpException;
+import optparse.ParseException;
+
+import java.util.List;
+
+import ADPC.StdAlgebra;
+import ADPC.StdOptions;
+import ADPC.ADP;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+%}
+
+// Class decl
+
+@MAIN_BODY@ %{
+
+  static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+  static OptionParser op = null;
+  static List<String> files = null;
+  static StdOptions opts = new StdOptions();
+
+  static boolean readline()
+  {
+      String s = null;
+      System.out.print("> ");
+      try {
+        s = reader.readLine();
+      } catch (IOException e) {
+        e.printStackTrace();
+        System.exit(1);
+      }
+      if (s.equals(":q"))
+        System.exit(0);
+      String[] args = s.split(" ");
+      try {
+        List<String> fs = op.parse(args);
+        if (fs.size() != 0)
+          files = fs;
+      } catch (HelpException e) {
+        return false;
+      }
+      catch (ParseException e) {
+        System.err.println(e.getMessage());
+        return false;
+      }
+      catch (Exception e) {
+        e.printStackTrace();
+        System.exit(1);
+      }
+      return true;
+  }
+
+
+public static void main(String[] argv) {
+%}
+
+// Algebra Decls
+
+@MAIN_2ND@ %{
+    try {
+          op = new OptionParser(opts);
+%}
+
+// Algebra opt inits
+
+@MAIN_3RD@ %{
+          files = op.parse(argv);
+    }
+    catch (HelpException e) {
+       System.exit(0);
+    }
+    catch (ParseException e) {
+       System.err.println(e.getMessage());
+       System.exit(1);
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      System.exit(1);
+    }
+
+    boolean interactive = false;
+    do {
+
+      String seq = null;
+
+      if (files.size() == 0 && opts.filename == null)
+        interactive = true;
+
+      if (interactive) {
+        List<String> t = files;
+        if (!readline())
+          continue;
+        if (t != files)
+          opts.filename = null;
+      }
+
+
+      if (files.size() > 1) {
+        System.err.println("You have to specify exactly one sequence!");
+        continue;
+      }
+
+      if (files.size() == 0 && opts.filename == null)
+        continue;
+
+      if (opts.filename == null)
+        seq = files.get(0);
+      else
+        try {
+          seq = ADP.read_string(opts.filename);
+        } catch (IOException e) {
+          System.err.println(e.getMessage());
+          opts.filename = null;
+          continue;
+        }
+
+%}
+
+@MAIN_TAIL@ %{
+
+    } while (interactive);
+
+}
+
+}
+
+%}
+
+

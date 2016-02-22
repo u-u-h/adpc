@@ -1,0 +1,516 @@
+INFO     ADPC config:
+INFO       Name: adpc Value: adpc
+INFO       Name: adpcompile Value: /vol/pgadptab/gs/adpc/adp2java/adpcompile
+INFO       Name: binpath Value: /vol/pgadptab/gs/adpc/adp2java/interfacer
+INFO       Name: classpath Value: .:../../java
+INFO       Name: cwd Value: /vol/pgadptab/gs/adpc/adp2java/testsuite
+INFO       Name: fe Value: /vol/pgadptab/gs/adpc/adp2java/java/fe
+INFO       Name: grammars Value: /vol/pgadptab/gs/adpc/adp2java/testsuite/grammars
+INFO       Name: hand Value: /vol/pgadptab/gs/adpc/adp2java/hand
+INFO       Name: input Value: /vol/pgadptab/gs/adpc/adp2java/testsuite/input
+INFO       Name: java Value: /vol/jdk-1.6.2/bin/java
+INFO       Name: javac Value: /vol/jdk-1.6.2/bin/javac
+INFO       Name: log Value: <function log at 0x82bb764>
+INFO       Name: make Value: /vol/gnu/bin/make
+INFO       Name: memtime Value: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+INFO       Name: output Value: /vol/pgadptab/gs/adpc/adp2java/testsuite/output
+INFO       Name: randseq Value: /vol/pgadptab/gs/adpc/adp2java/addons/randseq
+INFO       Name: state Value: /vol/pgadptab/gs/adpc/adp2java/testsuite/state
+INFO       Name: workdir Value: /vol/pgadptab/gs/adpc/adp2java/testsuite/workdir3
+INFO     Running Test Suite: Shapes part
+INFO       Running Test: Create adp program [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/adp2java/interfacer/adpc-bin
+  ['/vol/pgadptab/gs/adpc/adp2java/interfacer', 'sfold.lhs']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/output/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.adpc.out
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/output/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.adpc.err(timeout = 0)
+INFO     Calling: /vol/gnu/bin/make
+  ['BINPATH=/vol/pgadptab/gs/adpc/adp2java/interfacer', 'ADPCOMPILE=/vol/pgadptab/gs/adpc/adp2java/adpcompile', 'ADPC=/vol/pgadptab/gs/adpc/adp2java/interfacer/adpc-bin /vol/pgadptab/gs/adpc/adp2java/interfacer', 'sfold.c']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/output/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.maketup..out
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/output/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.maketup..err(timeout = 0)
+INFO     Calling: /vol/gnu/bin/make
+  ['BINPATH=/vol/pgadptab/gs/adpc/adp2java/interfacer', 'ADPCOMPILE=/vol/pgadptab/gs/adpc/adp2java/adpcompile', 'ADPC=/vol/pgadptab/gs/adpc/adp2java/interfacer/adpc-bin /vol/pgadptab/gs/adpc/adp2java/interfacer']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/output/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.make.out
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/output/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.make.err(timeout = 0)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/adp2java/addons/randseq
+  ['-l', '625']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625.err(timeout = 0)
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=625.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=625.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=625.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=625.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=625.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=650.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=650.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=650.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=650.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=650.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/adp2java/addons/randseq
+  ['-l', '675']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675.err(timeout = 0)
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=675.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=675.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=675.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=675.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=675.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=700.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=700.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=700.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=700.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=700.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/adp2java/addons/randseq
+  ['-l', '725']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725.err(timeout = 0)
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=725.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=725.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=725.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=725.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=725.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=750.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=750.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=750.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=750.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=750.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/adp2java/addons/randseq
+  ['-l', '775']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775.err(timeout = 0)
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=775.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=775.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=775.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=775.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=775.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=800.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=800.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=800.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=800.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [C]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['./sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=800.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test: Remove adp program [C]
+INFO     Calling: /vol/gnu/bin/make
+  ['clean']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.clean.out
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=C.n=600.subopt=0.repeat=0.clean.err(timeout = 0)
+INFO       Running Test: Create adp program [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/adp2java/java/fe
+  ['sfold.lhs', '-p', '/vol/pgadptab/gs/adpc/adp2java/java', '--pure-prefix']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=0.mf.out
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=0.mf.err(timeout = 0)
+INFO     Calling: /vol/jdk-1.6.2/bin/javac
+  ['-cp', '.:../../java', 'sfold/sfold.java']
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=0.javac.out
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=0.javac.err(timeout = 0)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.600) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.600', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=600.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=625.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=625.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=625.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=625.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.625) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.625', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=625.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=650.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=650.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=650.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=650.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.650) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.650', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=650.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=675.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=675.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=675.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=675.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.675) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.675', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=675.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=700.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=700.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=700.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=700.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.700) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.700', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=700.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=725.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=725.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=725.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=725.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.725) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.725', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=725.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=750.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=750.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=750.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=750.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.750) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.750', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=750.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=775.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=775.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=775.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=775.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.775) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.775', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=775.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=800.subopt=0.repeat=0.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=800.subopt=0.repeat=1.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=800.subopt=0.repeat=2.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=800.subopt=0.repeat=3.err(timeout = 600)
+INFO       Running Test:    Executing sfold.lhs under algebra mfe (rnaseq.800) [java]
+INFO     Calling: /vol/pgadptab/gs/adpc/memtime/memtime-1.3/memtime
+  ['/vol/jdk-1.6.2/bin/java', '-cp', '.:../../java', 'sfold.sfold', '-f', '/vol/pgadptab/gs/adpc/adp2java/testsuite/perf/in/rnaseq.800', '-c', '10', '-c', '0']
+  /dev/null
+  /vol/pgadptab/gs/adpc/adp2java/testsuite/perf/out/shape2.TuplePerf.language=java.n=800.subopt=0.repeat=4.err(timeout = 600)
+INFO       Running Test: Remove adp program [java]
+INFO     Status : 94 tests successful, 0 tests failed, 0 tests had internal errors.
+Total  : 94 tests (needed 7344.498s seconds)

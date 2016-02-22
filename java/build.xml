@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>  
+<project name="basic-stuff" basedir="." default="RNAfold">
+
+<target name="RNAfold" description="Compiles the Task" depends="ADPC">
+<javac srcdir="RNAfold" destdir="bin"/>
+</target>
+
+<target name="ADPC" description="Compiles the Task" depends="optparse,Tree">
+<javac srcdir="ADPC" destdir="bin"/>
+</target>
+
+<target name="optparse" description="Compiles the Task">
+<javac srcdir="optparse" destdir="bin"/>
+</target>
+
+<target name="Tree" description="Compiles the Task">
+<javac srcdir="Tree" destdir="bin"/>
+</target>
+
+</project>

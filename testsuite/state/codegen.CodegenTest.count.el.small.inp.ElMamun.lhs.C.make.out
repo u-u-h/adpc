@@ -1,0 +1,30 @@
+/vol/pgadptab/gs/adpc/adp2java/interfacer/adpc-bin /vol/pgadptab/gs/adpc/adp2java/interfacer -l std ElMamun.xml
+reading ElMamun.xml
+[0;34mstd_options.h.ai -> options.h.[0m
+[0;34mprognamei.c.ai -> ElMamun.c.[0m
+[0;34mprogname.pod.ai -> ElMamun.pod.[0m
+[0;34mconfig.h.ai -> config.h.[0m
+generate global sed file:
+[0;34mElMamun.sed[0m
+generate sed files for every algebra:
+[0;34mElMamun_count.sed[0m
+[0;34mElMamun_buyer.sed[0m
+[0;34mElMamun_seller.sed[0m
+Done.
+pod2text -q '<>' ElMamun.pod > ElMamun.txt
+/vol/pgadptab/gs/adpc/adp2java/interfacer/man2c '1' ElMamun.txt ElMamun-man.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c ElMamun.c
+/vol/pgadptab/gs/adpc/adp2java/adpcompile -c ElMamun.lhs -al count enum -cs count -alpp prettyprint -O -lcf -ta bto -bt so -gc cc  -iuc -cto -tadd 3 -taddc 30 -o ElMamun_count.adpc
+sed -f ElMamun_count.sed ElMamun_count.adpc > ElMamun_count.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c ElMamun_count.c
+/vol/pgadptab/gs/adpc/adp2java/adpcompile -c ElMamun.lhs -al buyer enum -cs buyer -alpp prettyprint -O -lcf -ta bto -bt so -gc cc  -iuc -cto -tadd 3 -taddc 30 -o ElMamun_buyer.adpc
+sed -f ElMamun_buyer.sed ElMamun_buyer.adpc > ElMamun_buyer.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c ElMamun_buyer.c
+/vol/pgadptab/gs/adpc/adp2java/adpcompile -c ElMamun.lhs -al seller enum -cs seller -alpp prettyprint -O -lcf -ta bto -bt so -gc cc  -iuc -cto -tadd 3 -taddc 30 -o ElMamun_seller.adpc
+sed -f ElMamun_seller.sed ElMamun_seller.adpc > ElMamun_seller.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c ElMamun_seller.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c
+gcc  ElMamun.o adplib.o  \
+              ElMamun_count.o ElMamun_buyer.o ElMamun_seller.o -L/vol/gnu/lib -R/vol/gnu/lib -lreadline -lcurses -lm -o ElMamun 
+echo "No problems detected. Type ./ElMamun to start." 
+No problems detected. Type ./ElMamun to start.

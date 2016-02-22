@@ -1,0 +1,77 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :3+2n, tabulation: 1n
+Dependencies:
+Nt: 1, usages: 1+1n
+Nt: 2, usages: 1n
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 7, usages: 1
+Nt: 8, usages: 1
+Nt: 9, usages: 1
+Nt: 10, usages: 1
+Nt: 11, usages: 1
+Nt: 3, usages: 1
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :5, tabulation: 1n^2
+Dependencies:
+Nt: 4, usages: 1
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :2n, tabulation: 1n^2
+Dependencies:
+Nt: 6, usages: 1n
+Nt: 5, usages: 1n
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :1+4n, tabulation: 1n^2
+Dependencies:
+Nt: 6, usages: 1+2n
+Nt: 5, usages: 1n
+----------------------------------------
+Nt: 6, user configuration: 2, runtime :1+2n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1+1n
+----------------------------------------
+Nt: 7, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1
+----------------------------------------
+Nt: 8, user configuration: 2, runtime :5, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 9, user configuration: 2, runtime :4+2n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1n
+----------------------------------------
+Nt: 10, user configuration: 2, runtime :4+2n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1n
+----------------------------------------
+Nt: 11, user configuration: 2, runtime :5, tabulation: 1n^2
+Dependencies:
+Nt: 12, usages: 1
+----------------------------------------
+Nt: 12, user configuration: 2, runtime :4, tabulation: 1n^2
+Dependencies:
+Nt: 12, usages: 1
+Nt: 13, usages: 1
+----------------------------------------
+Nt: 13, user configuration: 2, runtime :4+7n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1+4n
+
+
+Mode = 3, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+Best asymptotic runtime: 3
+reduced 4 NTs.
+Nt 1 have to be tabulated
+Nt 5 have to be tabulated
+Nt 6 have to be tabulated
+Nt 8 gets never tabulated
+Grammar has 13 NTs
+++++++++++++++++++++++++++++++++++++++++
+Iteration: 0	 Runtime: 3n + 36n^2 + 19n^3
+{ 1 2 5 6 12 } #5
+++++++++++++++++++++++++++++++++++++++++
+needed 26 iterations
+0 sec, 3831 usec
+Returning: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 

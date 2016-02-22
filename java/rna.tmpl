@@ -1,0 +1,256 @@
+
+@HEADER@ %{
+import static ADPC.RNA.*;
+import ADPC.Sequence;
+import ADPC.RnaAlgebra;
+import ADPC.Options;
+import ADPC.Output;
+import ADPC.DefaultOutput;
+
+%}
+
+@RNALIB_FREE@ %{%}
+
+FIXME replace if statement with lib-method-call, which can be overloaded
+(because of later use of tuples as result scores)
+
+@OUTPUT_OPTIMAL@ %{if (opts.traceback_percent > 0)
+  traceback_diff = Math.abs(get_result_score(result_score) * opts.traceback_percent / 100);
+output.optimal(result_score);
+%}
+
+@OUTPUT_SUBOPT@ %{output.suboptimal(score, pp_outp);
+%}
+
+@OUTPUT_SUBOPT_START@ %{output.start(traceback_diff);
+%}
+
+@OUTPUT_SUBOPT_END@ %{output.end();
+%}
+
+@TRAILER@ %{
+
+@Option (opt='m', gnu="maxloop") public int maxloop = 30;
+
+Options opts;
+Sequence seq;
+
+public void init(Sequence seq, Options opts)
+{
+  z = seq.sequence;
+  this.seq = seq;
+  this.opts = opts;
+
+}
+
+/*
+public static void main(String[] argv)
+{
+  String seq = argv[0];
+
+  StdOptions opts = new StdOptions();
+  opts.traceback_diff = 5;
+  StdAlgebra alg = new StdAlgebra();
+  alg.set(seq, opts);
+  alg.traceback_diff = 5;
+  alg.mainloop();
+  alg.freeall();
+  
+}
+*/
+
+Output output = new DefaultOutput();
+
+public void setOutput(Output output)
+{
+  this.output = output;
+}
+
+public void start()
+{
+  if (enabled) {
+    int old_wsize = opts.window_size;
+    if (opts.window_size > 0) {
+      if (opts.window_size > seq.sequence.length) {
+        opts.window_size = seq.original_length;
+        n = seq.sequence.length-1;
+      } else
+        n = opts.window_size;
+    } else {
+      n = seq.sequence.length-1;
+      opts.window_size = seq.original_length;
+    }
+    if (opts.traceback_diff > -1) {
+      opts.traceback_percent = 0;
+      this.traceback_diff = opts.traceback_diff * 100;
+    }
+
+    /* int window_size = opts.window_size;
+    if (!opts.window_mode)
+      opts.window_size = seq.original_length;
+    */
+    output.prelude(ident);
+    if (old_wsize > 0)
+      print_window(seq, opts);
+    mainloop();
+    //opts.window_size = window_size;
+    opts.window_size = old_wsize;
+  }
+}
+
+public void set_traceback_diff(int i)
+{
+  traceback_diff = i;
+}
+
+%}
+
+@EXTENDS@ %{RnaAlgebra%}
+
+@SEQUENCE@ %{byte[] z;%}
+
+
+// add package
+// add Algebra imports
+
+
+@MAIN_HEADER@ %{
+
+import optparse.OptionParser;
+import optparse.Option;
+import optparse.HelpException;
+import optparse.ParseException;
+
+import java.util.List;
+
+import ADPC.RnaAlgebra;
+import ADPC.Options;
+import ADPC.ADP;
+import ADPC.Sequence;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+%}
+
+// Class decl
+
+@MAIN_BODY@ %{
+
+  static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+  static OptionParser op = null;
+  static List<String> files = null;
+  static Options opts = new Options();
+
+  static boolean readline()
+  {
+      String s = null;
+      System.out.print("> ");
+      try {
+        s = reader.readLine();
+      } catch (IOException e) {
+        e.printStackTrace();
+        System.exit(1);
+      }
+      if (s.equals(":q"))
+        System.exit(0);
+      String[] args = s.split(" ");
+      try {
+        List<String> fs = op.parse(args);
+        if (fs.size() != 0)
+          files = fs;
+      } catch (HelpException e) {
+        return false;
+      }
+      catch (ParseException e) {
+        System.err.println(e.getMessage());
+        return false;
+      }
+      catch (Exception e) {
+        e.printStackTrace();
+        System.exit(1);
+      }
+      return true;
+  }
+
+
+public static void main(String[] argv) {
+%}
+
+// Algebra Decls
+
+@MAIN_2ND@ %{
+    try {
+          op = new OptionParser(opts);
+%}
+
+// Algebra opt inits
+
+@MAIN_3RD@ %{
+          files = op.parse(argv);
+    }
+    catch (HelpException e) {
+       System.exit(0);
+    }
+    catch (ParseException e) {
+       System.err.println(e.getMessage());
+       System.exit(1);
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+      System.exit(1);
+    }
+
+    boolean interactive = false;
+    do {
+
+      String s = null;
+
+      if (files.size() == 0 && opts.filename == null)
+        interactive = true;
+
+      if (interactive) {
+        List<String> t = files;
+        if (!readline())
+          continue;
+        if (t != files)
+          opts.filename = null;
+      }
+
+
+      if (files.size() > 1) {
+        System.err.println("You have to specify exactly one sequence!");
+        continue;
+      }
+
+      if (files.size() == 0 && opts.filename == null)
+        continue;
+
+      if (opts.filename == null)
+        s = files.get(0);
+      else
+        try {
+          s = ADP.read_string(opts.filename);
+        } catch (IOException e) {
+          System.err.println(e.getMessage());
+          opts.filename = null;
+          continue;
+        }
+
+      Sequence seq = new Sequence(s);
+    
+
+%}
+
+@MAIN_TAIL@ %{
+
+    } while (interactive);
+
+}
+
+}
+
+%}
+
+

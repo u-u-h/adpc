@@ -1,0 +1,95 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :252, tabulation: 1n
+Dependencies:
+Nt: 1, usages: 1
+Nt: 2, usages: 125
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :82, tabulation: 1n^2
+Dependencies:
+Nt: 3, usages: 41
+Nt: 7, usages: 41
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 4, usages: 1
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 4, usages: 1
+Nt: 5, usages: 1
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 6, usages: 1
+----------------------------------------
+Nt: 6, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 7, user configuration: 2, runtime :270, tabulation: 1n^2
+Dependencies:
+Nt: 8, usages: 135
+Nt: 9, usages: 135
+----------------------------------------
+Nt: 8, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 9, user configuration: 2, runtime :66, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 33
+Nt: 14, usages: 33
+----------------------------------------
+Nt: 10, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 1
+----------------------------------------
+Nt: 11, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 1
+Nt: 12, usages: 1
+----------------------------------------
+Nt: 12, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 13, usages: 1
+----------------------------------------
+Nt: 13, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 14, user configuration: 2, runtime :66, tabulation: 1n^2
+Dependencies:
+Nt: 15, usages: 33
+Nt: 16, usages: 33
+----------------------------------------
+Nt: 15, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 16, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 1
+
+
+Mode = 3, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+Best asymptotic runtime: 2
+reduced 15 NTs.
+Nt 2 gets never tabulated
+Nt 3 gets never tabulated
+Nt 4 gets never tabulated
+Nt 5 gets never tabulated
+Nt 6 gets never tabulated
+Nt 7 gets never tabulated
+Nt 8 gets never tabulated
+Nt 9 gets never tabulated
+Nt 10 gets never tabulated
+Nt 11 gets never tabulated
+Nt 12 gets never tabulated
+Nt 13 gets never tabulated
+Nt 14 gets never tabulated
+Nt 15 gets never tabulated
+Nt 16 gets never tabulated
+Grammar has 16 NTs
+++++++++++++++++++++++++++++++++++++++++
+Iteration: 0	 Runtime: 799817876n + 5434022125n^2
+{ } #0
+++++++++++++++++++++++++++++++++++++++++
+needed 32 iterations
+0 sec, 7005 usec
+Returning: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 

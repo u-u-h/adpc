@@ -1,0 +1,137 @@
+=head2 OPTIONS
+
+B<-h>                     Display this information
+
+This option shows the adpcompile command line interface.
+
+B<-H> C<option>            Display detailed information on <option>
+
+This displays the corresponding section of the adpcompile manual for
+the given command line option.
+
+B<-c> C<file>              Compile to imperative target code
+
+Compile the given adp file to C.
+
+B<-z> C<file>              Optimize combinators in ADP source code
+
+This mode reads the given ADP file, optimizes the next-combinators in
+it, and generates an optimized copy of the given file.
+
+B<-l> C<file>              Generate recurrences typeset in LaTeX
+
+This option generates recurrences typeset in LaTeX.
+
+B<-g> C<file>              Generate ADP template for signature
+
+This option generates a ADP template for the given signature. The
+template consists of the algebra type, enumeration and count algebras,
+the definition of the pair-operator and a simple grammar, that
+generates the term algebra.
+
+=head2 Table design
+
+B<-tg> C<file>  B<-ctg>       Derive  good   table configurations
+
+Option B<-tg> generates a C<good> table configuration. A configuration
+is good, if it achieves a polynomial runtime of the given ADP program
+with the minimal number of DP tables. While option B<-tg> stops after the
+table design, the option B<-ctg> can be used together with option
+B<-c> for the imperative target code generation.
+
+B<-to> C<file>  B<-cto>       Derive optimal table configurations
+
+Option B<-to> generates an optimal table configuration. A
+configuration is optimal, if it achieves the best possible asymptotic
+runtime with the minimal number of DP tables. Again, option B<-to>
+starts a stand-alone table design, while B<-cto> optimizes the tables
+during the target code generation.
+
+B<-tx> C<file>  B<-ctx>       Derive approx. optimal table configurations
+
+Since the table design is an NP-complete problem, options B<-tg> and
+B<-to> are not suitable for larger grammars. Our experience showed
+that grammars with up to 40 nonterminal symbols can be processed with
+option B<-to>. With more nonterminals, the running time of the
+optimization can easily go into hours and days. Here the options
+B<-tx> and B<-ctx> can be used. These options calculate optimal table
+configurations with the use of an approximal approach (GRASP). In our
+experience this approximal results are as good as the results from
+option B<-to>.
+
+B<-iuc>                   Ignore user annotated table configuration
+
+To support the table design phase, the input program can be annotated
+with the keywords "tabulated" and "nontabulated". This means, a
+production annotated with "tabulated" has to be tabulated in every
+case, and a production annotated with "nontabulated" must not be
+tabulated. This user annotations work together with large grammars and
+options B<-tg> and B<-to>, which would otherwise calculate too
+long. With option B<-iuc> the ADP compiler ignores all user
+annotations.
+
+B<-tadd> C<number>         Maximal number of additional tables
+
+Option B<-tadd> can be used together with options B<-to> and B<-tx> to
+improve the constant factor of an optimal table configuration. This is
+done by introducing a given number of additional tables. If this
+improves constant factors by the factor given with option B<-taddc>
+the additional tables are added to the table configuration.
+
+B<-taddc> C<number>        Necessary constant factor improvement for add. tables
+
+Option B<-taddc> specifies the necessary constant factor improvement
+for option B<-tadd>
+
+B<-taddn> C<number>        Expected input length for constant factor improvement
+
+Option B<-taddn> specifies the expected input length for the constant
+factor improvement.
+
+=head2 Target code generation
+
+B<-bt> C<mode>             Generate backtracing code (enumeration algebra needed)
+                           mode: s -> single, so -> suboptimal
+
+With option B<-bt> the ADP compiler generates backtracing code. The
+given mode can be either C<s> for a single-result-backtrace, or C<so>
+for a suboptimal backtrace.
+
+B<-W>                     Include window mode
+
+Option B<-W> generates program code for a sliding window mode.
+Beginning with position 1 of the input sequence, the analysis is
+repeatedly processed on subsequences of the specified size. After each
+calculation, the results are printed out and the window is moved by
+the window position increment (B<-W>), until the end of the input
+sequence is reached.
+
+B<-al> C<alg> .. C<alg>     Specify order of algebra usage
+
+Option B<-al> specifies the algebras for the compilation.
+
+B<-alpp> C<alg> .. C<alg>   Specify pretty printing algebras
+
+Option B<-alpp> specifies the pretty printing algebra that shall be
+used for the candidate ouput in the backtrace modes.
+
+B<-cs>  C<alg>             Automatically generate signature and enumeration for algebra <alg>
+
+The option B<-cs> automatically generates the signature and
+enumeration algebra from the given algebra. This option is useful for
+the backtracing modes.
+
+B<-vl> C<verbosity level>  Specify output verbosity level
+                           verbosity level: t -> target, r -> trace, 
+                           rr -> detailed trace d -> debug
+
+Option B<-vl> specifies the verbosity level of the compilation. 
+
+B<-o> C<filename>          Output to <filename>
+
+Option B<-o> specifes the output file.
+
+B<-v>                     Show version
+
+This option shows the adpcompile version number.
+

@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<!DOCTYPE interface SYSTEM "interface.dtd">
+<interface name="HelloWorld">
+
+<versioninfo>(c) Fredo Mueller
+all rights reserved
+</versioninfo>
+
+<messageinteractive>Interactive mode. Try `#s -h` for more information.</messageinteractive>
+<commandline>
+Input sequence (upper or lower case); :q to quit, -h for help.
+....,....1....,....2....,....3....,....4....,....5....,....6....,....7....,....8
+</commandline>
+
+<option switch="h" text="Display this information"><help /></option>
+<option switch="H" argtext="option" text="Display detailed information on <option>"><longhelp /></option>
+<option switch="v" text="Show version"><version /></option>
+<option switch="z" text="Enable colored output">
+  <switch var="colored_output" />
+<code>
+if (opt->interactive && !opt->colored_output) printf(COLOR_DEFAULT);
+</code>
+</option>
+<option switch="f" text="Read input from file"><file /></option>
+
+<option switch="W" text="Print hello world"><direct />
+<code>
+printf("hello world\n");
+</code>
+</option>
+
+<option switch="w" text="Window size">
+<set var="window_size" datatype="int" default="5" 
+   settext="Set window size to #d." infotext="Window size: #d" minval="0" />
+<man>
+This option sets the window size for ...
+
+It is very nice....
+
+</man>
+
+</option>
+
+
+</interface>

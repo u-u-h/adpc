@@ -1,0 +1,65 @@
+#!/bin/sh
+
+set -e
+
+PREFIX=$1
+
+install -d $PREFIX/bin
+
+install -d $PREFIX/share/doc/adpc
+
+for i in lib src examples templates; do
+  install -d $PREFIX/share/adpc/$i
+done
+
+install adpcompile $PREFIX/bin
+
+install java/fe $PREFIX/bin
+
+for i in rna normal; do
+  install -m 644 java/$i.tmpl $PREFIX/share/adpc/templates
+done
+
+install -m 644 java/adpc.jar $PREFIX/share/adpc
+
+for i in adpc man2c man2lhs colecho; do
+  install interfacer/$i $PREFIX/bin
+done
+
+ln -s -f $PREFIX/bin/adpc $PREFIX/bin/adpc-bin
+
+for i in adplib intloop22 intloop11 rnalib intloop21; do
+  install -m 644 interfacer/share/adpc/src/$i.[ch] $PREFIX/share/adpc/src
+done
+
+for i in stdlib.adp \
+prognamei.c.ai \
+distr/man/Makefile.am \
+distr/src/Makefile.am \
+distr/README \
+distr/configure.ac \
+distr/Makefile.am \
+distr/AUTHORS \
+distr/examples/Makefile.am \
+distr/COPYING \
+progname.c.ai \
+progname.h.ai \
+stdlib.xml.ai \
+progname.pod.ai \
+std_options.h.ai \
+progname.sed.ai \
+Makefile.ai \
+config.h.ai \
+rnalib.xml.ai \
+rna_options.h.ai; do
+  install -m 644 interfacer/share/adpc/lib/$i $PREFIX/share/adpc/lib
+done
+
+for i in ElMamun RNAfold AffineLocSim; do
+  install -m 644 testsuite/grammars/$i.lhs $PREFIX/share/adpc/examples
+done
+
+for i in README CHANGELOG COPYING; do
+  install -m 644 $i $PREFIX/share/doc/adpc
+done
+

@@ -1,0 +1,37 @@
+If you want to test the adpc distribution at your system you can
+run the adpc testsuite. The testsuite contains some testcases for
+codegeneration of the C and the Java backend. Other modules of
+the ADP compiler are tested as well.
+
+You have to build the adpc. See the INSTALL file for
+basic requirements etc. In comparision to a normal build the PREFIX is
+not important, but it must be set.
+
+Additional Requirement:
+Python >= 2.5.1
+
+Basically you have to issue:
+
+# cd config
+# make
+# ./config -p $PREFIX
+# cd ..
+# make
+# make hand
+# cd testsuite
+# make
+
+In the testsuite directory you can the testsuite via:
+# ./test
+
+You get more help via
+# ./test -h
+
+Be prepared that some testcases need some memory and CPU time. If
+it is too much, you can comment them out in testsuite/test.conf.
+
+It is no problem if you have another systemwide ADP compiler
+installed - the testsuite uses the local compiled distribution.
+You don't have to set any PATH etc. environment variables. The
+testsuite does the right thing.
+

@@ -1,0 +1,23 @@
+VPATH = ../general 
+
+CC = gcc
+LEX = flex
+CPPFLAGS = -I../general -I../../adpc
+CFLAGS = -Wall
+UNAME := $(shell uname)
+
+ifeq ($(UNAME),Linux)
+CFLAGS += -g
+else
+ifeq ($(UNAME),SunOS)
+CFLAGS += -gdwarf-2
+endif
+endif
+
+all: rt
+
+rt: tabulate.o test_asm_rt.o functions.o asm_runtime.o
+	$(PRE) $(CC) -o $@ $^ -lfl -lm
+
+clean:
+	rm *.o rt

@@ -1,0 +1,28 @@
+@PROJECT_NAME@ @PROJECT_VERSION@
+@PROJECT_COPYRIGHT@
+
+Quickstart
+------------
+Type
+    ./configure
+    make
+    make install
+
+to configure, make and install @PROJECT_NAME@.
+
+Type 
+    @PROJECT_NAME@ -h
+
+for command line options overview and 
+
+    @PROJECT_NAME@ -H <option>
+
+for information on a specific option (e.g. @PROJECT_NAME@ -H -q).
+
+See "@PROJECT_NAME@.pdf" for the user's manual and an introduction to
+@PROJECT_NAME@.
+
+Also see 
+    "INSTALL"        for detailed installation instructions, and
+    "COPYING"        for disclaimer and copyright.
+

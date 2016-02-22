@@ -1,0 +1,10 @@
+rm -f RNAfold RNAfold.1 RNAfold.c RNAfold-man.c RNAfold.txt \
+           RNAfold.pod RNAfold.o RNAfold-distr config.h \
+           Makefile adplib.c adplib.o rnalib.o  options.h  \
+           algebras.txt choicefcts.txt energy.txt RNAfold.author \
+           RNAfold_mfe.c RNAfold_mfe.o RNAfold_mfe.adpc  \
+           RNAfold_mfe.sed \
+           RNAfold.h RNAfold.xml RNAfold.sed \
+           RNAfold.tex RNAfold.pdf RNAfold.dvi RNAfold.ps \
+           RNAfold.2.ps \
+           RNAfold.aux RNAfold.log

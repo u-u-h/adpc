@@ -1,0 +1,72 @@
+ElMamun.c: In function 'main':
+ElMamun.c:219: warning: too many arguments for format
+ElMamun.c: At top level:
+ElMamun.c:24: warning: 'reset_mode' defined but not used
+ElMamun_count.c: In function 'pp_str_Signature':
+ElMamun_count.c:283: warning: unused variable 'score2'
+ElMamun_count.c: In function 'tableAlloc':
+ElMamun_count.c:1151: warning: unused variable 'dim2'
+ElMamun_count.c:1151: warning: unused variable 'dim1'
+ElMamun_count.c: In function 'mainloop':
+ElMamun_count.c:1178: warning: unused variable 'v2'
+ElMamun_count.c: In function 'main_elmamun_count':
+ElMamun_count.c:1244: warning: control reaches end of non-void function
+ElMamun_count.c: At top level:
+ElMamun_count.c:18: warning: 'hlp' defined but not used
+ElMamun_count.c:19: warning: 'hlp2' defined but not used
+ElMamun_count.c:48: warning: 'sort_TLInt' defined but not used
+ElMamun_count.c:56: warning: 'nub_TLInt' defined but not used
+ElMamun_count.c:64: warning: 'sort_PointerOfStructOfstrSignature' defined but not used
+ElMamun_count.c:72: warning: 'nub_PointerOfStructOfstrSignature' defined but not used
+ElMamun_count.c: In function 'pp_str_Signature':
+ElMamun_count.c:283: warning: 'score' may be used uninitialized in this function
+ElMamun_buyer.c: In function 'pp_str_Signature':
+ElMamun_buyer.c:283: warning: unused variable 'score2'
+ElMamun_buyer.c: In function 'tableAlloc':
+ElMamun_buyer.c:1151: warning: unused variable 'dim2'
+ElMamun_buyer.c:1151: warning: unused variable 'dim1'
+ElMamun_buyer.c: In function 'mainloop':
+ElMamun_buyer.c:1178: warning: unused variable 'v2'
+ElMamun_buyer.c: In function 'main_elmamun_buyer':
+ElMamun_buyer.c:1244: warning: control reaches end of non-void function
+ElMamun_buyer.c: At top level:
+ElMamun_buyer.c:18: warning: 'hlp' defined but not used
+ElMamun_buyer.c:19: warning: 'hlp2' defined but not used
+ElMamun_buyer.c:48: warning: 'sort_TLInt' defined but not used
+ElMamun_buyer.c:56: warning: 'nub_TLInt' defined but not used
+ElMamun_buyer.c:64: warning: 'sort_PointerOfStructOfstrSignature' defined but not used
+ElMamun_buyer.c:72: warning: 'nub_PointerOfStructOfstrSignature' defined but not used
+ElMamun_buyer.c: In function 'pp_str_Signature':
+ElMamun_buyer.c:283: warning: 'score' may be used uninitialized in this function
+ElMamun_seller.c: In function 'pp_str_Signature':
+ElMamun_seller.c:283: warning: unused variable 'score2'
+ElMamun_seller.c: In function 'tableAlloc':
+ElMamun_seller.c:1151: warning: unused variable 'dim2'
+ElMamun_seller.c:1151: warning: unused variable 'dim1'
+ElMamun_seller.c: In function 'mainloop':
+ElMamun_seller.c:1178: warning: unused variable 'v2'
+ElMamun_seller.c: In function 'main_elmamun_seller':
+ElMamun_seller.c:1244: warning: control reaches end of non-void function
+ElMamun_seller.c: At top level:
+ElMamun_seller.c:18: warning: 'hlp' defined but not used
+ElMamun_seller.c:19: warning: 'hlp2' defined but not used
+ElMamun_seller.c:48: warning: 'sort_TLInt' defined but not used
+ElMamun_seller.c:56: warning: 'nub_TLInt' defined but not used
+ElMamun_seller.c:64: warning: 'sort_PointerOfStructOfstrSignature' defined but not used
+ElMamun_seller.c:72: warning: 'nub_PointerOfStructOfstrSignature' defined but not used
+ElMamun_seller.c: In function 'pp_str_Signature':
+ElMamun_seller.c:283: warning: 'score' may be used uninitialized in this function
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c: In function 'calc_contains_region':
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:240: warning: array subscript has type 'char'
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:240: warning: array subscript has type 'char'
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:250: warning: array subscript has type 'char'
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:250: warning: array subscript has type 'char'
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c: In function 'output_result':
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:1173: warning: suggest explicit braces to avoid ambiguous 'else'
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:1131: warning: unused variable 'dbcol'
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c: At top level:
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:752: warning: 'graphics_alloc' defined but not used
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:754: warning: 'graphics_shapeString' defined but not used
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:755: warning: 'graphics_preString' defined but not used
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:756: warning: 'graphics_fileName_temp' defined but not used
+/vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c:757: warning: 'graphics_fileName' defined but not used

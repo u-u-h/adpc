@@ -1,0 +1,97 @@
+<?xml version='1.0'?>
+<!DOCTYPE interface SYSTEM "interface.dtd">
+
+<interface name="@PROJECT_NAME@" author="@PROJECT_AUTHOR@" version="1.0" interactive="on" lib="std" design="color">
+
+<versioninfo>
+</versioninfo>
+
+<messages>
+<interactive_welcome>Welcome to @PROJECT_NAME@!
+
+</interactive_welcome>
+
+<interactive_commandline>@PROJECT_NAME@> </interactive_commandline>
+
+<interactive_help_header>Interactive mode:
+Enter input directly or use the following commands to change settings:
+</interactive_help_header>
+</messages>
+
+<manual>
+<synopsis>Usage: @PROJECT_NAME@ [options] input</synopsis>
+
+<introduction>
+This is the new program @PROJECT_NAME@.
+</introduction>
+
+<examples>
+Start @PROJECT_NAME@ in interactive mode:
+
+    @PROJECT_NAME@
+
+Pipe file input.seq into the program:
+
+    cat input.seq | @PROJECT_NAME@
+</examples>
+
+</manual>
+
+@XML_APDCMODULES@
+  
+<option switch="h" text="Display this information">
+  <help />
+<man>
+Option -h displays a command option overview.
+</man>
+</option>
+
+<option switch="H" argtext="option" text="Display detailed information on <option>">
+  <longhelp />
+<man>
+This displays the corresponding section of the @PROJECT_NAME@ manual for
+the given command line option.
+</man>
+</option>
+
+<option switch="v" text="Show version">
+  <version />
+<man>
+This shows the version number of @PROJECT_NAME@.
+</man>
+</option>
+
+@XML_APDCMODES@
+
+<option switch="d" argtext="value" text="Set traceback depth">
+   <set var="traceback_diff" datatype="int" default="5" minval="0" 
+     infotext="Traceback depth #2d"
+     settext="Traceback depth set to #d."/>
+<man>
+This sets the traceback depth for suboptimal results. value is the
+difference to the optimal result for the input.
+</man>
+</option>
+
+
+<option switch="f" argtext="filename" text="Read input from file">
+  <file var="inputfile" />
+<man>
+Let @PROJECT_NAME@ load its input data from file. Then each line of
+the input sequence will be processed separately in the order of input.
+</man>
+</option>
+
+<option switch="z" text="Colored output">
+  <switch var="colored_output" default="off" settext="Colored output" infotext="Colored output"/>
+  <code>
+     if (opt->interactive && !opt->colored_output) printf(COLOR_DEFAULT);
+  </code>
+<man>
+This option enables colored output. In interactive mode, this is the
+default setting, so use -z to disable colors here.
+</man>
+</option>
+
+</interface>
+

@@ -1,0 +1,82 @@
+General notes
+-------------
+If you install adpc to a 'non-standard' location you have to
+adjust the PATH environment variable. Set it in your favourite
+shell runtime control file like [1]:
+PATH=$PATH:$PREFIX/bin
+
+If you want to use the Java-Backend, you have to adjust your Java
+classpath[1]:
+- for testing just supply it via the -cp command line switch in
+  every javac/java call:
+  # java -cp $PREFIX/share/adpc/adpc.jar:. ...
+
+or
+
+- just set the CLASSPATH environment variable in your favourite
+shell runtime control file like [1]:
+CLASSPATH=$CLASSPATH:$PREFIX/share/adpc/adpc.jar
+
+Use existing binary package
+---------------------------
+You can look at the official ADPC homepage for available binary packages.
+Install them via
+# tar -z -x -C / -f adpc-$VERSION.tar.gz
+[2]
+
+If you don't find a matching binary package for your platform or
+if you need a different install-PREFIX, just look at the
+following sections.
+
+Install from source
+-------------------
+
+To install the ADP-Compiler from source you need following requirements:
+- GHC (Glasgow Haskell Compiler - probably >= 6.4)
+- Happy (Parser Generator)
+- GNU make 
+- C-Compiler
+- HaXml haskell package
+  (e.g. for Debian-like systems you have to
+        apt-get install haxml libghc6-haxml-dev)
+- lib readline (or compatible readline replacement)
+  (for ADP-to-C-compilation only)
+
+1. un-tar the source tar file
+2. cd adpc
+3. set the prefix of the destination (like /opt/adpc-0.9):
+   i. cd config
+   ii. make
+   iii. ./config -p $PREFIX
+   iv. cd ..
+4. make install
+
+NOTE: The adpc source code is atm coded in utf8. If you use GHC
+< 6.6 you have to convert it on the fly to l1:
+
+# chmod u+x addons/convert.sh
+# make GHCPROFILING='-F -pgmF addons/convert.sh' install
+
+(instead of step 4)
+
+Generate binary package
+-----------------------
+1. cd adpc
+2. sh config/distrib $PREFIX
+
+After the 2nd step you have a adpc-$VERSION.tar.gz file in the adpc basedir.
+
+You can install this binary package at this or another computer via:
+# tar -z -x -C / -f adpc-$VERSION.tar.gz
+[2]
+
+--
+
+[1] Of course you have to replace $PREFIX with your actual
+installation-prefix.
+
+[2]
+(tar tries to update the file times of existing directories like /usr, thus
+ if you are not root you will see some error message about it, which you
+ can safely ignore.)
+

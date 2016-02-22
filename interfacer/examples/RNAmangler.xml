@@ -1,0 +1,83 @@
+<?xml version='1.0'?>
+<!DOCTYPE interface SYSTEM "interface.dtd">
+<interface name="RNAmangler" version = "1.1">
+
+<versioninfo>(c) Fredo Mueller
+all rights reserved
+</versioninfo>
+
+<messageinteractive>Interactive mode. Try `#s -h` for more information.</messageinteractive>
+<commandline>
+Input sequence (upper or lower case); :q to quit, -h for help.
+....,....1....,....2....,....3....,....4....,....5....,....6....,....7....,....8
+</commandline>
+
+<option switch="h" text="Display this information"><help /></option>
+<option switch="H" argtext="option" text="Display detailed information on <option>"><longhelp /></option>
+<option switch="v" text="Show version"><version /></option>
+<option switch="a" text="Shape folding (standard)">
+  <mode var="shapes" settext="Shape folding mode" default="yes" />
+<man>
+RNA folding based on abstract shapes. This is the standard mode of
+operation when no other options are given. It calculates the shapes
+and the corresponding shreps based on free energy minimization. The
+energy range can be set by -e and -c. When not specified, the
+energy range is set to 10% of the minimum free energy.
+</man>
+</option>
+<option switch="s" text="Suboptimal folding mode">
+  <mode var="so" />  
+</option>
+<option switch="p" text="Shape probabilities">
+  <mode var="prob" text="Shape probability mode" />
+</option>
+<option switch="_" text="Additional modes"><comment /></option>
+<option switch="r" text="Calculate structure probabilities">
+  <switch var = "shrepprob" />
+</option>
+<option switch="e" text="Set energy range (kcal/mol)">
+  <set var="energydiff" datatype="float" default="5" 
+   settext="Set energy range to #.2f kcal//mol" infotext="xxxx Energy range #.2f kcal//mol" minval="0" />
+<man>
+This sets the energy range for shape folding (-a), complete
+suboptimal folding (-s), probability analysis with -P, and
+consensus shapes analysis (-C). value is the difference to the
+minimum free energy for the sequence.
+</man>
+</option>
+<option switch="_" text="Output:"><comment /></option>
+<option switch="S" text="Set output width for structures">
+  <switchset var="split_output" datatype="int" settext="Output width for structures set to #d. Type -S - to disable." 
+                                               disabletext="Output splitting disabled" 
+                                               infotext="xxx Output width for structures #d" minval="0" />
+
+</option>
+<option switch="m" text="Match Shape">
+  <switchset var="match_string" swvar ="matcher_active"
+             datatype="string" 
+             settext="Match shape #s. Type -m - to disable." 
+             disabletext="Shape matching disabled" 
+             infotext="Match shape #s"  />
+</option>
+
+<option switch="x" text="Switch set test">
+  <switchset var="switch_set_test" datatype="string" />
+</option>
+ 
+
+<option switch="z" text="Enable colored output">
+  <switch var="colored_output" />
+<code>
+if (opt->interactive && !opt->colored_output) printf(COLOR_DEFAULT);
+</code>
+</option>
+
+<option switch="f" text="Read input from file"><file /></option>
+<option switch="w" text="Print hello world"><direct />
+<code>
+printf("hello world\n");
+printf("hello hello hello world\n");
+</code>
+</option>
+
+</interface>

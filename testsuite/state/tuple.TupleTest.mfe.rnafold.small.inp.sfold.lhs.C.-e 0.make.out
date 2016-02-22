@@ -1,0 +1,12 @@
+pod2text -q '<>' sfold.pod > sfold.txt
+/vol/pgadptab/gs/adpc/adp2java/interfacer/man2c '1' sfold.txt sfold-man.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c sfold.c
+/vol/pgadptab/gs/adpc/adp2java/adpcompile -c sfold.lhs -al mfe enum -cs mfe -alpp prettyprint -O -lcf -ta bto -bt so -gc cc  -iuc -cto -tadd 3 -taddc 30  -W -o sfold_mfe.adpc
+sed -f sfold_mfe.sed sfold_mfe.adpc > sfold_mfe.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c sfold_mfe.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/adplib.c
+gcc -I /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src -I. -Wall -O2 -c /vol/pgadptab/gs/adpc/adp2java/interfacer/share/adpc/src/rnalib.c
+gcc  sfold.o adplib.o rnalib.o  \
+              sfold_mfe.o -L/vol/gnu/lib -R/vol/gnu/lib -lreadline -lcurses -lm -o sfold 
+echo "No problems detected. Type ./sfold to start." 
+No problems detected. Type ./sfold to start.

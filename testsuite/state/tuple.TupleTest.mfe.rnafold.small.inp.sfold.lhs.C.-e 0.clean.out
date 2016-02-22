@@ -1,0 +1,10 @@
+rm -f sfold sfold.1 sfold.c sfold-man.c sfold.txt \
+           sfold.pod sfold.o sfold-distr config.h \
+           Makefile adplib.c adplib.o rnalib.o  options.h  \
+           algebras.txt choicefcts.txt energy.txt sfold.author \
+           sfold_mfe.c sfold_mfe.o sfold_mfe.adpc  \
+           sfold_mfe.sed \
+           sfold.h sfold.xml sfold.sed \
+           sfold.tex sfold.pdf sfold.dvi sfold.ps \
+           sfold.2.ps \
+           sfold.aux sfold.log

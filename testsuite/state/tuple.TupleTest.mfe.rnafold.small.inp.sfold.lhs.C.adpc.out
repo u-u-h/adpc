@@ -1,0 +1,42 @@
+No library given. Trying to guess...
+system call: grep energy sfold.lhs > energy.txt
+Energy found in input file. Using RNA lib...
+reading sfold.lhs
+Deriving algebras....
+system call: cat sfold.lhs | sed '/algebra\[.*\]/s/> #algebra\[\([a-zA-Z]*\)\]/\1/w algebras.txt' > /dev/null
+Found algebras prettyprint, mfe
+Searching for prettyprinting algebra... (testing pp, pretty, prettyprint)
+Found prettyprinting algebra: "prettyprint".
+Deriving choice functions....
+system call: cat sfold.lhs| grep '\[minimum\|\[maximum\|\[sum\|\[id' > choicefcts.txt
+Found choice functions id, id, id, id, id, id, id, id, id, id, id, id, minimum, minimum, minimum, minimum, minimum, sum, sum, sum, sum, maximum, maximum, maximum, maximum
+Guessing...:
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+prettyprint -> id
+mfe -> minimum
+mfe -> minimum
+mfe -> minimum
+mfe -> minimum
+mfe -> minimum
+mfe -> sum
+mfe -> sum
+mfe -> sum
+mfe -> sum
+mfe -> maximum
+mfe -> maximum
+mfe -> maximum
+Creating project: "sfold".
+[0;34mMakefile.ai -> Makefile.[0m
+[0;34mrnalib.xml.ai -> sfold.xml.[0m
+[0;34mprogname.h.ai -> sfold.h.[0m
+[0;32mPhase I successful! Type make to build.[0m

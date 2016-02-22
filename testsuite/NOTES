@@ -1,0 +1,84 @@
+-I. fix this ...
+gcc -I ../../interfacer/share/adpc/src -I. -O2 -c ../../interfacer/share/adpc/src/adplib.c
+gcc -I ../../interfacer/share/adpc/src -I. -O2 -c ../../interfacer/share/adpc/src/rnalib.c
+- adpc sollte richtige libs verwenden
+
+- sub/optimales Backtracing abschalten, da bei z.B. elmamun und 100 Zeichen Input die Zahl der optimalen Kandidaten zu gross zum testen wird - aber ein Test mit grossen Sequenzen sinnvoll ist
+- big inputs ermoeglichen (-> keine Ausgabe der Kandidaten ...)
+
+- einige Daten hinzufuegen
+
+- ADP.print_window fixen  
+- & format feature
+
+- benchmark als Tests (z.B. aus dem paper)
+
+  + Typechecker
+      existierendes shell script integrieren ...
+
+
+
+- Mikro-Tests (auf Funktionsebene):
+     je nach Teil geringe Prioritaet oder bei sehr uebersichtlichen
+     Teilen/Funktionen gar nicht notwendig
+  + Polynom Operationen
+      z.B. insert ...
+  + ADT Operationen generell
+  + auf Haskell-Seite: Test nach Beschreibung
+
+- testen von additional tabellen und minimal improvement treshold (tdesign auch mit hand)
+
+
+- Links:
+http://docs.python.org/lib/module-unittest.html
+http://docs.python.org/lib/os-process.html
+http://docs.python.org/lib/built-in-funcs.html
+http://docs.python.org/lib/module-pdb.html
+http://www.network-theory.co.uk/docs/pylang/index.html
+http://www.network-theory.co.uk/docs/pytut/index.html
+
+
+
+
+DONE:
+- randseq verbessern, elmamun randseq, 
+- logging umfangreicher
+- return status von ./test setzen
+- Gesamt Failures anzeigen (TestCollection)  
+- approx laufzeitberechnung auch noch testen (grasp)
+- execute files sollten nicht nur von inp-filename abhaenig sein (zentraler fn generator)
+- zentraler filename verwalter, der bei ueberschreiben exc wirft
+- testen, ob sequenzausgabe gleichlang ist wie die strukturlaenge
+- For Details look into *.out and *.err ....
+- kein finger durch adpc aufruf
+- testsuite namen als parameter von tests.py (wie bei make)
+- bestimmte aktionen nur einmal fuer eine grammatik in einem run ausfuehren
+  (siehe codegentest.py -> create/clean)
+  -> subklasse erzeugen ... (wegen prepare clean)
+- config (para variablen) in eine extra .py datei
+  [extra config, aber nicht py]
+- wie parameter fuer codegen uebergeben? (c code umstricken, das auch bei stdin optionen moeglich sind?)
+  [egal durch neues config file feature]
+- algebra namen als parameter
+  [testcase attribut]
+
+
+- Makro-Tests:
+     generell:
+      - singleton config class fuer GrammarTest (wdir, adpc exec etc.)
+      - generate() Methode in GrammarTest um SollZustand zu erzeugen
+        (muss ueberschrieben werden)
+
+
+  + Serialisierung der Grammatikdaten
+      mit Testmenge Soll-Zustand aufzeichnen und .i ab einem offset vergleichen
+      (es wird nur der Haskell Teil getestet)
+  + Laufzeitberechnung (asympt, genau)
+      im table design Teil ...
+      mit regexs zentrale Informationen rausgreifen und gegen
+      Sollzustand vergleichen
+      Testmenge wird in den Einsprungspunkt des tab Teils gefuettert
+      (siehe main.c)
+  + Codeerzeugung
+      Programme kompilieren, ausfuehren und gegen aufgezeichnete
+      Resultate vergleichen

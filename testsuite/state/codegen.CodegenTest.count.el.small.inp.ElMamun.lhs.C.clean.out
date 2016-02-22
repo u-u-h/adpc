@@ -1,0 +1,10 @@
+rm -f ElMamun ElMamun.1 ElMamun.c ElMamun-man.c ElMamun.txt \
+           ElMamun.pod ElMamun.o ElMamun-distr config.h \
+           Makefile adplib.c adplib.o  options.h  \
+           algebras.txt choicefcts.txt energy.txt ElMamun.author \
+           ElMamun_count.c ElMamun_buyer.c ElMamun_seller.c ElMamun_count.o ElMamun_buyer.o ElMamun_seller.o ElMamun_count.adpc ElMamun_buyer.adpc ElMamun_seller.adpc  \
+           ElMamun_count.sed ElMamun_buyer.sed ElMamun_seller.sed \
+           ElMamun.h ElMamun.xml ElMamun.sed \
+           ElMamun.tex ElMamun.pdf ElMamun.dvi ElMamun.ps \
+           ElMamun.2.ps \
+           ElMamun.aux ElMamun.log

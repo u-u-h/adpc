@@ -1,0 +1,324 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :36, tabulation: 1n
+Dependencies:
+Nt: 1, usages: 1
+Nt: 2, usages: 17
+Nt: 17, usages: 17
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 3, usages: 1
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 3, usages: 1
+Nt: 4, usages: 1
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 5, usages: 1
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :4, tabulation: 1n^2
+Dependencies:
+Nt: 6, usages: 1
+----------------------------------------
+Nt: 6, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 7, usages: 1
+----------------------------------------
+Nt: 7, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 8, usages: 1
+----------------------------------------
+Nt: 8, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 8, usages: 1
+Nt: 9, usages: 1
+----------------------------------------
+Nt: 9, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 10, usages: 1
+----------------------------------------
+Nt: 10, user configuration: 2, runtime :5, tabulation: 1n^2
+Dependencies:
+Nt: 11, usages: 1
+----------------------------------------
+Nt: 11, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 12, usages: 1
+----------------------------------------
+Nt: 12, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 13, usages: 1
+----------------------------------------
+Nt: 13, user configuration: 2, runtime :5, tabulation: 1n^2
+Dependencies:
+Nt: 14, usages: 1
+----------------------------------------
+Nt: 14, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 15, usages: 1
+----------------------------------------
+Nt: 15, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 16, usages: 1
+----------------------------------------
+Nt: 16, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 17, user configuration: 2, runtime :2, tabulation: 1n
+Dependencies:
+Nt: 18, usages: 1
+Nt: 19, usages: 1
+----------------------------------------
+Nt: 18, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 19, user configuration: 2, runtime :26, tabulation: 1n
+Dependencies:
+Nt: 20, usages: 13
+Nt: 24, usages: 13
+----------------------------------------
+Nt: 20, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 21, usages: 1
+----------------------------------------
+Nt: 21, user configuration: 2, runtime :6, tabulation: 1n^2
+Dependencies:
+Nt: 21, usages: 1
+Nt: 22, usages: 1
+----------------------------------------
+Nt: 22, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 23, usages: 1
+----------------------------------------
+Nt: 23, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 24, user configuration: 2, runtime :60, tabulation: 1n
+Dependencies:
+Nt: 25, usages: 30
+Nt: 26, usages: 30
+----------------------------------------
+Nt: 25, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 26, user configuration: 2, runtime :20, tabulation: 1n
+Dependencies:
+Nt: 27, usages: 10
+----------------------------------------
+Nt: 27, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 28, usages: 1
+----------------------------------------
+Nt: 28, user configuration: 2, runtime :5, tabulation: 1n^2
+Dependencies:
+Nt: 29, usages: 1
+----------------------------------------
+Nt: 29, user configuration: 2, runtime :15, tabulation: 1n^2
+Dependencies:
+Nt: 30, usages: 5
+----------------------------------------
+Nt: 30, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+Nt: 31, usages: 1
+----------------------------------------
+Nt: 31, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+
+
+Mode = 2, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+
+
+Calculate the optimal table configuration of an ADP-program
+
+Some information about the runtime in advance:
+  tabulate all nonterminals      : O(n^2)
+  tabulate no  nonterminals      : O(n^3)
+  optimal runtime                : O(n^2)
+Runtime with respect to the user annotation:
+  tabulate all free nonterminals : O(n^2)
+  tabulate no  free nonterminals : O(n^3)
+  optimal runtime                : O(n^2)
+
+Total number of nonterminals            : 31
+Nonterminals which are not in use       : 0
+Nonterminals requiring < square space   : 5
+  { 1l 17l 19l 24l 26l }
+Nonterminals defined by user annotation : 0
+Nonterminals defined by reductions      : 26
+  { 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 20 21 22 23 25 27 28 29 30 31 }
+Nonterminals remaining for optimization : 5
+  { 1l 17l 19l 24l 26l }
+
+Running brute-force-optimization. Please wait ...
+
+Solution update no. 0 :
+Found new intermediate solution in iteration 0 : 1 Tables
+  { 1l 8 17l 19l 24l 26l }
+
+Solution update no. 1 :
+Found new intermediate solution in iteration 1 : 1 Tables
+  { 1l 8 17l 19l 24l }
+
+Solution update no. 2 :
+Found new intermediate solution in iteration 2 : 1 Tables
+  { 1l 8 17l 19l }
+
+Solution update no. 3 :
+Found new intermediate solution in iteration 3 : 1 Tables
+  { 1l 8 17l 19l 26l }
+
+Solution update no. 4 :
+Found new intermediate solution in iteration 4 : 1 Tables
+  { 1l 8 17l 26l }
+
+Solution update no. 5 :
+Found new intermediate solution in iteration 5 : 1 Tables
+  { 1l 8 17l }
+
+Solution update no. 6 :
+Found new intermediate solution in iteration 6 : 1 Tables
+  { 1l 8 17l 24l }
+
+Solution update no. 7 :
+Found new intermediate solution in iteration 7 : 1 Tables
+  { 1l 8 17l 24l 26l }
+
+Solution update no. 8 :
+Found new intermediate solution in iteration 8 : 1 Tables
+  { 1l 8 24l 26l }
+
+Solution update no. 9 :
+Found new intermediate solution in iteration 9 : 1 Tables
+  { 1l 8 24l }
+
+Solution update no. 10 :
+Found new intermediate solution in iteration 10 : 1 Tables
+  { 1l 8 }
+
+Solution update no. 11 :
+Found new intermediate solution in iteration 11 : 1 Tables
+  { 1l 8 26l }
+
+Solution update no. 12 :
+Found new intermediate solution in iteration 12 : 1 Tables
+  { 1l 8 19l 26l }
+
+Solution update no. 13 :
+Found new intermediate solution in iteration 13 : 1 Tables
+  { 1l 8 19l }
+
+Solution update no. 14 :
+Found new intermediate solution in iteration 14 : 1 Tables
+  { 1l 8 19l 24l }
+
+Solution update no. 15 :
+Found new intermediate solution in iteration 15 : 1 Tables
+  { 1l 8 19l 24l 26l }
+
+Solution update no. 16 :
+Found new intermediate solution in iteration 16 : 1 Tables
+  { 8 19l 24l 26l }
+
+Solution update no. 17 :
+Found new intermediate solution in iteration 17 : 1 Tables
+  { 8 19l 24l }
+
+Solution update no. 18 :
+Found new intermediate solution in iteration 18 : 1 Tables
+  { 8 19l }
+
+Solution update no. 19 :
+Found new intermediate solution in iteration 19 : 1 Tables
+  { 8 19l 26l }
+
+Solution update no. 20 :
+Found new intermediate solution in iteration 20 : 1 Tables
+  { 8 26l }
+
+Solution update no. 21 :
+Found new intermediate solution in iteration 21 : 1 Tables
+  { 8 }
+
+Solution update no. 22 :
+Found new intermediate solution in iteration 22 : 1 Tables
+  { 8 24l }
+
+Solution update no. 23 :
+Found new intermediate solution in iteration 23 : 1 Tables
+  { 8 24l 26l }
+
+Solution update no. 24 :
+Found new intermediate solution in iteration 24 : 1 Tables
+  { 8 17l 24l 26l }
+
+Solution update no. 25 :
+Found new intermediate solution in iteration 25 : 1 Tables
+  { 8 17l 24l }
+
+Solution update no. 26 :
+Found new intermediate solution in iteration 26 : 1 Tables
+  { 8 17l }
+
+Solution update no. 27 :
+Found new intermediate solution in iteration 27 : 1 Tables
+  { 8 17l 26l }
+
+Solution update no. 28 :
+Found new intermediate solution in iteration 28 : 1 Tables
+  { 8 17l 19l 26l }
+
+Solution update no. 29 :
+Found new intermediate solution in iteration 29 : 1 Tables
+  { 8 17l 19l }
+
+Solution update no. 30 :
+Found new intermediate solution in iteration 30 : 1 Tables
+  { 8 17l 19l 24l }
+
+Solution update no. 31 :
+Found new intermediate solution in iteration 31 : 1 Tables
+  { 8 17l 19l 24l 26l }
+
+Ready! Actual runtime        : 0 seconds
+
+Optimal runtime              : O(n^2)
+Minimum number of tables     : 1
+Optimal table configurations : 32
+  { 1l 8 17l 19l 24l 26l }  (474n + 281n^2)
+  { 1l 8 17l 19l 24l }  (9724n + 281n^2)
+  { 1l 8 17l 19l }  (125271n + 281n^2)
+  { 1l 8 17l 19l 26l }  (1181n + 281n^2)
+  { 1l 8 17l 26l }  (1180n + 281n^2)
+  { 1l 8 17l }  (125270n + 281n^2)
+  { 1l 8 17l 24l }  (9723n + 281n^2)
+  { 1l 8 17l 24l 26l }  (473n + 281n^2)
+  { 1l 8 24l 26l }  (1096n + 1737n^2)
+  { 1l 8 24l }  (10346n + 1737n^2)
+  { 1l 8 }  (2128725n + 1737n^2)
+  { 1l 8 26l }  (14075n + 1737n^2)
+  { 1l 8 19l 26l }  (1196n + 281n^2)
+  { 1l 8 19l }  (125286n + 281n^2)
+  { 1l 8 19l 24l }  (9739n + 281n^2)
+  { 1l 8 19l 24l 26l }  (489n + 281n^2)
+  { 8 19l 24l 26l }  (488n + 281n^2)
+  { 8 19l 24l }  (9738n + 281n^2)
+  { 8 19l }  (125285n + 281n^2)
+  { 8 19l 26l }  (1195n + 281n^2)
+  { 8 26l }  (14074n + 1737n^2)
+  { 8 }  (2128724n + 1737n^2)
+  { 8 24l }  (10345n + 1737n^2)
+  { 8 24l 26l }  (1095n + 1737n^2)
+  { 8 17l 24l 26l }  (472n + 281n^2)
+  { 8 17l 24l }  (9722n + 281n^2)
+  { 8 17l }  (125269n + 281n^2)
+  { 8 17l 26l }  (1179n + 281n^2)
+  { 8 17l 19l 26l }  (1180n + 281n^2)
+  { 8 17l 19l }  (125270n + 281n^2)
+  { 8 17l 19l 24l }  (9723n + 281n^2)
+  { 8 17l 19l 24l 26l }  (473n + 281n^2)
+
+Optimal table configurations with respect to constant factors : 1
+  { 8 17l 24l 26l }  (472n + 281n^2)
+Returning: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 

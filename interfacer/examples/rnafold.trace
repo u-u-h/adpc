@@ -1,0 +1,3584 @@
+/* compiled by the ADP compiler, version 0.8 (rev 663)    Sat Mar 18 16:10:54 CET 2006 */
+/* source file: RNAfold.lhs                                                         */
+/* command:                                                                         */
+/* adpcompile -c RNAfold.lhs -al mfe enum -cs mfe -alpp pp -O -lcf -ta bto -bt so -gc cc -cto -iuc -tadd 3 */
+/* -------------------------------------------------------------------------------- */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+
+#include "options.h"
+#include "adplib.h"
+
+static void *hlp;  /* help pointer */
+static void *hlp2; /* help pointer */
+
+static tsequence *seq;
+static toptions  *opts;
+static char *z;
+static int   n;
+
+/* data structures                                                                  */
+/* -------------------------------------------------------------------------------- */
+
+struct str1 {
+   struct str1 *next;
+   struct str1 *last;
+   struct str_Signature *item;
+};
+struct str2 {
+   int alg_mfe;
+   struct str1 *alg_enum;
+};
+struct str3 {
+   struct str3 *next;
+   struct str3 *last;
+   struct str2 item;
+};
+
+/* supporting functions for objective functions                                     */
+/* -------------------------------------------------------------------------------- */
+
+static int sort_TLInt(void *p, void *q)
+{
+   int result;
+
+   result = (*((int *)p)) > (*((int *)q)) ? 1 : (-1);
+   return(result);
+}
+
+static char nub_TLInt(void *p, void *q)
+{
+   char result;
+
+   result = (*((int *)p)) == (*((int *)q));
+   return(result);
+}
+
+static int sort_PointerOfStructOfstrSignature(void *p, void *q)
+{
+   int result;
+
+   result = (*((struct str_Signature **)p)) > (*((struct str_Signature **)q)) ? 1 : (-1);
+   return(result);
+}
+
+static char nub_PointerOfStructOfstrSignature(void *p, void *q)
+{
+   char result;
+
+   result = (*((struct str_Signature **)p)) == (*((struct str_Signature **)q));
+   return(result);
+}
+
+/* backtrace variables                                                              */
+/* -------------------------------------------------------------------------------- */
+
+static struct str1 **pp_next;
+static struct str1 ***pp_init;
+static struct str1 ***pp_rm;
+static struct str1 **pp_initA;
+static int pp_initC;
+static int pp_rmC;
+static char *pp_outp, *result_prettyprint;
+static int traceback_diff;
+
+/* signature                                                                        */
+/* -------------------------------------------------------------------------------- */
+
+#define SIGID__NTID 1
+#define SIGID_Sadd 2
+#define SIGID_Cadd 3
+#define SIGID_Is 4
+#define SIGID_Sr 5
+#define SIGID_Hl 6
+#define SIGID_Bl 7
+#define SIGID_Br 8
+#define SIGID_Il 9
+#define SIGID_Ml 10
+#define SIGID_Mldl 11
+#define SIGID_Mldr 12
+#define SIGID_Mldlr 13
+#define SIGID_Cons 14
+#define SIGID_Ul 15
+#define SIGID_Addss 16
+#define SIGID_Ssadd 17
+#define SIGID_Nil 18
+#define SIGID_Combine 19
+
+struct str_Signature {
+   int utype;
+   void *entry;
+   char fcalled;
+};
+
+static struct str1 *new_Signature(int u, void *entry)
+{
+   struct str_Signature *t;
+   struct str1 *l;
+
+   t=(struct str_Signature *) getmem(adp_dynmem, sizeof(struct str_Signature ));
+   t->utype = u;
+   t->entry = entry;
+   t->fcalled = 0;
+   l=(struct str1 *) getmem(adp_dynmem, sizeof(struct str1 ));
+   l->item = t;
+   l->next = NULL;
+   l->last = l;
+   return(l);
+}
+
+/* signature operators                                                              */
+/* -------------------------------------------------------------------------------- */
+/* operator _NTID                                                                   */
+/* -------------------------------------------------------------------------------- */
+
+struct str__NTID {
+   int isStructure1;
+   struct str1 *structure1;
+   struct str1 *a1;
+   struct str1 *pp_init_a1;
+   struct str1 *(*f1)(int , int , int );
+   int i1, j1;
+   int diff1;
+};
+
+static struct str1 *new__NTID(struct str1 *(*f1)(int , int , int ), int i1, int j1)
+{
+   struct str__NTID *t;
+
+   t=(struct str__NTID *) getmem(adp_dynmem, sizeof(struct str__NTID ));
+   t->isStructure1 = 0;
+   t->f1 = f1;
+   t->i1 = i1;
+   t->j1 = j1;
+   return(new_Signature(SIGID__NTID, t));
+}
+
+/* operator Sadd                                                                    */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Sadd {
+   int a1;
+   int isStructure2;
+   struct str1 *structure2;
+   struct str1 *a2;
+   struct str1 *pp_init_a2;
+   struct str1 *(*f2)(int , int , int );
+   int i2, j2;
+   int diff2;
+};
+
+static struct str1 *new_Sadd_f(int a1, struct str1 *(*f2)(int , int , int ), int i2, int j2)
+{
+   struct str_Sadd *t;
+
+   t=(struct str_Sadd *) getmem(adp_dynmem, sizeof(struct str_Sadd ));
+   t->a1 = a1;
+   t->isStructure2 = 0;
+   t->f2 = f2;
+   t->i2 = i2;
+   t->j2 = j2;
+   return(new_Signature(SIGID_Sadd, t));
+}
+
+
+/* operator Cadd                                                                    */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Cadd {
+   int isStructure1;
+   struct str1 *structure1;
+   struct str1 *a1;
+   struct str1 *pp_init_a1;
+   struct str1 *(*f1)(int , int , int );
+   int i1, j1;
+   int diff1;
+   int isStructure2;
+   struct str1 *structure2;
+   struct str1 *a2;
+   struct str1 *pp_init_a2;
+   struct str1 *(*f2)(int , int , int );
+   int i2, j2;
+   int diff2;
+};
+
+static struct str1 *new_Cadd_ff(struct str1 *(*f1)(int , int , int ), int i1, int j1, struct str1 *(*f2)(int , int , int ), int i2, int j2)
+{
+   struct str_Cadd *t;
+
+   t=(struct str_Cadd *) getmem(adp_dynmem, sizeof(struct str_Cadd ));
+   t->isStructure1 = 0;
+   t->f1 = f1;
+   t->i1 = i1;
+   t->j1 = j1;
+   t->isStructure2 = 0;
+   t->f2 = f2;
+   t->i2 = i2;
+   t->j2 = j2;
+   return(new_Signature(SIGID_Cadd, t));
+}
+
+
+
+
+/* operator Is                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Is {
+   int a1;
+   int isStructure2;
+   struct str1 *structure2;
+   struct str1 *a2;
+   struct str1 *pp_init_a2;
+   struct str1 *(*f2)(int , int , int );
+   int i2, j2;
+   int diff2;
+   int a3;
+};
+
+static struct str1 *new_Is_f(int a1, struct str1 *(*f2)(int , int , int ), int i2, int j2, int a3)
+{
+   struct str_Is *t;
+
+   t=(struct str_Is *) getmem(adp_dynmem, sizeof(struct str_Is ));
+   t->a1 = a1;
+   t->isStructure2 = 0;
+   t->f2 = f2;
+   t->i2 = i2;
+   t->j2 = j2;
+   t->a3 = a3;
+   return(new_Signature(SIGID_Is, t));
+}
+
+
+/* operator Sr                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Sr {
+   int a1;
+   int isStructure2;
+   struct str1 *structure2;
+   struct str1 *a2;
+   struct str1 *pp_init_a2;
+   struct str1 *(*f2)(int , int , int );
+   int i2, j2;
+   int diff2;
+   int a3;
+};
+
+static struct str1 *new_Sr_f(int a1, struct str1 *(*f2)(int , int , int ), int i2, int j2, int a3)
+{
+   struct str_Sr *t;
+
+   t=(struct str_Sr *) getmem(adp_dynmem, sizeof(struct str_Sr ));
+   t->a1 = a1;
+   t->isStructure2 = 0;
+   t->f2 = f2;
+   t->i2 = i2;
+   t->j2 = j2;
+   t->a3 = a3;
+   return(new_Signature(SIGID_Sr, t));
+}
+
+
+/* operator Hl                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Hl {
+   int a1;
+   int a2;
+   int a3;
+   int a4;
+   int a5;
+   int a6;
+   int diff;
+};
+
+static struct str1 *new_Hl_(int a1, int a2, int a3, int a4, int a5, int a6)
+{
+   struct str_Hl *t;
+
+   t=(struct str_Hl *) getmem(adp_dynmem, sizeof(struct str_Hl ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->a3 = a3;
+   t->a4 = a4;
+   t->a5 = a5;
+   t->a6 = a6;
+   return(new_Signature(SIGID_Hl, t));
+}
+
+/* operator Bl                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Bl {
+   int a1;
+   int a2;
+   int a3;
+   int a4;
+   int isStructure5;
+   struct str1 *structure5;
+   struct str1 *a5;
+   struct str1 *pp_init_a5;
+   struct str1 *(*f5)(int , int , int );
+   int i5, j5;
+   int diff5;
+   int a6;
+   int a7;
+};
+
+static struct str1 *new_Bl_f(int a1, int a2, int a3, int a4, struct str1 *(*f5)(int , int , int ), int i5, int j5, int a6, int a7)
+{
+   struct str_Bl *t;
+
+   t=(struct str_Bl *) getmem(adp_dynmem, sizeof(struct str_Bl ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->a3 = a3;
+   t->a4 = a4;
+   t->isStructure5 = 0;
+   t->f5 = f5;
+   t->i5 = i5;
+   t->j5 = j5;
+   t->a6 = a6;
+   t->a7 = a7;
+   return(new_Signature(SIGID_Bl, t));
+}
+
+
+/* operator Br                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Br {
+   int a1;
+   int a2;
+   int isStructure3;
+   struct str1 *structure3;
+   struct str1 *a3;
+   struct str1 *pp_init_a3;
+   struct str1 *(*f3)(int , int , int );
+   int i3, j3;
+   int diff3;
+   int a4;
+   int a5;
+   int a6;
+   int a7;
+};
+
+static struct str1 *new_Br_f(int a1, int a2, struct str1 *(*f3)(int , int , int ), int i3, int j3, int a4, int a5, int a6, int a7)
+{
+   struct str_Br *t;
+
+   t=(struct str_Br *) getmem(adp_dynmem, sizeof(struct str_Br ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->isStructure3 = 0;
+   t->f3 = f3;
+   t->i3 = i3;
+   t->j3 = j3;
+   t->a4 = a4;
+   t->a5 = a5;
+   t->a6 = a6;
+   t->a7 = a7;
+   return(new_Signature(SIGID_Br, t));
+}
+
+
+/* operator Il                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Il {
+   int a1;
+   int a2;
+   int a3;
+   int a4;
+   int isStructure5;
+   struct str1 *structure5;
+   struct str1 *a5;
+   struct str1 *pp_init_a5;
+   struct str1 *(*f5)(int , int , int );
+   int i5, j5;
+   int diff5;
+   int a6;
+   int a7;
+   int a8;
+   int a9;
+};
+
+static struct str1 *new_Il_f(int a1, int a2, int a3, int a4, struct str1 *(*f5)(int , int , int ), int i5, int j5, int a6, int a7, int a8, int a9)
+{
+   struct str_Il *t;
+
+   t=(struct str_Il *) getmem(adp_dynmem, sizeof(struct str_Il ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->a3 = a3;
+   t->a4 = a4;
+   t->isStructure5 = 0;
+   t->f5 = f5;
+   t->i5 = i5;
+   t->j5 = j5;
+   t->a6 = a6;
+   t->a7 = a7;
+   t->a8 = a8;
+   t->a9 = a9;
+   return(new_Signature(SIGID_Il, t));
+}
+
+
+/* operator Ml                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Ml {
+   int a1;
+   int a2;
+   int isStructure3;
+   struct str1 *structure3;
+   struct str1 *a3;
+   struct str1 *pp_init_a3;
+   struct str1 *(*f3)(int , int , int );
+   int i3, j3;
+   int diff3;
+   int a4;
+   int a5;
+};
+
+static struct str1 *new_Ml_f(int a1, int a2, struct str1 *(*f3)(int , int , int ), int i3, int j3, int a4, int a5)
+{
+   struct str_Ml *t;
+
+   t=(struct str_Ml *) getmem(adp_dynmem, sizeof(struct str_Ml ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->isStructure3 = 0;
+   t->f3 = f3;
+   t->i3 = i3;
+   t->j3 = j3;
+   t->a4 = a4;
+   t->a5 = a5;
+   return(new_Signature(SIGID_Ml, t));
+}
+
+
+/* operator Mldl                                                                    */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Mldl {
+   int a1;
+   int a2;
+   int a3;
+   int isStructure4;
+   struct str1 *structure4;
+   struct str1 *a4;
+   struct str1 *pp_init_a4;
+   struct str1 *(*f4)(int , int , int );
+   int i4, j4;
+   int diff4;
+   int a5;
+   int a6;
+};
+
+static struct str1 *new_Mldl_f(int a1, int a2, int a3, struct str1 *(*f4)(int , int , int ), int i4, int j4, int a5, int a6)
+{
+   struct str_Mldl *t;
+
+   t=(struct str_Mldl *) getmem(adp_dynmem, sizeof(struct str_Mldl ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->a3 = a3;
+   t->isStructure4 = 0;
+   t->f4 = f4;
+   t->i4 = i4;
+   t->j4 = j4;
+   t->a5 = a5;
+   t->a6 = a6;
+   return(new_Signature(SIGID_Mldl, t));
+}
+
+
+/* operator Mldr                                                                    */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Mldr {
+   int a1;
+   int a2;
+   int isStructure3;
+   struct str1 *structure3;
+   struct str1 *a3;
+   struct str1 *pp_init_a3;
+   struct str1 *(*f3)(int , int , int );
+   int i3, j3;
+   int diff3;
+   int a4;
+   int a5;
+   int a6;
+};
+
+static struct str1 *new_Mldr_f(int a1, int a2, struct str1 *(*f3)(int , int , int ), int i3, int j3, int a4, int a5, int a6)
+{
+   struct str_Mldr *t;
+
+   t=(struct str_Mldr *) getmem(adp_dynmem, sizeof(struct str_Mldr ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->isStructure3 = 0;
+   t->f3 = f3;
+   t->i3 = i3;
+   t->j3 = j3;
+   t->a4 = a4;
+   t->a5 = a5;
+   t->a6 = a6;
+   return(new_Signature(SIGID_Mldr, t));
+}
+
+
+/* operator Mldlr                                                                   */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Mldlr {
+   int a1;
+   int a2;
+   int a3;
+   int isStructure4;
+   struct str1 *structure4;
+   struct str1 *a4;
+   struct str1 *pp_init_a4;
+   struct str1 *(*f4)(int , int , int );
+   int i4, j4;
+   int diff4;
+   int a5;
+   int a6;
+   int a7;
+};
+
+static struct str1 *new_Mldlr_f(int a1, int a2, int a3, struct str1 *(*f4)(int , int , int ), int i4, int j4, int a5, int a6, int a7)
+{
+   struct str_Mldlr *t;
+
+   t=(struct str_Mldlr *) getmem(adp_dynmem, sizeof(struct str_Mldlr ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->a3 = a3;
+   t->isStructure4 = 0;
+   t->f4 = f4;
+   t->i4 = i4;
+   t->j4 = j4;
+   t->a5 = a5;
+   t->a6 = a6;
+   t->a7 = a7;
+   return(new_Signature(SIGID_Mldlr, t));
+}
+
+
+/* operator Cons                                                                    */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Cons {
+   int isStructure1;
+   struct str1 *structure1;
+   struct str1 *a1;
+   struct str1 *pp_init_a1;
+   struct str1 *(*f1)(int , int , int );
+   int i1, j1;
+   int diff1;
+   int isStructure2;
+   struct str1 *structure2;
+   struct str1 *a2;
+   struct str1 *pp_init_a2;
+   struct str1 *(*f2)(int , int , int );
+   int i2, j2;
+   int diff2;
+};
+
+static struct str1 *new_Cons_ff(struct str1 *(*f1)(int , int , int ), int i1, int j1, struct str1 *(*f2)(int , int , int ), int i2, int j2)
+{
+   struct str_Cons *t;
+
+   t=(struct str_Cons *) getmem(adp_dynmem, sizeof(struct str_Cons ));
+   t->isStructure1 = 0;
+   t->f1 = f1;
+   t->i1 = i1;
+   t->j1 = j1;
+   t->isStructure2 = 0;
+   t->f2 = f2;
+   t->i2 = i2;
+   t->j2 = j2;
+   return(new_Signature(SIGID_Cons, t));
+}
+
+
+
+
+/* operator Ul                                                                      */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Ul {
+   int isStructure1;
+   struct str1 *structure1;
+   struct str1 *a1;
+   struct str1 *pp_init_a1;
+   struct str1 *(*f1)(int , int , int );
+   int i1, j1;
+   int diff1;
+};
+
+static struct str1 *new_Ul_f(struct str1 *(*f1)(int , int , int ), int i1, int j1)
+{
+   struct str_Ul *t;
+
+   t=(struct str_Ul *) getmem(adp_dynmem, sizeof(struct str_Ul ));
+   t->isStructure1 = 0;
+   t->f1 = f1;
+   t->i1 = i1;
+   t->j1 = j1;
+   return(new_Signature(SIGID_Ul, t));
+}
+
+
+/* operator Addss                                                                   */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Addss {
+   int isStructure1;
+   struct str1 *structure1;
+   struct str1 *a1;
+   struct str1 *pp_init_a1;
+   struct str1 *(*f1)(int , int , int );
+   int i1, j1;
+   int diff1;
+   int a2;
+   int a3;
+};
+
+static struct str1 *new_Addss_f(struct str1 *(*f1)(int , int , int ), int i1, int j1, int a2, int a3)
+{
+   struct str_Addss *t;
+
+   t=(struct str_Addss *) getmem(adp_dynmem, sizeof(struct str_Addss ));
+   t->isStructure1 = 0;
+   t->f1 = f1;
+   t->i1 = i1;
+   t->j1 = j1;
+   t->a2 = a2;
+   t->a3 = a3;
+   return(new_Signature(SIGID_Addss, t));
+}
+
+
+/* operator Ssadd                                                                   */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Ssadd {
+   int a1;
+   int a2;
+   int isStructure3;
+   struct str1 *structure3;
+   struct str1 *a3;
+   struct str1 *pp_init_a3;
+   struct str1 *(*f3)(int , int , int );
+   int i3, j3;
+   int diff3;
+};
+
+static struct str1 *new_Ssadd_f(int a1, int a2, struct str1 *(*f3)(int , int , int ), int i3, int j3)
+{
+   struct str_Ssadd *t;
+
+   t=(struct str_Ssadd *) getmem(adp_dynmem, sizeof(struct str_Ssadd ));
+   t->a1 = a1;
+   t->a2 = a2;
+   t->isStructure3 = 0;
+   t->f3 = f3;
+   t->i3 = i3;
+   t->j3 = j3;
+   return(new_Signature(SIGID_Ssadd, t));
+}
+
+
+/* operator Nil                                                                     */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Nil {
+   int isStructure1;
+   struct str1 *structure1;
+   struct str1 *a1;
+   struct str1 *pp_init_a1;
+   struct str1 *(*f1)(int , int , int );
+   int i1, j1;
+   int diff1;
+};
+
+
+
+/* operator Combine                                                                 */
+/* -------------------------------------------------------------------------------- */
+
+struct str_Combine {
+   int isStructure1;
+   struct str1 *structure1;
+   struct str1 *a1;
+   struct str1 *pp_init_a1;
+   struct str1 *(*f1)(int , int , int );
+   int i1, j1;
+   int diff1;
+   int isStructure2;
+   struct str1 *structure2;
+   struct str1 *a2;
+   struct str1 *pp_init_a2;
+   struct str1 *(*f2)(int , int , int );
+   int i2, j2;
+   int diff2;
+};
+
+static struct str1 *new_Combine_ff(struct str1 *(*f1)(int , int , int ), int i1, int j1, struct str1 *(*f2)(int , int , int ), int i2, int j2)
+{
+   struct str_Combine *t;
+
+   t=(struct str_Combine *) getmem(adp_dynmem, sizeof(struct str_Combine ));
+   t->isStructure1 = 0;
+   t->f1 = f1;
+   t->i1 = i1;
+   t->j1 = j1;
+   t->isStructure2 = 0;
+   t->f2 = f2;
+   t->i2 = i2;
+   t->j2 = j2;
+   return(new_Signature(SIGID_Combine, t));
+}
+
+
+
+
+/* signature pretty printer                                                         */
+/* -------------------------------------------------------------------------------- */
+static int pp_str_Signature(struct str1 *l)
+{
+   struct str_Signature *c;
+   int score, score1, score2, score3, score4;
+   int score5, score6, score7, score8, score9;
+
+   if (l != NULL) {
+      c = l->item;
+      if (c->utype == SIGID__NTID) {
+         if (((struct str__NTID *)(c->entry))->a1 != NULL) {
+            if (((struct str__NTID *)(c->entry))->a1->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str__NTID *)(c->entry))->a1);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str__NTID *)(c->entry))->a1);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str__NTID *)(c->entry))->a1);
+                  pp_initA[pp_initC] = ((struct str__NTID *)(c->entry))->pp_init_a1;
+               }
+            }
+            score1 = pp_str_Signature(((struct str__NTID *)(c->entry))->a1);
+            score = score1;
+         }
+      } else 
+      if (c->utype == SIGID_Sadd) {
+         if (((struct str_Sadd *)(c->entry))->a2 != NULL) {
+            sprintf(pp_outp, ".");
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Sadd *)(c->entry))->a2->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Sadd *)(c->entry))->a2);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Sadd *)(c->entry))->a2);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Sadd *)(c->entry))->a2);
+                  pp_initA[pp_initC] = ((struct str_Sadd *)(c->entry))->pp_init_a2;
+               }
+            }
+            score2 = pp_str_Signature(((struct str_Sadd *)(c->entry))->a2);
+            score = score2;
+         }
+      } else 
+      if (c->utype == SIGID_Cadd) {
+         rmAllowed = 0;
+         if ((((struct str_Cadd *)(c->entry))->a1 != NULL) && (((struct str_Cadd *)(c->entry))->a2 != NULL)) {
+            if (((struct str_Cadd *)(c->entry))->a1->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Cadd *)(c->entry))->a1);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Cadd *)(c->entry))->a1);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Cadd *)(c->entry))->a1);
+                  pp_initA[pp_initC] = ((struct str_Cadd *)(c->entry))->pp_init_a1;
+               }
+            }
+            score1 = pp_str_Signature(((struct str_Cadd *)(c->entry))->a1);
+            if (((struct str_Cadd *)(c->entry))->a2->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Cadd *)(c->entry))->a2);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Cadd *)(c->entry))->a2);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Cadd *)(c->entry))->a2);
+                  pp_initA[pp_initC] = ((struct str_Cadd *)(c->entry))->pp_init_a2;
+               }
+            }
+            score2 = pp_str_Signature(((struct str_Cadd *)(c->entry))->a2);
+            score = score1 + score2;
+         }
+      } else 
+      if (c->utype == SIGID_Is) {
+         if (((struct str_Is *)(c->entry))->a2 != NULL) {
+            if (((struct str_Is *)(c->entry))->a2->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Is *)(c->entry))->a2);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Is *)(c->entry))->a2);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Is *)(c->entry))->a2);
+                  pp_initA[pp_initC] = ((struct str_Is *)(c->entry))->pp_init_a2;
+               }
+            }
+            score2 = pp_str_Signature(((struct str_Is *)(c->entry))->a2);
+            score = score2 + termaupenalty(((struct str_Is *)(c->entry))->a1 + 1, ((struct str_Is *)(c->entry))->a3);
+         }
+      } else 
+      if (c->utype == SIGID_Sr) {
+         if (((struct str_Sr *)(c->entry))->a2 != NULL) {
+            sprintf(pp_outp, "(");
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Sr *)(c->entry))->a2->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Sr *)(c->entry))->a2);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Sr *)(c->entry))->a2);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Sr *)(c->entry))->a2);
+                  pp_initA[pp_initC] = ((struct str_Sr *)(c->entry))->pp_init_a2;
+               }
+            }
+            score2 = pp_str_Signature(((struct str_Sr *)(c->entry))->a2);
+            sprintf(pp_outp, ")");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = score2 + sr_energy(((struct str_Sr *)(c->entry))->a1, ((struct str_Sr *)(c->entry))->a3);
+         }
+      } else 
+      if (c->utype == SIGID_Hl) {
+         sprintf(pp_outp, "((");
+         pp_outp = pp_outp + strlen(pp_outp);
+         sprintf(pp_outp, "%s", dots(((struct str_Hl *)(c->entry))->a3, ((struct str_Hl *)(c->entry))->a4));
+         pp_outp = pp_outp + strlen(pp_outp);
+         sprintf(pp_outp, "))");
+         pp_outp = pp_outp + strlen(pp_outp);
+         score = hl_energy(((struct str_Hl *)(c->entry))->a2, ((struct str_Hl *)(c->entry))->a5) + sr_energy(((struct str_Hl *)(c->entry))->a1, ((struct str_Hl *)(c->entry))->a6);
+      } else 
+      if (c->utype == SIGID_Bl) {
+         if (((struct str_Bl *)(c->entry))->a5 != NULL) {
+            sprintf(pp_outp, "((");
+            pp_outp = pp_outp + strlen(pp_outp);
+            sprintf(pp_outp, "%s", dots(((struct str_Bl *)(c->entry))->a3, ((struct str_Bl *)(c->entry))->a4));
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Bl *)(c->entry))->a5->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Bl *)(c->entry))->a5);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Bl *)(c->entry))->a5);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Bl *)(c->entry))->a5);
+                  pp_initA[pp_initC] = ((struct str_Bl *)(c->entry))->pp_init_a5;
+               }
+            }
+            score5 = pp_str_Signature(((struct str_Bl *)(c->entry))->a5);
+            sprintf(pp_outp, "))");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = (score5 + bl_energy(((struct str_Bl *)(c->entry))->a2, ((struct str_Bl *)(c->entry))->a3, ((struct str_Bl *)(c->entry))->a4, ((struct str_Bl *)(c->entry))->a6)) + sr_energy(((struct str_Bl *)(c->entry))->a1, ((struct str_Bl *)(c->entry))->a7);
+         }
+      } else 
+      if (c->utype == SIGID_Br) {
+         if (((struct str_Br *)(c->entry))->a3 != NULL) {
+            sprintf(pp_outp, "((");
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Br *)(c->entry))->a3->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Br *)(c->entry))->a3);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Br *)(c->entry))->a3);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Br *)(c->entry))->a3);
+                  pp_initA[pp_initC] = ((struct str_Br *)(c->entry))->pp_init_a3;
+               }
+            }
+            score3 = pp_str_Signature(((struct str_Br *)(c->entry))->a3);
+            sprintf(pp_outp, "%s", dots(((struct str_Br *)(c->entry))->a4, ((struct str_Br *)(c->entry))->a5));
+            pp_outp = pp_outp + strlen(pp_outp);
+            sprintf(pp_outp, "))");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = (score3 + br_energy(((struct str_Br *)(c->entry))->a2, ((struct str_Br *)(c->entry))->a4, ((struct str_Br *)(c->entry))->a5, ((struct str_Br *)(c->entry))->a6)) + sr_energy(((struct str_Br *)(c->entry))->a1, ((struct str_Br *)(c->entry))->a7);
+         }
+      } else 
+      if (c->utype == SIGID_Il) {
+         if (((struct str_Il *)(c->entry))->a5 != NULL) {
+            sprintf(pp_outp, "((");
+            pp_outp = pp_outp + strlen(pp_outp);
+            sprintf(pp_outp, "%s", dots(((struct str_Il *)(c->entry))->a3, ((struct str_Il *)(c->entry))->a4));
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Il *)(c->entry))->a5->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Il *)(c->entry))->a5);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Il *)(c->entry))->a5);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Il *)(c->entry))->a5);
+                  pp_initA[pp_initC] = ((struct str_Il *)(c->entry))->pp_init_a5;
+               }
+            }
+            score5 = pp_str_Signature(((struct str_Il *)(c->entry))->a5);
+            sprintf(pp_outp, "%s", dots(((struct str_Il *)(c->entry))->a6, ((struct str_Il *)(c->entry))->a7));
+            pp_outp = pp_outp + strlen(pp_outp);
+            sprintf(pp_outp, "))");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = (score5 + sr_energy(((struct str_Il *)(c->entry))->a1, ((struct str_Il *)(c->entry))->a9)) + il_energy(((struct str_Il *)(c->entry))->a3, ((struct str_Il *)(c->entry))->a4, ((struct str_Il *)(c->entry))->a6, ((struct str_Il *)(c->entry))->a7);
+         }
+      } else 
+      if (c->utype == SIGID_Ml) {
+         if (((struct str_Ml *)(c->entry))->a3 != NULL) {
+            sprintf(pp_outp, "((");
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Ml *)(c->entry))->a3->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Ml *)(c->entry))->a3);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Ml *)(c->entry))->a3);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Ml *)(c->entry))->a3);
+                  pp_initA[pp_initC] = ((struct str_Ml *)(c->entry))->pp_init_a3;
+               }
+            }
+            score3 = pp_str_Signature(((struct str_Ml *)(c->entry))->a3);
+            sprintf(pp_outp, "))");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = ((380 + score3) + sr_energy(((struct str_Ml *)(c->entry))->a1, ((struct str_Ml *)(c->entry))->a5)) + termaupenalty(((struct str_Ml *)(c->entry))->a2, ((struct str_Ml *)(c->entry))->a4);
+         }
+      } else 
+      if (c->utype == SIGID_Mldl) {
+         if (((struct str_Mldl *)(c->entry))->a4 != NULL) {
+            sprintf(pp_outp, "((.");
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Mldl *)(c->entry))->a4->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Mldl *)(c->entry))->a4);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Mldl *)(c->entry))->a4);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Mldl *)(c->entry))->a4);
+                  pp_initA[pp_initC] = ((struct str_Mldl *)(c->entry))->pp_init_a4;
+               }
+            }
+            score4 = pp_str_Signature(((struct str_Mldl *)(c->entry))->a4);
+            sprintf(pp_outp, "))");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = (((380 + score4) + dli_energy(((struct str_Mldl *)(c->entry))->a2, ((struct str_Mldl *)(c->entry))->a5)) + sr_energy(((struct str_Mldl *)(c->entry))->a1, ((struct str_Mldl *)(c->entry))->a6)) + termaupenalty(((struct str_Mldl *)(c->entry))->a2, ((struct str_Mldl *)(c->entry))->a5);
+         }
+      } else 
+      if (c->utype == SIGID_Mldr) {
+         if (((struct str_Mldr *)(c->entry))->a3 != NULL) {
+            sprintf(pp_outp, "((");
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Mldr *)(c->entry))->a3->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Mldr *)(c->entry))->a3);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Mldr *)(c->entry))->a3);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Mldr *)(c->entry))->a3);
+                  pp_initA[pp_initC] = ((struct str_Mldr *)(c->entry))->pp_init_a3;
+               }
+            }
+            score3 = pp_str_Signature(((struct str_Mldr *)(c->entry))->a3);
+            sprintf(pp_outp, ".))");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = (((380 + score3) + dri_energy(((struct str_Mldr *)(c->entry))->a2, ((struct str_Mldr *)(c->entry))->a5)) + sr_energy(((struct str_Mldr *)(c->entry))->a1, ((struct str_Mldr *)(c->entry))->a6)) + termaupenalty(((struct str_Mldr *)(c->entry))->a2, ((struct str_Mldr *)(c->entry))->a5);
+         }
+      } else 
+      if (c->utype == SIGID_Mldlr) {
+         if (((struct str_Mldlr *)(c->entry))->a4 != NULL) {
+            sprintf(pp_outp, "((.");
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Mldlr *)(c->entry))->a4->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Mldlr *)(c->entry))->a4);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Mldlr *)(c->entry))->a4);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Mldlr *)(c->entry))->a4);
+                  pp_initA[pp_initC] = ((struct str_Mldlr *)(c->entry))->pp_init_a4;
+               }
+            }
+            score4 = pp_str_Signature(((struct str_Mldlr *)(c->entry))->a4);
+            sprintf(pp_outp, ".))");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = ((((380 + score4) + dli_energy(((struct str_Mldlr *)(c->entry))->a2, ((struct str_Mldlr *)(c->entry))->a6)) + dri_energy(((struct str_Mldlr *)(c->entry))->a2, ((struct str_Mldlr *)(c->entry))->a6)) + sr_energy(((struct str_Mldlr *)(c->entry))->a1, ((struct str_Mldlr *)(c->entry))->a7)) + termaupenalty(((struct str_Mldlr *)(c->entry))->a2, ((struct str_Mldlr *)(c->entry))->a6);
+         }
+      } else 
+      if (c->utype == SIGID_Cons) {
+         rmAllowed = 0;
+         if ((((struct str_Cons *)(c->entry))->a1 != NULL) && (((struct str_Cons *)(c->entry))->a2 != NULL)) {
+            if (((struct str_Cons *)(c->entry))->a1->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Cons *)(c->entry))->a1);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Cons *)(c->entry))->a1);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Cons *)(c->entry))->a1);
+                  pp_initA[pp_initC] = ((struct str_Cons *)(c->entry))->pp_init_a1;
+               }
+            }
+            score1 = pp_str_Signature(((struct str_Cons *)(c->entry))->a1);
+            if (((struct str_Cons *)(c->entry))->a2->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Cons *)(c->entry))->a2);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Cons *)(c->entry))->a2);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Cons *)(c->entry))->a2);
+                  pp_initA[pp_initC] = ((struct str_Cons *)(c->entry))->pp_init_a2;
+               }
+            }
+            score2 = pp_str_Signature(((struct str_Cons *)(c->entry))->a2);
+            score = score1 + score2;
+         }
+      } else 
+      if (c->utype == SIGID_Ul) {
+         if (((struct str_Ul *)(c->entry))->a1 != NULL) {
+            if (((struct str_Ul *)(c->entry))->a1->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Ul *)(c->entry))->a1);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Ul *)(c->entry))->a1);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Ul *)(c->entry))->a1);
+                  pp_initA[pp_initC] = ((struct str_Ul *)(c->entry))->pp_init_a1;
+               }
+            }
+            score1 = pp_str_Signature(((struct str_Ul *)(c->entry))->a1);
+            score = 40 + score1;
+         }
+      } else 
+      if (c->utype == SIGID_Addss) {
+         if (((struct str_Addss *)(c->entry))->a1 != NULL) {
+            if (((struct str_Addss *)(c->entry))->a1->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Addss *)(c->entry))->a1);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Addss *)(c->entry))->a1);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Addss *)(c->entry))->a1);
+                  pp_initA[pp_initC] = ((struct str_Addss *)(c->entry))->pp_init_a1;
+               }
+            }
+            score1 = pp_str_Signature(((struct str_Addss *)(c->entry))->a1);
+            sprintf(pp_outp, "%s", dots(((struct str_Addss *)(c->entry))->a2, ((struct str_Addss *)(c->entry))->a3));
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = score1 + ss_energy(((struct str_Addss *)(c->entry))->a2, ((struct str_Addss *)(c->entry))->a3);
+         }
+      } else 
+      if (c->utype == SIGID_Ssadd) {
+         if (((struct str_Ssadd *)(c->entry))->a3 != NULL) {
+            sprintf(pp_outp, "%s", dots(((struct str_Ssadd *)(c->entry))->a1, ((struct str_Ssadd *)(c->entry))->a2));
+            pp_outp = pp_outp + strlen(pp_outp);
+            if (((struct str_Ssadd *)(c->entry))->a3->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Ssadd *)(c->entry))->a3);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Ssadd *)(c->entry))->a3);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Ssadd *)(c->entry))->a3);
+                  pp_initA[pp_initC] = ((struct str_Ssadd *)(c->entry))->pp_init_a3;
+               }
+            }
+            score3 = pp_str_Signature(((struct str_Ssadd *)(c->entry))->a3);
+            score = (40 + score3) + ss_energy(((struct str_Ssadd *)(c->entry))->a1, ((struct str_Ssadd *)(c->entry))->a2);
+         }
+      } else 
+      if (c->utype == SIGID_Nil) {
+         if (((struct str_Nil *)(c->entry))->a1 != NULL) {
+            sprintf(pp_outp, "");
+            pp_outp = pp_outp + strlen(pp_outp);
+            score = 0;
+         }
+      } else 
+      if (c->utype == SIGID_Combine) {
+         rmAllowed = 0;
+         if ((((struct str_Combine *)(c->entry))->a1 != NULL) && (((struct str_Combine *)(c->entry))->a2 != NULL)) {
+            if (((struct str_Combine *)(c->entry))->a1->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Combine *)(c->entry))->a1);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Combine *)(c->entry))->a1);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Combine *)(c->entry))->a1);
+                  pp_initA[pp_initC] = ((struct str_Combine *)(c->entry))->pp_init_a1;
+               }
+            }
+            score1 = pp_str_Signature(((struct str_Combine *)(c->entry))->a1);
+            if (((struct str_Combine *)(c->entry))->a2->next != NULL) {
+               if (rmAllowed) {
+                  removeAddr = &(((struct str_Combine *)(c->entry))->a2);
+               }
+               else {
+                  removeAddr = NULL;
+               }
+               pp_next = &(((struct str_Combine *)(c->entry))->a2);
+               pp_initC = (-1);
+            }
+            else {
+               if (removeAddr == NULL) {
+                  pp_initC = pp_initC + 1;
+                  pp_init[pp_initC] = &(((struct str_Combine *)(c->entry))->a2);
+                  pp_initA[pp_initC] = ((struct str_Combine *)(c->entry))->pp_init_a2;
+               }
+            }
+            score2 = pp_str_Signature(((struct str_Combine *)(c->entry))->a2);
+            score = score1 + score2;
+         }
+      };
+   }
+   return(score);
+}
+
+/* structure builder                                                                */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *build_str_Signature(struct str1 *l)
+{
+   struct str_Signature *c;
+   struct str1 *cl;
+
+   if (l != NULL) {
+      cl = l;
+      c = cl->item;
+      if (c->fcalled == 0) {
+         c->fcalled = 1;
+         if (c->utype == SIGID__NTID) {
+            if (((struct str__NTID *)(c->entry))->isStructure1) {
+               ((struct str__NTID *)(c->entry))->a1 = build_str_Signature(((struct str__NTID *)(c->entry))->structure1);
+               ((struct str__NTID *)(c->entry))->pp_init_a1 = ((struct str__NTID *)(c->entry))->a1;
+            }
+            else {
+               ((struct str__NTID *)(c->entry))->a1 = (*((struct str__NTID *)(c->entry))->f1)(((struct str__NTID *)(c->entry))->i1, ((struct str__NTID *)(c->entry))->j1, ((struct str__NTID *)(c->entry))->diff1);
+               ((struct str__NTID *)(c->entry))->pp_init_a1 = ((struct str__NTID *)(c->entry))->a1;
+            }
+         } else 
+         if (c->utype == SIGID_Sadd) {
+            if (((struct str_Sadd *)(c->entry))->isStructure2) {
+               ((struct str_Sadd *)(c->entry))->a2 = build_str_Signature(((struct str_Sadd *)(c->entry))->structure2);
+               ((struct str_Sadd *)(c->entry))->pp_init_a2 = ((struct str_Sadd *)(c->entry))->a2;
+            }
+            else {
+               ((struct str_Sadd *)(c->entry))->a2 = (*((struct str_Sadd *)(c->entry))->f2)(((struct str_Sadd *)(c->entry))->i2, ((struct str_Sadd *)(c->entry))->j2, ((struct str_Sadd *)(c->entry))->diff2);
+               ((struct str_Sadd *)(c->entry))->pp_init_a2 = ((struct str_Sadd *)(c->entry))->a2;
+            }
+         } else 
+         if (c->utype == SIGID_Cadd) {
+            if (((struct str_Cadd *)(c->entry))->isStructure1) {
+               ((struct str_Cadd *)(c->entry))->a1 = build_str_Signature(((struct str_Cadd *)(c->entry))->structure1);
+               ((struct str_Cadd *)(c->entry))->pp_init_a1 = ((struct str_Cadd *)(c->entry))->a1;
+            }
+            else {
+               ((struct str_Cadd *)(c->entry))->a1 = (*((struct str_Cadd *)(c->entry))->f1)(((struct str_Cadd *)(c->entry))->i1, ((struct str_Cadd *)(c->entry))->j1, ((struct str_Cadd *)(c->entry))->diff1);
+               ((struct str_Cadd *)(c->entry))->pp_init_a1 = ((struct str_Cadd *)(c->entry))->a1;
+            }
+            if (((struct str_Cadd *)(c->entry))->isStructure2) {
+               ((struct str_Cadd *)(c->entry))->a2 = build_str_Signature(((struct str_Cadd *)(c->entry))->structure2);
+               ((struct str_Cadd *)(c->entry))->pp_init_a2 = ((struct str_Cadd *)(c->entry))->a2;
+            }
+            else {
+               ((struct str_Cadd *)(c->entry))->a2 = (*((struct str_Cadd *)(c->entry))->f2)(((struct str_Cadd *)(c->entry))->i2, ((struct str_Cadd *)(c->entry))->j2, ((struct str_Cadd *)(c->entry))->diff2);
+               ((struct str_Cadd *)(c->entry))->pp_init_a2 = ((struct str_Cadd *)(c->entry))->a2;
+            }
+         } else 
+         if (c->utype == SIGID_Is) {
+            if (((struct str_Is *)(c->entry))->isStructure2) {
+               ((struct str_Is *)(c->entry))->a2 = build_str_Signature(((struct str_Is *)(c->entry))->structure2);
+               ((struct str_Is *)(c->entry))->pp_init_a2 = ((struct str_Is *)(c->entry))->a2;
+            }
+            else {
+               ((struct str_Is *)(c->entry))->a2 = (*((struct str_Is *)(c->entry))->f2)(((struct str_Is *)(c->entry))->i2, ((struct str_Is *)(c->entry))->j2, ((struct str_Is *)(c->entry))->diff2);
+               ((struct str_Is *)(c->entry))->pp_init_a2 = ((struct str_Is *)(c->entry))->a2;
+            }
+         } else 
+         if (c->utype == SIGID_Sr) {
+            if (((struct str_Sr *)(c->entry))->isStructure2) {
+               ((struct str_Sr *)(c->entry))->a2 = build_str_Signature(((struct str_Sr *)(c->entry))->structure2);
+               ((struct str_Sr *)(c->entry))->pp_init_a2 = ((struct str_Sr *)(c->entry))->a2;
+            }
+            else {
+               ((struct str_Sr *)(c->entry))->a2 = (*((struct str_Sr *)(c->entry))->f2)(((struct str_Sr *)(c->entry))->i2, ((struct str_Sr *)(c->entry))->j2, ((struct str_Sr *)(c->entry))->diff2);
+               ((struct str_Sr *)(c->entry))->pp_init_a2 = ((struct str_Sr *)(c->entry))->a2;
+            }
+         } else 
+         if (c->utype == SIGID_Hl) {
+         } else 
+         if (c->utype == SIGID_Bl) {
+            if (((struct str_Bl *)(c->entry))->isStructure5) {
+               ((struct str_Bl *)(c->entry))->a5 = build_str_Signature(((struct str_Bl *)(c->entry))->structure5);
+               ((struct str_Bl *)(c->entry))->pp_init_a5 = ((struct str_Bl *)(c->entry))->a5;
+            }
+            else {
+               ((struct str_Bl *)(c->entry))->a5 = (*((struct str_Bl *)(c->entry))->f5)(((struct str_Bl *)(c->entry))->i5, ((struct str_Bl *)(c->entry))->j5, ((struct str_Bl *)(c->entry))->diff5);
+               ((struct str_Bl *)(c->entry))->pp_init_a5 = ((struct str_Bl *)(c->entry))->a5;
+            }
+         } else 
+         if (c->utype == SIGID_Br) {
+            if (((struct str_Br *)(c->entry))->isStructure3) {
+               ((struct str_Br *)(c->entry))->a3 = build_str_Signature(((struct str_Br *)(c->entry))->structure3);
+               ((struct str_Br *)(c->entry))->pp_init_a3 = ((struct str_Br *)(c->entry))->a3;
+            }
+            else {
+               ((struct str_Br *)(c->entry))->a3 = (*((struct str_Br *)(c->entry))->f3)(((struct str_Br *)(c->entry))->i3, ((struct str_Br *)(c->entry))->j3, ((struct str_Br *)(c->entry))->diff3);
+               ((struct str_Br *)(c->entry))->pp_init_a3 = ((struct str_Br *)(c->entry))->a3;
+            }
+         } else 
+         if (c->utype == SIGID_Il) {
+            if (((struct str_Il *)(c->entry))->isStructure5) {
+               ((struct str_Il *)(c->entry))->a5 = build_str_Signature(((struct str_Il *)(c->entry))->structure5);
+               ((struct str_Il *)(c->entry))->pp_init_a5 = ((struct str_Il *)(c->entry))->a5;
+            }
+            else {
+               ((struct str_Il *)(c->entry))->a5 = (*((struct str_Il *)(c->entry))->f5)(((struct str_Il *)(c->entry))->i5, ((struct str_Il *)(c->entry))->j5, ((struct str_Il *)(c->entry))->diff5);
+               ((struct str_Il *)(c->entry))->pp_init_a5 = ((struct str_Il *)(c->entry))->a5;
+            }
+         } else 
+         if (c->utype == SIGID_Ml) {
+            if (((struct str_Ml *)(c->entry))->isStructure3) {
+               ((struct str_Ml *)(c->entry))->a3 = build_str_Signature(((struct str_Ml *)(c->entry))->structure3);
+               ((struct str_Ml *)(c->entry))->pp_init_a3 = ((struct str_Ml *)(c->entry))->a3;
+            }
+            else {
+               ((struct str_Ml *)(c->entry))->a3 = (*((struct str_Ml *)(c->entry))->f3)(((struct str_Ml *)(c->entry))->i3, ((struct str_Ml *)(c->entry))->j3, ((struct str_Ml *)(c->entry))->diff3);
+               ((struct str_Ml *)(c->entry))->pp_init_a3 = ((struct str_Ml *)(c->entry))->a3;
+            }
+         } else 
+         if (c->utype == SIGID_Mldl) {
+            if (((struct str_Mldl *)(c->entry))->isStructure4) {
+               ((struct str_Mldl *)(c->entry))->a4 = build_str_Signature(((struct str_Mldl *)(c->entry))->structure4);
+               ((struct str_Mldl *)(c->entry))->pp_init_a4 = ((struct str_Mldl *)(c->entry))->a4;
+            }
+            else {
+               ((struct str_Mldl *)(c->entry))->a4 = (*((struct str_Mldl *)(c->entry))->f4)(((struct str_Mldl *)(c->entry))->i4, ((struct str_Mldl *)(c->entry))->j4, ((struct str_Mldl *)(c->entry))->diff4);
+               ((struct str_Mldl *)(c->entry))->pp_init_a4 = ((struct str_Mldl *)(c->entry))->a4;
+            }
+         } else 
+         if (c->utype == SIGID_Mldr) {
+            if (((struct str_Mldr *)(c->entry))->isStructure3) {
+               ((struct str_Mldr *)(c->entry))->a3 = build_str_Signature(((struct str_Mldr *)(c->entry))->structure3);
+               ((struct str_Mldr *)(c->entry))->pp_init_a3 = ((struct str_Mldr *)(c->entry))->a3;
+            }
+            else {
+               ((struct str_Mldr *)(c->entry))->a3 = (*((struct str_Mldr *)(c->entry))->f3)(((struct str_Mldr *)(c->entry))->i3, ((struct str_Mldr *)(c->entry))->j3, ((struct str_Mldr *)(c->entry))->diff3);
+               ((struct str_Mldr *)(c->entry))->pp_init_a3 = ((struct str_Mldr *)(c->entry))->a3;
+            }
+         } else 
+         if (c->utype == SIGID_Mldlr) {
+            if (((struct str_Mldlr *)(c->entry))->isStructure4) {
+               ((struct str_Mldlr *)(c->entry))->a4 = build_str_Signature(((struct str_Mldlr *)(c->entry))->structure4);
+               ((struct str_Mldlr *)(c->entry))->pp_init_a4 = ((struct str_Mldlr *)(c->entry))->a4;
+            }
+            else {
+               ((struct str_Mldlr *)(c->entry))->a4 = (*((struct str_Mldlr *)(c->entry))->f4)(((struct str_Mldlr *)(c->entry))->i4, ((struct str_Mldlr *)(c->entry))->j4, ((struct str_Mldlr *)(c->entry))->diff4);
+               ((struct str_Mldlr *)(c->entry))->pp_init_a4 = ((struct str_Mldlr *)(c->entry))->a4;
+            }
+         } else 
+         if (c->utype == SIGID_Cons) {
+            if (((struct str_Cons *)(c->entry))->isStructure1) {
+               ((struct str_Cons *)(c->entry))->a1 = build_str_Signature(((struct str_Cons *)(c->entry))->structure1);
+               ((struct str_Cons *)(c->entry))->pp_init_a1 = ((struct str_Cons *)(c->entry))->a1;
+            }
+            else {
+               ((struct str_Cons *)(c->entry))->a1 = (*((struct str_Cons *)(c->entry))->f1)(((struct str_Cons *)(c->entry))->i1, ((struct str_Cons *)(c->entry))->j1, ((struct str_Cons *)(c->entry))->diff1);
+               ((struct str_Cons *)(c->entry))->pp_init_a1 = ((struct str_Cons *)(c->entry))->a1;
+            }
+            if (((struct str_Cons *)(c->entry))->isStructure2) {
+               ((struct str_Cons *)(c->entry))->a2 = build_str_Signature(((struct str_Cons *)(c->entry))->structure2);
+               ((struct str_Cons *)(c->entry))->pp_init_a2 = ((struct str_Cons *)(c->entry))->a2;
+            }
+            else {
+               ((struct str_Cons *)(c->entry))->a2 = (*((struct str_Cons *)(c->entry))->f2)(((struct str_Cons *)(c->entry))->i2, ((struct str_Cons *)(c->entry))->j2, ((struct str_Cons *)(c->entry))->diff2);
+               ((struct str_Cons *)(c->entry))->pp_init_a2 = ((struct str_Cons *)(c->entry))->a2;
+            }
+         } else 
+         if (c->utype == SIGID_Ul) {
+            if (((struct str_Ul *)(c->entry))->isStructure1) {
+               ((struct str_Ul *)(c->entry))->a1 = build_str_Signature(((struct str_Ul *)(c->entry))->structure1);
+               ((struct str_Ul *)(c->entry))->pp_init_a1 = ((struct str_Ul *)(c->entry))->a1;
+            }
+            else {
+               ((struct str_Ul *)(c->entry))->a1 = (*((struct str_Ul *)(c->entry))->f1)(((struct str_Ul *)(c->entry))->i1, ((struct str_Ul *)(c->entry))->j1, ((struct str_Ul *)(c->entry))->diff1);
+               ((struct str_Ul *)(c->entry))->pp_init_a1 = ((struct str_Ul *)(c->entry))->a1;
+            }
+         } else 
+         if (c->utype == SIGID_Addss) {
+            if (((struct str_Addss *)(c->entry))->isStructure1) {
+               ((struct str_Addss *)(c->entry))->a1 = build_str_Signature(((struct str_Addss *)(c->entry))->structure1);
+               ((struct str_Addss *)(c->entry))->pp_init_a1 = ((struct str_Addss *)(c->entry))->a1;
+            }
+            else {
+               ((struct str_Addss *)(c->entry))->a1 = (*((struct str_Addss *)(c->entry))->f1)(((struct str_Addss *)(c->entry))->i1, ((struct str_Addss *)(c->entry))->j1, ((struct str_Addss *)(c->entry))->diff1);
+               ((struct str_Addss *)(c->entry))->pp_init_a1 = ((struct str_Addss *)(c->entry))->a1;
+            }
+         } else 
+         if (c->utype == SIGID_Ssadd) {
+            if (((struct str_Ssadd *)(c->entry))->isStructure3) {
+               ((struct str_Ssadd *)(c->entry))->a3 = build_str_Signature(((struct str_Ssadd *)(c->entry))->structure3);
+               ((struct str_Ssadd *)(c->entry))->pp_init_a3 = ((struct str_Ssadd *)(c->entry))->a3;
+            }
+            else {
+               ((struct str_Ssadd *)(c->entry))->a3 = (*((struct str_Ssadd *)(c->entry))->f3)(((struct str_Ssadd *)(c->entry))->i3, ((struct str_Ssadd *)(c->entry))->j3, ((struct str_Ssadd *)(c->entry))->diff3);
+               ((struct str_Ssadd *)(c->entry))->pp_init_a3 = ((struct str_Ssadd *)(c->entry))->a3;
+            }
+         } else 
+         if (c->utype == SIGID_Nil) {
+            if (((struct str_Nil *)(c->entry))->isStructure1) {
+               ((struct str_Nil *)(c->entry))->a1 = build_str_Signature(((struct str_Nil *)(c->entry))->structure1);
+               ((struct str_Nil *)(c->entry))->pp_init_a1 = ((struct str_Nil *)(c->entry))->a1;
+            }
+            else {
+               ((struct str_Nil *)(c->entry))->a1 = (*((struct str_Nil *)(c->entry))->f1)(((struct str_Nil *)(c->entry))->i1, ((struct str_Nil *)(c->entry))->j1, ((struct str_Nil *)(c->entry))->diff1);
+               ((struct str_Nil *)(c->entry))->pp_init_a1 = ((struct str_Nil *)(c->entry))->a1;
+            }
+         } else 
+         if (c->utype == SIGID_Combine) {
+            if (((struct str_Combine *)(c->entry))->isStructure1) {
+               ((struct str_Combine *)(c->entry))->a1 = build_str_Signature(((struct str_Combine *)(c->entry))->structure1);
+               ((struct str_Combine *)(c->entry))->pp_init_a1 = ((struct str_Combine *)(c->entry))->a1;
+            }
+            else {
+               ((struct str_Combine *)(c->entry))->a1 = (*((struct str_Combine *)(c->entry))->f1)(((struct str_Combine *)(c->entry))->i1, ((struct str_Combine *)(c->entry))->j1, ((struct str_Combine *)(c->entry))->diff1);
+               ((struct str_Combine *)(c->entry))->pp_init_a1 = ((struct str_Combine *)(c->entry))->a1;
+            }
+            if (((struct str_Combine *)(c->entry))->isStructure2) {
+               ((struct str_Combine *)(c->entry))->a2 = build_str_Signature(((struct str_Combine *)(c->entry))->structure2);
+               ((struct str_Combine *)(c->entry))->pp_init_a2 = ((struct str_Combine *)(c->entry))->a2;
+            }
+            else {
+               ((struct str_Combine *)(c->entry))->a2 = (*((struct str_Combine *)(c->entry))->f2)(((struct str_Combine *)(c->entry))->i2, ((struct str_Combine *)(c->entry))->j2, ((struct str_Combine *)(c->entry))->diff2);
+               ((struct str_Combine *)(c->entry))->pp_init_a2 = ((struct str_Combine *)(c->entry))->a2;
+            }
+         };
+      }
+   }
+   return(l);
+}
+
+/* update subopt difference values                                                  */
+/* -------------------------------------------------------------------------------- */
+static void update_str_Signature(struct str_Signature *c, int diff)
+{
+   if (c != NULL) {
+      if (c->utype == SIGID__NTID) {
+         if (((struct str__NTID *)(c->entry))->isStructure1) {
+            update_str_Signature(((struct str__NTID *)(c->entry))->structure1->item, diff);
+         }
+         else {
+            ((struct str__NTID *)(c->entry))->diff1 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Sadd) {
+         if (((struct str_Sadd *)(c->entry))->isStructure2) {
+            update_str_Signature(((struct str_Sadd *)(c->entry))->structure2->item, diff);
+         }
+         else {
+            ((struct str_Sadd *)(c->entry))->diff2 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Cadd) {
+         if (((struct str_Cadd *)(c->entry))->isStructure1) {
+            update_str_Signature(((struct str_Cadd *)(c->entry))->structure1->item, diff);
+         }
+         else {
+            ((struct str_Cadd *)(c->entry))->diff1 = diff;
+         }
+         if (((struct str_Cadd *)(c->entry))->isStructure2) {
+            update_str_Signature(((struct str_Cadd *)(c->entry))->structure2->item, diff);
+         }
+         else {
+            ((struct str_Cadd *)(c->entry))->diff2 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Is) {
+         if (((struct str_Is *)(c->entry))->isStructure2) {
+            update_str_Signature(((struct str_Is *)(c->entry))->structure2->item, diff);
+         }
+         else {
+            ((struct str_Is *)(c->entry))->diff2 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Sr) {
+         if (((struct str_Sr *)(c->entry))->isStructure2) {
+            update_str_Signature(((struct str_Sr *)(c->entry))->structure2->item, diff);
+         }
+         else {
+            ((struct str_Sr *)(c->entry))->diff2 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Hl) {
+         ((struct str_Hl *)(c->entry))->diff = diff;
+      } else 
+      if (c->utype == SIGID_Bl) {
+         if (((struct str_Bl *)(c->entry))->isStructure5) {
+            update_str_Signature(((struct str_Bl *)(c->entry))->structure5->item, diff);
+         }
+         else {
+            ((struct str_Bl *)(c->entry))->diff5 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Br) {
+         if (((struct str_Br *)(c->entry))->isStructure3) {
+            update_str_Signature(((struct str_Br *)(c->entry))->structure3->item, diff);
+         }
+         else {
+            ((struct str_Br *)(c->entry))->diff3 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Il) {
+         if (((struct str_Il *)(c->entry))->isStructure5) {
+            update_str_Signature(((struct str_Il *)(c->entry))->structure5->item, diff);
+         }
+         else {
+            ((struct str_Il *)(c->entry))->diff5 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Ml) {
+         if (((struct str_Ml *)(c->entry))->isStructure3) {
+            update_str_Signature(((struct str_Ml *)(c->entry))->structure3->item, diff);
+         }
+         else {
+            ((struct str_Ml *)(c->entry))->diff3 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Mldl) {
+         if (((struct str_Mldl *)(c->entry))->isStructure4) {
+            update_str_Signature(((struct str_Mldl *)(c->entry))->structure4->item, diff);
+         }
+         else {
+            ((struct str_Mldl *)(c->entry))->diff4 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Mldr) {
+         if (((struct str_Mldr *)(c->entry))->isStructure3) {
+            update_str_Signature(((struct str_Mldr *)(c->entry))->structure3->item, diff);
+         }
+         else {
+            ((struct str_Mldr *)(c->entry))->diff3 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Mldlr) {
+         if (((struct str_Mldlr *)(c->entry))->isStructure4) {
+            update_str_Signature(((struct str_Mldlr *)(c->entry))->structure4->item, diff);
+         }
+         else {
+            ((struct str_Mldlr *)(c->entry))->diff4 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Cons) {
+         if (((struct str_Cons *)(c->entry))->isStructure1) {
+            update_str_Signature(((struct str_Cons *)(c->entry))->structure1->item, diff);
+         }
+         else {
+            ((struct str_Cons *)(c->entry))->diff1 = diff;
+         }
+         if (((struct str_Cons *)(c->entry))->isStructure2) {
+            update_str_Signature(((struct str_Cons *)(c->entry))->structure2->item, diff);
+         }
+         else {
+            ((struct str_Cons *)(c->entry))->diff2 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Ul) {
+         if (((struct str_Ul *)(c->entry))->isStructure1) {
+            update_str_Signature(((struct str_Ul *)(c->entry))->structure1->item, diff);
+         }
+         else {
+            ((struct str_Ul *)(c->entry))->diff1 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Addss) {
+         if (((struct str_Addss *)(c->entry))->isStructure1) {
+            update_str_Signature(((struct str_Addss *)(c->entry))->structure1->item, diff);
+         }
+         else {
+            ((struct str_Addss *)(c->entry))->diff1 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Ssadd) {
+         if (((struct str_Ssadd *)(c->entry))->isStructure3) {
+            update_str_Signature(((struct str_Ssadd *)(c->entry))->structure3->item, diff);
+         }
+         else {
+            ((struct str_Ssadd *)(c->entry))->diff3 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Nil) {
+         if (((struct str_Nil *)(c->entry))->isStructure1) {
+            update_str_Signature(((struct str_Nil *)(c->entry))->structure1->item, diff);
+         }
+         else {
+            ((struct str_Nil *)(c->entry))->diff1 = diff;
+         }
+      } else 
+      if (c->utype == SIGID_Combine) {
+         if (((struct str_Combine *)(c->entry))->isStructure1) {
+            update_str_Signature(((struct str_Combine *)(c->entry))->structure1->item, diff);
+         }
+         else {
+            ((struct str_Combine *)(c->entry))->diff1 = diff;
+         }
+         if (((struct str_Combine *)(c->entry))->isStructure2) {
+            update_str_Signature(((struct str_Combine *)(c->entry))->structure2->item, diff);
+         }
+         else {
+            ((struct str_Combine *)(c->entry))->diff2 = diff;
+         }
+      };
+   }
+}
+
+/* table access                                                                     */
+/* -------------------------------------------------------------------------------- */
+
+static int *offset;
+
+#define tbl_struct(I, J) arr_struct[(I)]
+#define tbl_initstem(I, J) arr_initstem[offset[(J)]+(I)]
+#define tbl_closed(I, J) arr_closed[offset[(J)]+(I)]
+#define tbl_ml_components(I, J) arr_ml_components[offset[(J)]+(I)]
+#define tbl_comps(I, J) arr_comps[offset[(J)]+(I)]
+#define tbl_block(I, J) arr_block[offset[(J)]+(I)]
+
+/* table declarations                                                               */
+/* -------------------------------------------------------------------------------- */
+
+static int *arr_struct;
+static int *arr_initstem;
+static int *arr_closed;
+static int *arr_ml_components;
+static int *arr_comps;
+static int *arr_block;
+
+/* forward declarations                                                             */
+/* -------------------------------------------------------------------------------- */
+
+static int calc_stack(int i, int j);
+
+static int calc_leftB(int i, int j);
+
+static int calc_rightB(int i, int j);
+
+static int calc_iloop(int i, int j);
+
+static int calc_multiloop(int i, int j);
+
+/* table calculations                                                               */
+/* -------------------------------------------------------------------------------- */
+
+/* table calculation for production struct                                          */
+/* -------------------------------------------------------------------------------- */
+static void calc_struct(int i, int j)
+{
+   int v1, v2, v3, v4, v5, v6;
+   int k;
+
+   if ((j-i) >= 0) {
+      /* -------------------------------- start of -------------------------------- */
+      /* -------------------- v1 = sadd <<< lbase ~~~ p struct -------------------- */
+      if ((j-i) >= 1) {
+         v1 = tbl_struct(i+1, j);
+      }
+      else {
+         v1 = 1.0e7;
+      }
+      /* -------------------- v1 = sadd <<< lbase ~~~ p struct -------------------- */
+      /* -------------------------------- finished -------------------------------- */
+
+      /* -------------------------------- start of -------------------------------- */
+      /* ----------------- v3 = cadd <<< p initstem ~~~ p struct ------------------ */
+      if ((j-i) >= 7) {
+         v3 = 1.0e7;
+         for (k=i+7; k<=j; k++) {
+            v2 = tbl_initstem(i, k) + tbl_struct(k, j);
+            v3 = v2 < v3 ? v2 : v3;
+         }
+      }
+      else {
+         v3 = 1.0e7;
+      }
+      /* ----------------- v3 = cadd <<< p initstem ~~~ p struct ------------------ */
+      /* -------------------------------- finished -------------------------------- */
+
+      /* -------------------------------- start of -------------------------------- */
+      /* --------------------------- v4 = nil <<< empty --------------------------- */
+      if ((j-i) == 0) {
+         v4 = 0;
+      }
+      else {
+         v4 = 1.0e7;
+      }
+      /* --------------------------- v4 = nil <<< empty --------------------------- */
+      /* -------------------------------- finished -------------------------------- */
+
+      v5 = v3 < v4 ? v3 : v4;
+      v6 = v1 < v5 ? v1 : v5;
+      /* ----------------------- assign table entry result ------------------------ */
+      tbl_struct(i, j) = v6;
+   }
+}
+
+/* table calculation for production initstem                                        */
+/* -------------------------------------------------------------------------------- */
+static void calc_initstem(int i, int j)
+{
+   int v1;
+
+   if ((j-i) >= 7) {
+      /* -------------------------------- start of -------------------------------- */
+      /* ------------------ v1 = is <<< loc ~~~ p closed ~~~ loc ------------------ */
+      v1 = tbl_closed(i, j) + termaupenalty((i) + 1, j);
+      /* ------------------ v1 = is <<< loc ~~~ p closed ~~~ loc ------------------ */
+      /* -------------------------------- finished -------------------------------- */
+
+      /* ----------------------- assign table entry result ------------------------ */
+      tbl_initstem(i, j) = v1;
+   }
+}
+
+/* table calculation for production closed                                          */
+/* -------------------------------------------------------------------------------- */
+static void calc_closed(int i, int j)
+{
+   int v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12;
+
+   if ((j-i) >= 7) {
+      /* ------------------------------ v1 = p stack ------------------------------ */
+      v1 = calc_stack(i, j);
+      if (stackpairing(i, j)) {
+         /* ------------------------------- start of ------------------------------ */
+         /*  v2 = hl <<< lbase ~~~ lbase ~~~ (region `with` (minsize 3.0)) ~~~ lbase ~~~ lbase  */
+         v2 = hl_energy(i+2, j-1) + sr_energy(i+1, j);
+         /*  v2 = hl <<< lbase ~~~ lbase ~~~ (region `with` (minsize 3.0)) ~~~ lbase ~~~ lbase  */
+         /* ------------------------------- finished ------------------------------ */
+
+         /* ----------------------------- v3 = p leftB ---------------------------- */
+         v3 = calc_leftB(i, j);
+         /* ---------------------------- v4 = p rightB ---------------------------- */
+         v4 = calc_rightB(i, j);
+         /* ----------------------------- v5 = p iloop ---------------------------- */
+         v5 = calc_iloop(i, j);
+         /* --------------------------- v6 = p multiloop -------------------------- */
+         v6 = calc_multiloop(i, j);
+         v7 = v5 < v6 ? v5 : v6;
+         v8 = v4 < v7 ? v4 : v7;
+         v9 = v3 < v8 ? v3 : v8;
+         v10 = v2 < v9 ? v2 : v9;
+         v11 = v10;
+      }
+      else {
+         v11 = 1.0e7;
+      }
+      v12 = v1 < v11 ? v1 : v11;
+      /* ----------------------- assign table entry result ------------------------ */
+      tbl_closed(i, j) = v12;
+   }
+}
+
+/* table calculation for production stack                                           */
+/* -------------------------------------------------------------------------------- */
+static int calc_stack(int i, int j)
+{
+   int v1, v2;
+
+   if (basepairing(i, j)) {
+      /* -------------------------------- start of -------------------------------- */
+      /* ---------------- v1 = sr <<< lbase ~~~ p closed ~~~ lbase ---------------- */
+      if ((j-i) >= 9) {
+         v1 = tbl_closed(i+1, j-1) + sr_energy(i+1, j);
+      }
+      else {
+         v1 = 1.0e7;
+      }
+      /* ---------------- v1 = sr <<< lbase ~~~ p closed ~~~ lbase ---------------- */
+      /* -------------------------------- finished -------------------------------- */
+
+      v2 = v1;
+   }
+   else {
+      v2 = 1.0e7;
+   }
+   return(v2);
+}
+
+/* table calculation for production leftB                                           */
+/* -------------------------------------------------------------------------------- */
+static int calc_leftB(int i, int j)
+{
+   int v1, v2;
+   int k;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* - v2 = bl <<< lbase ~~~ lbase ~~~ region ~~~ p initstem ~~~ lbase ~~~ lbase - */
+   if ((j-i) >= 12) {
+      v2 = 1.0e7;
+      for (k=i+3; k<=j-9; k++) {
+         v1 = (tbl_initstem(k, j-2) + bl_energy(i+2, i+2, k, j-1)) + sr_energy(i+1, j);
+         v2 = v1 < v2 ? v1 : v2;
+      }
+   }
+   else {
+      v2 = 1.0e7;
+   }
+   /* - v2 = bl <<< lbase ~~~ lbase ~~~ region ~~~ p initstem ~~~ lbase ~~~ lbase - */
+   /* ---------------------------------- finished --------------------------------- */
+
+   return(v2);
+}
+
+/* table calculation for production rightB                                          */
+/* -------------------------------------------------------------------------------- */
+static int calc_rightB(int i, int j)
+{
+   int v1, v2;
+   int k;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* - v2 = br <<< lbase ~~~ lbase ~~~ p initstem ~~~ region ~~~ lbase ~~~ lbase - */
+   if ((j-i) >= 12) {
+      v2 = 1.0e7;
+      for (k=i+9; k<=j-3; k++) {
+         v1 = (tbl_initstem(i+2, k) + br_energy(i+2, k, j-2, j-1)) + sr_energy(i+1, j);
+         v2 = v1 < v2 ? v1 : v2;
+      }
+   }
+   else {
+      v2 = 1.0e7;
+   }
+   /* - v2 = br <<< lbase ~~~ lbase ~~~ p initstem ~~~ region ~~~ lbase ~~~ lbase - */
+   /* ---------------------------------- finished --------------------------------- */
+
+   return(v2);
+}
+
+/* table calculation for production iloop                                           */
+/* -------------------------------------------------------------------------------- */
+static int calc_iloop(int i, int j)
+{
+   int v1, v2;
+   int k, k2;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v2 = il <<< lbase ~~~ lbase ~~~ (region `with` (maxsize 30.0)) ~~~ p closed ~~~ (region `with` (maxsize 30.0)) ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 13) {
+      v2 = 1.0e7;
+      for (k2=max(i+10, j-32); k2<=j-3; k2++) {
+         for (k=i+3; k<=min(i+32, k2-7); k++) {
+            v1 = (tbl_closed(k, k2) + sr_energy(i+1, j)) + il_energy(i+2, k, k2, j-2);
+            v2 = v1 < v2 ? v1 : v2;
+         }
+      }
+   }
+   else {
+      v2 = 1.0e7;
+   }
+   /*  v2 = il <<< lbase ~~~ lbase ~~~ (region `with` (maxsize 30.0)) ~~~ p closed ~~~ (region `with` (maxsize 30.0)) ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   return(v2);
+}
+
+/* table calculation for production multiloop                                       */
+/* -------------------------------------------------------------------------------- */
+static int calc_multiloop(int i, int j)
+{
+   int v1, v2, v3, v4, v5, v6, v7;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v1 = mldl <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 19) {
+      v1 = (((380 + tbl_ml_components(i+3, j-2)) + dli_energy(i+2, j-1)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+   }
+   else {
+      v1 = 1.0e7;
+   }
+   /*  v1 = mldl <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v2 = mldr <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 19) {
+      v2 = (((380 + tbl_ml_components(i+2, j-3)) + dri_energy(i+2, j-1)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+   }
+   else {
+      v2 = 1.0e7;
+   }
+   /*  v2 = mldr <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v3 = mldlr <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 20) {
+      v3 = ((((380 + tbl_ml_components(i+3, j-3)) + dli_energy(i+2, j-1)) + dri_energy(i+2, j-1)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+   }
+   else {
+      v3 = 1.0e7;
+   }
+   /*  v3 = mldlr <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* ---- v4 = ml <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ---- */
+   if ((j-i) >= 18) {
+      v4 = ((380 + tbl_ml_components(i+2, j-2)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+   }
+   else {
+      v4 = 1.0e7;
+   }
+   /* ---- v4 = ml <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ---- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   v5 = v3 < v4 ? v3 : v4;
+   v6 = v2 < v5 ? v2 : v5;
+   v7 = v1 < v6 ? v1 : v6;
+   return(v7);
+}
+
+/* table calculation for production ml_components                                   */
+/* -------------------------------------------------------------------------------- */
+static void calc_ml_components(int i, int j)
+{
+   int v1, v2;
+   int k;
+
+   if ((j-i) >= 14) {
+      /* -------------------------------- start of -------------------------------- */
+      /* ------------------ v2 = combine <<< p block ~~~ p comps ------------------ */
+      v2 = 1.0e7;
+      for (k=i+7; k<=j-7; k++) {
+         v1 = tbl_block(i, k) + tbl_comps(k, j);
+         v2 = v1 < v2 ? v1 : v2;
+      }
+      /* ------------------ v2 = combine <<< p block ~~~ p comps ------------------ */
+      /* -------------------------------- finished -------------------------------- */
+
+      /* ----------------------- assign table entry result ------------------------ */
+      tbl_ml_components(i, j) = v2;
+   }
+}
+
+/* table calculation for production comps                                           */
+/* -------------------------------------------------------------------------------- */
+static void calc_comps(int i, int j)
+{
+   int v1, v2, v3, v4, v5, v6, v7;
+   int k, k2;
+
+   if ((j-i) >= 7) {
+      /* -------------------------------- start of -------------------------------- */
+      /* ------------------- v2 = cons <<< p block ~~~ p comps -------------------- */
+      if ((j-i) >= 14) {
+         v2 = 1.0e7;
+         for (k=i+7; k<=j-7; k++) {
+            v1 = tbl_block(i, k) + tbl_comps(k, j);
+            v2 = v1 < v2 ? v1 : v2;
+         }
+      }
+      else {
+         v2 = 1.0e7;
+      }
+      /* ------------------- v2 = cons <<< p block ~~~ p comps -------------------- */
+      /* -------------------------------- finished -------------------------------- */
+
+      /* ------------------------------ v3 = p block ------------------------------ */
+      v3 = tbl_block(i, j);
+      /* -------------------------------- start of -------------------------------- */
+      /* ------------------- v5 = addss <<< p block ~~~ region -------------------- */
+      if ((j-i) >= 8) {
+         v5 = 1.0e7;
+         for (k2=i+7; k2<=j-1; k2++) {
+            v4 = tbl_block(i, k2) + ss_energy(k2, j);
+            v5 = v4 < v5 ? v4 : v5;
+         }
+      }
+      else {
+         v5 = 1.0e7;
+      }
+      /* ------------------- v5 = addss <<< p block ~~~ region -------------------- */
+      /* -------------------------------- finished -------------------------------- */
+
+      v6 = v3 < v5 ? v3 : v5;
+      v7 = v2 < v6 ? v2 : v6;
+      /* ----------------------- assign table entry result ------------------------ */
+      tbl_comps(i, j) = v7;
+   }
+}
+
+/* table calculation for production block                                           */
+/* -------------------------------------------------------------------------------- */
+static void calc_block(int i, int j)
+{
+   int v1, v2, v3, v4;
+   int k;
+
+   if ((j-i) >= 7) {
+      /* -------------------------------- start of -------------------------------- */
+      /* ------------------------- v1 = ul <<< p initstem ------------------------- */
+      v1 = 40 + tbl_initstem(i, j);
+      /* ------------------------- v1 = ul <<< p initstem ------------------------- */
+      /* -------------------------------- finished -------------------------------- */
+
+      /* -------------------------------- start of -------------------------------- */
+      /* ------------------ v3 = ssadd <<< region ~~~ p initstem ------------------ */
+      if ((j-i) >= 8) {
+         v3 = 1.0e7;
+         for (k=i+1; k<=j-7; k++) {
+            v2 = (40 + tbl_initstem(k, j)) + ss_energy(i, k);
+            v3 = v2 < v3 ? v2 : v3;
+         }
+      }
+      else {
+         v3 = 1.0e7;
+      }
+      /* ------------------ v3 = ssadd <<< region ~~~ p initstem ------------------ */
+      /* -------------------------------- finished -------------------------------- */
+
+      v4 = v1 < v3 ? v1 : v3;
+      /* ----------------------- assign table entry result ------------------------ */
+      tbl_block(i, j) = v4;
+   }
+}
+
+/* forward declarations for backtracing functions                                   */
+/* -------------------------------------------------------------------------------- */
+
+static struct str1 *back_stack(int i, int j, int diff);
+
+static struct str1 *back_leftB(int i, int j, int diff);
+
+static struct str1 *back_rightB(int i, int j, int diff);
+
+static struct str1 *back_iloop(int i, int j, int diff);
+
+static struct str1 *back_multiloop(int i, int j, int diff);
+
+static struct str1 *back_ml_components(int i, int j, int diff);
+
+static struct str1 *back_closed(int i, int j, int diff);
+
+static struct str1 *back_initstem(int i, int j, int diff);
+
+static struct str1 *back_struct(int i, int j, int diff);
+
+static struct str1 *back_block(int i, int j, int diff);
+
+static struct str1 *back_comps(int i, int j, int diff);
+
+/* backtracing code                                                                 */
+/* -------------------------------------------------------------------------------- */
+
+/* backtracing code for production struct                                           */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_struct(int i, int j, int diff)
+{
+   struct str1 *v12;
+   int v8;
+   struct str3 *v1, *v2, *v3, *v4, *v5, *v6, *v7, *v9, *v10, *v11;
+   int k;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* ---------------------- v1 = sadd <<< lbase ~~~ p struct --------------------- */
+   if ((j-i) >= 1) {
+      if (abs(tbl_struct(i, j) - tbl_struct(i+1, j)) <= diff) {
+         v1=(struct str3 *) malloc(sizeof(struct str3 ));
+         v1->next = NULL;
+         v1->last = v1;
+         v1->item.alg_mfe = tbl_struct(i+1, j);
+         v1->item.alg_enum = new_Sadd_f(i+1, back_struct, i+1, j);
+      }
+      else {
+         v1 = NULL;
+      }
+   }
+   else {
+      v1 = NULL;
+   }
+   /* ---------------------- v1 = sadd <<< lbase ~~~ p struct --------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* ------------------- v3 = cadd <<< p initstem ~~~ p struct ------------------- */
+   if ((j-i) >= 7) {
+      v3 = NULL;
+      for (k=i+7; k<=j; k++) {
+         if (abs(tbl_struct(i, j) - (tbl_initstem(i, k) + tbl_struct(k, j))) <= diff) {
+            v2=(struct str3 *) malloc(sizeof(struct str3 ));
+            v2->next = NULL;
+            v2->last = v2;
+            v2->item.alg_mfe = tbl_initstem(i, k) + tbl_struct(k, j);
+            v2->item.alg_enum = new_Cadd_ff(back_initstem, i, k, back_struct, k, j);
+         }
+         else {
+            v2 = NULL;
+         }
+         /* ---------------------------- v3 = v2 ++ v3 ---------------------------- */
+         if (v2 == NULL) {
+         } else 
+         if (v3 == NULL) {
+            v3 = v2;
+         }
+         else {
+            v2->last->next = v3;
+            v2->last = v3->last;
+            v3 = v2;
+         }
+      }
+   }
+   else {
+      v3 = NULL;
+   }
+   /* ------------------- v3 = cadd <<< p initstem ~~~ p struct ------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* ----------------------------- v4 = nil <<< empty ---------------------------- */
+   if ((j-i) == 0) {
+      if (abs(tbl_struct(i, j) - 0) <= diff) {
+         v4=(struct str3 *) malloc(sizeof(struct str3 ));
+         v4->next = NULL;
+         v4->last = v4;
+         v4->item.alg_mfe = 0;
+         v4->item.alg_enum = new_Nil_(i);
+      }
+      else {
+         v4 = NULL;
+      }
+   }
+   else {
+      v4 = NULL;
+   }
+   /* ----------------------------- v4 = nil <<< empty ---------------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------- v5 = v3 ++ v4 ------------------------------- */
+   if (v3 == NULL) {
+      v5 = v4;
+   } else 
+   if (v4 == NULL) {
+      v5 = v3;
+   }
+   else {
+      v3->last->next = v4;
+      v3->last = v4->last;
+      v5 = v3;
+   }
+   /* ------------------------------- v6 = v1 ++ v5 ------------------------------- */
+   if (v1 == NULL) {
+      v6 = v5;
+   } else 
+   if (v5 == NULL) {
+      v6 = v1;
+   }
+   else {
+      v1->last->next = v5;
+      v1->last = v5->last;
+      v6 = v1;
+   }
+   /* ------------------------------ v8 = minimum(v6) ----------------------------- */
+   v8 = 1.0e7;
+   v7 = v6;
+   while (v7 != NULL) {
+      v8 = v8 < v7->item.alg_mfe ? v8 : v7->item.alg_mfe;
+      v7 = v7->next;
+   }
+   v7 = v6;
+   v10 = NULL;
+   while (v7 != NULL) {
+      if (abs(v8 - v7->item.alg_mfe) <= diff) {
+         update_str_Signature(v7->item.alg_enum->item, diff - abs(v8 - v7->item.alg_mfe));
+         v9=(struct str3 *) malloc(sizeof(struct str3 ));
+         v9->item = v7->item;
+         v9->next = NULL;
+         v9->last = v9;
+         /* --------------------------- v10 = v9 ++ v10 --------------------------- */
+         if (v9 == NULL) {
+         } else 
+         if (v10 == NULL) {
+            v10 = v9;
+         }
+         else {
+            v9->last->next = v10;
+            v9->last = v10->last;
+            v10 = v9;
+         }
+      }
+      v7 = v7->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v11 = v10;
+   v12 = NULL;
+   while (v11 != NULL) {
+      /* -------------------- v12 = v11->item.alg_enum ++ v12 --------------------- */
+      if (v11->item.alg_enum == NULL) {
+      } else 
+      if (v12 == NULL) {
+         v12 = v11->item.alg_enum;
+      }
+      else {
+         v11->item.alg_enum->last->next = v12;
+         v11->item.alg_enum->last = v12->last;
+         v12 = v11->item.alg_enum;
+      }
+      v11 = v11->next;
+   }
+   return(build_str_Signature(v12));
+}
+
+/* backtracing code for production initstem                                         */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_initstem(int i, int j, int diff)
+{
+   struct str1 *v7;
+   int v3;
+   struct str3 *v1, *v2, *v4, *v5, *v6;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* -------------------- v1 = is <<< loc ~~~ p closed ~~~ loc ------------------- */
+   if ((j-i) >= 7) {
+      if (abs(tbl_initstem(i, j) - (tbl_closed(i, j) + termaupenalty((i) + 1, j))) <= diff) {
+         v1=(struct str3 *) malloc(sizeof(struct str3 ));
+         v1->next = NULL;
+         v1->last = v1;
+         v1->item.alg_mfe = tbl_closed(i, j) + termaupenalty((i) + 1, j);
+         v1->item.alg_enum = new_Is_f(i, back_closed, i, j, j);
+      }
+      else {
+         v1 = NULL;
+      }
+   }
+   else {
+      v1 = NULL;
+   }
+   /* -------------------- v1 = is <<< loc ~~~ p closed ~~~ loc ------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------ v3 = minimum(v1) ----------------------------- */
+   v3 = 1.0e7;
+   v2 = v1;
+   while (v2 != NULL) {
+      v3 = v3 < v2->item.alg_mfe ? v3 : v2->item.alg_mfe;
+      v2 = v2->next;
+   }
+   v2 = v1;
+   v5 = NULL;
+   while (v2 != NULL) {
+      if (abs(v3 - v2->item.alg_mfe) <= diff) {
+         update_str_Signature(v2->item.alg_enum->item, diff - abs(v3 - v2->item.alg_mfe));
+         v4=(struct str3 *) malloc(sizeof(struct str3 ));
+         v4->item = v2->item;
+         v4->next = NULL;
+         v4->last = v4;
+         /* ---------------------------- v5 = v4 ++ v5 ---------------------------- */
+         if (v4 == NULL) {
+         } else 
+         if (v5 == NULL) {
+            v5 = v4;
+         }
+         else {
+            v4->last->next = v5;
+            v4->last = v5->last;
+            v5 = v4;
+         }
+      }
+      v2 = v2->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v6 = v5;
+   v7 = NULL;
+   while (v6 != NULL) {
+      /* ---------------------- v7 = v6->item.alg_enum ++ v7 ---------------------- */
+      if (v6->item.alg_enum == NULL) {
+      } else 
+      if (v7 == NULL) {
+         v7 = v6->item.alg_enum;
+      }
+      else {
+         v6->item.alg_enum->last->next = v7;
+         v6->item.alg_enum->last = v7->last;
+         v7 = v6->item.alg_enum;
+      }
+      v6 = v6->next;
+   }
+   return(build_str_Signature(v7));
+}
+
+/* backtracing code for production closed                                           */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_closed(int i, int j, int diff)
+{
+   struct str1 *v22;
+   int v4, v18;
+   struct str3 *v1, *v2, *v3, *v5, *v6, *v7, *v8, *v9, *v10;
+   struct str3 *v11, *v12, *v13, *v14, *v15, *v16, *v17, *v19, *v20, *v21;
+
+   /* -------------------------------- v1 = p stack ------------------------------- */
+   /* +---------------------------------------------------------------------------- */
+   /* Nonterminal stack is implemented as a recursive                               */
+   /* function which yields atomar results. Since we are in list context,           */
+   /* we need to wrap the result of stack into a single list element.               */
+   /* +---------------------------------------------------------------------------- */
+   if ((j-i) >= 9) {
+      v1=(struct str3 *) malloc(sizeof(struct str3 ));
+      v1->item.alg_mfe = calc_stack(i, j);
+      v1->item.alg_enum = new__NTID(back_stack, i, j);
+      v1->next = NULL;
+      v1->last = v1;
+   }
+   else {
+      v1 = NULL;
+   }
+   if (stackpairing(i, j)) {
+      /* -------------------------------- start of -------------------------------- */
+      /*  v2 = hl <<< lbase ~~~ lbase ~~~ (region `with` (minsize 3.0)) ~~~ lbase ~~~ lbase  */
+      if ((j-i) >= 7) {
+         if (abs(tbl_closed(i, j) - (hl_energy(i+2, j-1) + sr_energy(i+1, j))) <= diff) {
+            v2=(struct str3 *) malloc(sizeof(struct str3 ));
+            v2->next = NULL;
+            v2->last = v2;
+            v2->item.alg_mfe = hl_energy(i+2, j-1) + sr_energy(i+1, j);
+            v2->item.alg_enum = new_Hl_(i+1, i+2, i+2, j-2, j-1, j);
+         }
+         else {
+            v2 = NULL;
+         }
+      }
+      else {
+         v2 = NULL;
+      }
+      /*  v2 = hl <<< lbase ~~~ lbase ~~~ (region `with` (minsize 3.0)) ~~~ lbase ~~~ lbase  */
+      /* -------------------------------- finished -------------------------------- */
+
+      /* ---------------------------- v4 = minimum(v2) ---------------------------- */
+      v4 = 1.0e7;
+      v3 = v2;
+      while (v3 != NULL) {
+         v4 = v4 < v3->item.alg_mfe ? v4 : v3->item.alg_mfe;
+         v3 = v3->next;
+      }
+      v3 = v2;
+      v6 = NULL;
+      while (v3 != NULL) {
+         if (abs(v4 - v3->item.alg_mfe) <= diff) {
+            update_str_Signature(v3->item.alg_enum->item, diff - abs(v4 - v3->item.alg_mfe));
+            v5=(struct str3 *) malloc(sizeof(struct str3 ));
+            v5->item = v3->item;
+            v5->next = NULL;
+            v5->last = v5;
+            /* -------------------------- v6 = v5 ++ v6 --------------------------- */
+            if (v5 == NULL) {
+            } else 
+            if (v6 == NULL) {
+               v6 = v5;
+            }
+            else {
+               v5->last->next = v6;
+               v5->last = v6->last;
+               v6 = v5;
+            }
+         }
+         v3 = v3->next;
+      }
+      /* ------------------------------ v7 = p leftB ------------------------------ */
+      /* +---------------------------------------------------------------------------- */
+      /* Nonterminal leftB is implemented as a recursive                               */
+      /* function which yields atomar results. Since we are in list context,           */
+      /* we need to wrap the result of leftB into a single list element.               */
+      /* +---------------------------------------------------------------------------- */
+      if ((j-i) >= 12) {
+         v7=(struct str3 *) malloc(sizeof(struct str3 ));
+         v7->item.alg_mfe = calc_leftB(i, j);
+         v7->item.alg_enum = new__NTID(back_leftB, i, j);
+         v7->next = NULL;
+         v7->last = v7;
+      }
+      else {
+         v7 = NULL;
+      }
+      /* ----------------------------- v8 = p rightB ------------------------------ */
+      /* +---------------------------------------------------------------------------- */
+      /* Nonterminal rightB is implemented as a recursive                              */
+      /* function which yields atomar results. Since we are in list context,           */
+      /* we need to wrap the result of rightB into a single list element.              */
+      /* +---------------------------------------------------------------------------- */
+      if ((j-i) >= 12) {
+         v8=(struct str3 *) malloc(sizeof(struct str3 ));
+         v8->item.alg_mfe = calc_rightB(i, j);
+         v8->item.alg_enum = new__NTID(back_rightB, i, j);
+         v8->next = NULL;
+         v8->last = v8;
+      }
+      else {
+         v8 = NULL;
+      }
+      /* ------------------------------ v9 = p iloop ------------------------------ */
+      /* +---------------------------------------------------------------------------- */
+      /* Nonterminal iloop is implemented as a recursive                               */
+      /* function which yields atomar results. Since we are in list context,           */
+      /* we need to wrap the result of iloop into a single list element.               */
+      /* +---------------------------------------------------------------------------- */
+      if ((j-i) >= 13) {
+         v9=(struct str3 *) malloc(sizeof(struct str3 ));
+         v9->item.alg_mfe = calc_iloop(i, j);
+         v9->item.alg_enum = new__NTID(back_iloop, i, j);
+         v9->next = NULL;
+         v9->last = v9;
+      }
+      else {
+         v9 = NULL;
+      }
+      /* --------------------------- v10 = p multiloop ---------------------------- */
+      /* +---------------------------------------------------------------------------- */
+      /* Nonterminal multiloop is implemented as a recursive                           */
+      /* function which yields atomar results. Since we are in list context,           */
+      /* we need to wrap the result of multiloop into a single list element.           */
+      /* +---------------------------------------------------------------------------- */
+      if ((j-i) >= 18) {
+         v10=(struct str3 *) malloc(sizeof(struct str3 ));
+         v10->item.alg_mfe = calc_multiloop(i, j);
+         v10->item.alg_enum = new__NTID(back_multiloop, i, j);
+         v10->next = NULL;
+         v10->last = v10;
+      }
+      else {
+         v10 = NULL;
+      }
+      /* ---------------------------- v11 = v9 ++ v10 ----------------------------- */
+      if (v9 == NULL) {
+         v11 = v10;
+      } else 
+      if (v10 == NULL) {
+         v11 = v9;
+      }
+      else {
+         v9->last->next = v10;
+         v9->last = v10->last;
+         v11 = v9;
+      }
+      /* ---------------------------- v12 = v8 ++ v11 ----------------------------- */
+      if (v8 == NULL) {
+         v12 = v11;
+      } else 
+      if (v11 == NULL) {
+         v12 = v8;
+      }
+      else {
+         v8->last->next = v11;
+         v8->last = v11->last;
+         v12 = v8;
+      }
+      /* ---------------------------- v13 = v7 ++ v12 ----------------------------- */
+      if (v7 == NULL) {
+         v13 = v12;
+      } else 
+      if (v12 == NULL) {
+         v13 = v7;
+      }
+      else {
+         v7->last->next = v12;
+         v7->last = v12->last;
+         v13 = v7;
+      }
+      /* ---------------------------- v14 = v6 ++ v13 ----------------------------- */
+      if (v6 == NULL) {
+         v14 = v13;
+      } else 
+      if (v13 == NULL) {
+         v14 = v6;
+      }
+      else {
+         v6->last->next = v13;
+         v6->last = v13->last;
+         v14 = v6;
+      }
+      v15 = v14;
+   }
+   else {
+      v15 = NULL;
+   }
+   /* ------------------------------ v16 = v1 ++ v15 ------------------------------ */
+   if (v1 == NULL) {
+      v16 = v15;
+   } else 
+   if (v15 == NULL) {
+      v16 = v1;
+   }
+   else {
+      v1->last->next = v15;
+      v1->last = v15->last;
+      v16 = v1;
+   }
+   /* ----------------------------- v18 = minimum(v16) ---------------------------- */
+   v18 = 1.0e7;
+   v17 = v16;
+   while (v17 != NULL) {
+      v18 = v18 < v17->item.alg_mfe ? v18 : v17->item.alg_mfe;
+      v17 = v17->next;
+   }
+   v17 = v16;
+   v20 = NULL;
+   while (v17 != NULL) {
+      if (abs(v18 - v17->item.alg_mfe) <= diff) {
+         update_str_Signature(v17->item.alg_enum->item, diff - abs(v18 - v17->item.alg_mfe));
+         v19=(struct str3 *) malloc(sizeof(struct str3 ));
+         v19->item = v17->item;
+         v19->next = NULL;
+         v19->last = v19;
+         /* --------------------------- v20 = v19 ++ v20 -------------------------- */
+         if (v19 == NULL) {
+         } else 
+         if (v20 == NULL) {
+            v20 = v19;
+         }
+         else {
+            v19->last->next = v20;
+            v19->last = v20->last;
+            v20 = v19;
+         }
+      }
+      v17 = v17->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v21 = v20;
+   v22 = NULL;
+   while (v21 != NULL) {
+      /* -------------------- v22 = v21->item.alg_enum ++ v22 --------------------- */
+      if (v21->item.alg_enum == NULL) {
+      } else 
+      if (v22 == NULL) {
+         v22 = v21->item.alg_enum;
+      }
+      else {
+         v21->item.alg_enum->last->next = v22;
+         v21->item.alg_enum->last = v22->last;
+         v22 = v21->item.alg_enum;
+      }
+      v21 = v21->next;
+   }
+   return(build_str_Signature(v22));
+}
+
+/* backtracing code for production stack                                            */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_stack(int i, int j, int diff)
+{
+   struct str1 *v8;
+   int v4;
+   struct str3 *v1, *v2, *v3, *v5, *v6, *v7;
+
+   if (basepairing(i, j)) {
+      /* -------------------------------- start of -------------------------------- */
+      /* ---------------- v1 = sr <<< lbase ~~~ p closed ~~~ lbase ---------------- */
+      if ((j-i) >= 9) {
+         v1=(struct str3 *) malloc(sizeof(struct str3 ));
+         v1->next = NULL;
+         v1->last = v1;
+         v1->item.alg_mfe = tbl_closed(i+1, j-1) + sr_energy(i+1, j);
+         v1->item.alg_enum = new_Sr_f(i+1, back_closed, i+1, j-1, j);
+      }
+      else {
+         v1 = NULL;
+      }
+      /* ---------------- v1 = sr <<< lbase ~~~ p closed ~~~ lbase ---------------- */
+      /* -------------------------------- finished -------------------------------- */
+
+      v2 = v1;
+   }
+   else {
+      v2 = NULL;
+   }
+   /* ------------------------------ v4 = minimum(v2) ----------------------------- */
+   v4 = 1.0e7;
+   v3 = v2;
+   while (v3 != NULL) {
+      v4 = v4 < v3->item.alg_mfe ? v4 : v3->item.alg_mfe;
+      v3 = v3->next;
+   }
+   v3 = v2;
+   v6 = NULL;
+   while (v3 != NULL) {
+      if (abs(v4 - v3->item.alg_mfe) <= diff) {
+         update_str_Signature(v3->item.alg_enum->item, diff - abs(v4 - v3->item.alg_mfe));
+         v5=(struct str3 *) malloc(sizeof(struct str3 ));
+         v5->item = v3->item;
+         v5->next = NULL;
+         v5->last = v5;
+         /* ---------------------------- v6 = v5 ++ v6 ---------------------------- */
+         if (v5 == NULL) {
+         } else 
+         if (v6 == NULL) {
+            v6 = v5;
+         }
+         else {
+            v5->last->next = v6;
+            v5->last = v6->last;
+            v6 = v5;
+         }
+      }
+      v3 = v3->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v7 = v6;
+   v8 = NULL;
+   while (v7 != NULL) {
+      /* ---------------------- v8 = v7->item.alg_enum ++ v8 ---------------------- */
+      if (v7->item.alg_enum == NULL) {
+      } else 
+      if (v8 == NULL) {
+         v8 = v7->item.alg_enum;
+      }
+      else {
+         v7->item.alg_enum->last->next = v8;
+         v7->item.alg_enum->last = v8->last;
+         v8 = v7->item.alg_enum;
+      }
+      v7 = v7->next;
+   }
+   return(build_str_Signature(v8));
+}
+
+/* backtracing code for production leftB                                            */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_leftB(int i, int j, int diff)
+{
+   struct str1 *v8;
+   int v4;
+   struct str3 *v1, *v2, *v3, *v5, *v6, *v7;
+   int k;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* - v2 = bl <<< lbase ~~~ lbase ~~~ region ~~~ p initstem ~~~ lbase ~~~ lbase - */
+   if ((j-i) >= 12) {
+      v2 = NULL;
+      for (k=i+3; k<=j-9; k++) {
+         v1=(struct str3 *) malloc(sizeof(struct str3 ));
+         v1->next = NULL;
+         v1->last = v1;
+         v1->item.alg_mfe = (tbl_initstem(k, j-2) + bl_energy(i+2, i+2, k, j-1)) + sr_energy(i+1, j);
+         v1->item.alg_enum = new_Bl_f(i+1, i+2, i+2, k, back_initstem, k, j-2, j-1, j);
+         /* ---------------------------- v2 = v1 ++ v2 ---------------------------- */
+         if (v1 == NULL) {
+         } else 
+         if (v2 == NULL) {
+            v2 = v1;
+         }
+         else {
+            v1->last->next = v2;
+            v1->last = v2->last;
+            v2 = v1;
+         }
+      }
+   }
+   else {
+      v2 = NULL;
+   }
+   /* - v2 = bl <<< lbase ~~~ lbase ~~~ region ~~~ p initstem ~~~ lbase ~~~ lbase - */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------ v4 = minimum(v2) ----------------------------- */
+   v4 = 1.0e7;
+   v3 = v2;
+   while (v3 != NULL) {
+      v4 = v4 < v3->item.alg_mfe ? v4 : v3->item.alg_mfe;
+      v3 = v3->next;
+   }
+   v3 = v2;
+   v6 = NULL;
+   while (v3 != NULL) {
+      if (abs(v4 - v3->item.alg_mfe) <= diff) {
+         update_str_Signature(v3->item.alg_enum->item, diff - abs(v4 - v3->item.alg_mfe));
+         v5=(struct str3 *) malloc(sizeof(struct str3 ));
+         v5->item = v3->item;
+         v5->next = NULL;
+         v5->last = v5;
+         /* ---------------------------- v6 = v5 ++ v6 ---------------------------- */
+         if (v5 == NULL) {
+         } else 
+         if (v6 == NULL) {
+            v6 = v5;
+         }
+         else {
+            v5->last->next = v6;
+            v5->last = v6->last;
+            v6 = v5;
+         }
+      }
+      v3 = v3->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v7 = v6;
+   v8 = NULL;
+   while (v7 != NULL) {
+      /* ---------------------- v8 = v7->item.alg_enum ++ v8 ---------------------- */
+      if (v7->item.alg_enum == NULL) {
+      } else 
+      if (v8 == NULL) {
+         v8 = v7->item.alg_enum;
+      }
+      else {
+         v7->item.alg_enum->last->next = v8;
+         v7->item.alg_enum->last = v8->last;
+         v8 = v7->item.alg_enum;
+      }
+      v7 = v7->next;
+   }
+   return(build_str_Signature(v8));
+}
+
+/* backtracing code for production rightB                                           */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_rightB(int i, int j, int diff)
+{
+   struct str1 *v8;
+   int v4;
+   struct str3 *v1, *v2, *v3, *v5, *v6, *v7;
+   int k;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* - v2 = br <<< lbase ~~~ lbase ~~~ p initstem ~~~ region ~~~ lbase ~~~ lbase - */
+   if ((j-i) >= 12) {
+      v2 = NULL;
+      for (k=i+9; k<=j-3; k++) {
+         v1=(struct str3 *) malloc(sizeof(struct str3 ));
+         v1->next = NULL;
+         v1->last = v1;
+         v1->item.alg_mfe = (tbl_initstem(i+2, k) + br_energy(i+2, k, j-2, j-1)) + sr_energy(i+1, j);
+         v1->item.alg_enum = new_Br_f(i+1, i+2, back_initstem, i+2, k, k, j-2, j-1, j);
+         /* ---------------------------- v2 = v1 ++ v2 ---------------------------- */
+         if (v1 == NULL) {
+         } else 
+         if (v2 == NULL) {
+            v2 = v1;
+         }
+         else {
+            v1->last->next = v2;
+            v1->last = v2->last;
+            v2 = v1;
+         }
+      }
+   }
+   else {
+      v2 = NULL;
+   }
+   /* - v2 = br <<< lbase ~~~ lbase ~~~ p initstem ~~~ region ~~~ lbase ~~~ lbase - */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------ v4 = minimum(v2) ----------------------------- */
+   v4 = 1.0e7;
+   v3 = v2;
+   while (v3 != NULL) {
+      v4 = v4 < v3->item.alg_mfe ? v4 : v3->item.alg_mfe;
+      v3 = v3->next;
+   }
+   v3 = v2;
+   v6 = NULL;
+   while (v3 != NULL) {
+      if (abs(v4 - v3->item.alg_mfe) <= diff) {
+         update_str_Signature(v3->item.alg_enum->item, diff - abs(v4 - v3->item.alg_mfe));
+         v5=(struct str3 *) malloc(sizeof(struct str3 ));
+         v5->item = v3->item;
+         v5->next = NULL;
+         v5->last = v5;
+         /* ---------------------------- v6 = v5 ++ v6 ---------------------------- */
+         if (v5 == NULL) {
+         } else 
+         if (v6 == NULL) {
+            v6 = v5;
+         }
+         else {
+            v5->last->next = v6;
+            v5->last = v6->last;
+            v6 = v5;
+         }
+      }
+      v3 = v3->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v7 = v6;
+   v8 = NULL;
+   while (v7 != NULL) {
+      /* ---------------------- v8 = v7->item.alg_enum ++ v8 ---------------------- */
+      if (v7->item.alg_enum == NULL) {
+      } else 
+      if (v8 == NULL) {
+         v8 = v7->item.alg_enum;
+      }
+      else {
+         v7->item.alg_enum->last->next = v8;
+         v7->item.alg_enum->last = v8->last;
+         v8 = v7->item.alg_enum;
+      }
+      v7 = v7->next;
+   }
+   return(build_str_Signature(v8));
+}
+
+/* backtracing code for production iloop                                            */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_iloop(int i, int j, int diff)
+{
+   struct str1 *v8;
+   int v4;
+   struct str3 *v1, *v2, *v3, *v5, *v6, *v7;
+   int k, k2;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v2 = il <<< lbase ~~~ lbase ~~~ (region `with` (maxsize 30.0)) ~~~ p closed ~~~ (region `with` (maxsize 30.0)) ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 13) {
+      v2 = NULL;
+      for (k2=max(i+10, j-32); k2<=j-3; k2++) {
+         for (k=i+3; k<=min(i+32, k2-7); k++) {
+            v1=(struct str3 *) malloc(sizeof(struct str3 ));
+            v1->next = NULL;
+            v1->last = v1;
+            v1->item.alg_mfe = (tbl_closed(k, k2) + sr_energy(i+1, j)) + il_energy(i+2, k, k2, j-2);
+            v1->item.alg_enum = new_Il_f(i+1, i+2, i+2, k, back_closed, k, k2, k2, j-2, j-1, j);
+            /* -------------------------- v2 = v1 ++ v2 --------------------------- */
+            if (v1 == NULL) {
+            } else 
+            if (v2 == NULL) {
+               v2 = v1;
+            }
+            else {
+               v1->last->next = v2;
+               v1->last = v2->last;
+               v2 = v1;
+            }
+         }
+      }
+   }
+   else {
+      v2 = NULL;
+   }
+   /*  v2 = il <<< lbase ~~~ lbase ~~~ (region `with` (maxsize 30.0)) ~~~ p closed ~~~ (region `with` (maxsize 30.0)) ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------ v4 = minimum(v2) ----------------------------- */
+   v4 = 1.0e7;
+   v3 = v2;
+   while (v3 != NULL) {
+      v4 = v4 < v3->item.alg_mfe ? v4 : v3->item.alg_mfe;
+      v3 = v3->next;
+   }
+   v3 = v2;
+   v6 = NULL;
+   while (v3 != NULL) {
+      if (abs(v4 - v3->item.alg_mfe) <= diff) {
+         update_str_Signature(v3->item.alg_enum->item, diff - abs(v4 - v3->item.alg_mfe));
+         v5=(struct str3 *) malloc(sizeof(struct str3 ));
+         v5->item = v3->item;
+         v5->next = NULL;
+         v5->last = v5;
+         /* ---------------------------- v6 = v5 ++ v6 ---------------------------- */
+         if (v5 == NULL) {
+         } else 
+         if (v6 == NULL) {
+            v6 = v5;
+         }
+         else {
+            v5->last->next = v6;
+            v5->last = v6->last;
+            v6 = v5;
+         }
+      }
+      v3 = v3->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v7 = v6;
+   v8 = NULL;
+   while (v7 != NULL) {
+      /* ---------------------- v8 = v7->item.alg_enum ++ v8 ---------------------- */
+      if (v7->item.alg_enum == NULL) {
+      } else 
+      if (v8 == NULL) {
+         v8 = v7->item.alg_enum;
+      }
+      else {
+         v7->item.alg_enum->last->next = v8;
+         v7->item.alg_enum->last = v8->last;
+         v8 = v7->item.alg_enum;
+      }
+      v7 = v7->next;
+   }
+   return(build_str_Signature(v8));
+}
+
+/* backtracing code for production multiloop                                        */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_multiloop(int i, int j, int diff)
+{
+   struct str1 *v13;
+   int v9;
+   struct str3 *v1, *v2, *v3, *v4, *v5, *v6, *v7, *v8, *v10, *v11, *v12;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v1 = mldl <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 19) {
+      v1=(struct str3 *) malloc(sizeof(struct str3 ));
+      v1->next = NULL;
+      v1->last = v1;
+      v1->item.alg_mfe = (((380 + tbl_ml_components(i+3, j-2)) + dli_energy(i+2, j-1)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+      v1->item.alg_enum = new_Mldl_f(i+1, i+2, i+3, back_ml_components, i+3, j-2, j-1, j);
+   }
+   else {
+      v1 = NULL;
+   }
+   /*  v1 = mldl <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v2 = mldr <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 19) {
+      v2=(struct str3 *) malloc(sizeof(struct str3 ));
+      v2->next = NULL;
+      v2->last = v2;
+      v2->item.alg_mfe = (((380 + tbl_ml_components(i+2, j-3)) + dri_energy(i+2, j-1)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+      v2->item.alg_enum = new_Mldr_f(i+1, i+2, back_ml_components, i+2, j-3, j-2, j-1, j);
+   }
+   else {
+      v2 = NULL;
+   }
+   /*  v2 = mldr <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /*  v3 = mldlr <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   if ((j-i) >= 20) {
+      v3=(struct str3 *) malloc(sizeof(struct str3 ));
+      v3->next = NULL;
+      v3->last = v3;
+      v3->item.alg_mfe = ((((380 + tbl_ml_components(i+3, j-3)) + dli_energy(i+2, j-1)) + dri_energy(i+2, j-1)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+      v3->item.alg_enum = new_Mldlr_f(i+1, i+2, i+3, back_ml_components, i+3, j-3, j-2, j-1, j);
+   }
+   else {
+      v3 = NULL;
+   }
+   /*  v3 = mldlr <<< lbase ~~~ lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ~~~ lbase  */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* ---- v4 = ml <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ---- */
+   if ((j-i) >= 18) {
+      v4=(struct str3 *) malloc(sizeof(struct str3 ));
+      v4->next = NULL;
+      v4->last = v4;
+      v4->item.alg_mfe = ((380 + tbl_ml_components(i+2, j-2)) + sr_energy(i+1, j)) + termaupenalty(i+2, j-1);
+      v4->item.alg_enum = new_Ml_f(i+1, i+2, back_ml_components, i+2, j-2, j-1, j);
+   }
+   else {
+      v4 = NULL;
+   }
+   /* ---- v4 = ml <<< lbase ~~~ lbase ~~~ p ml_components ~~~ lbase ~~~ lbase ---- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------- v5 = v3 ++ v4 ------------------------------- */
+   if (v3 == NULL) {
+      v5 = v4;
+   } else 
+   if (v4 == NULL) {
+      v5 = v3;
+   }
+   else {
+      v3->last->next = v4;
+      v3->last = v4->last;
+      v5 = v3;
+   }
+   /* ------------------------------- v6 = v2 ++ v5 ------------------------------- */
+   if (v2 == NULL) {
+      v6 = v5;
+   } else 
+   if (v5 == NULL) {
+      v6 = v2;
+   }
+   else {
+      v2->last->next = v5;
+      v2->last = v5->last;
+      v6 = v2;
+   }
+   /* ------------------------------- v7 = v1 ++ v6 ------------------------------- */
+   if (v1 == NULL) {
+      v7 = v6;
+   } else 
+   if (v6 == NULL) {
+      v7 = v1;
+   }
+   else {
+      v1->last->next = v6;
+      v1->last = v6->last;
+      v7 = v1;
+   }
+   /* ------------------------------ v9 = minimum(v7) ----------------------------- */
+   v9 = 1.0e7;
+   v8 = v7;
+   while (v8 != NULL) {
+      v9 = v9 < v8->item.alg_mfe ? v9 : v8->item.alg_mfe;
+      v8 = v8->next;
+   }
+   v8 = v7;
+   v11 = NULL;
+   while (v8 != NULL) {
+      if (abs(v9 - v8->item.alg_mfe) <= diff) {
+         update_str_Signature(v8->item.alg_enum->item, diff - abs(v9 - v8->item.alg_mfe));
+         v10=(struct str3 *) malloc(sizeof(struct str3 ));
+         v10->item = v8->item;
+         v10->next = NULL;
+         v10->last = v10;
+         /* --------------------------- v11 = v10 ++ v11 -------------------------- */
+         if (v10 == NULL) {
+         } else 
+         if (v11 == NULL) {
+            v11 = v10;
+         }
+         else {
+            v10->last->next = v11;
+            v10->last = v11->last;
+            v11 = v10;
+         }
+      }
+      v8 = v8->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v12 = v11;
+   v13 = NULL;
+   while (v12 != NULL) {
+      /* -------------------- v13 = v12->item.alg_enum ++ v13 --------------------- */
+      if (v12->item.alg_enum == NULL) {
+      } else 
+      if (v13 == NULL) {
+         v13 = v12->item.alg_enum;
+      }
+      else {
+         v12->item.alg_enum->last->next = v13;
+         v12->item.alg_enum->last = v13->last;
+         v13 = v12->item.alg_enum;
+      }
+      v12 = v12->next;
+   }
+   return(build_str_Signature(v13));
+}
+
+/* backtracing code for production ml_components                                    */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_ml_components(int i, int j, int diff)
+{
+   struct str1 *v8;
+   int v4;
+   struct str3 *v1, *v2, *v3, *v5, *v6, *v7;
+   int k;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* -------------------- v2 = combine <<< p block ~~~ p comps ------------------- */
+   if ((j-i) >= 14) {
+      v2 = NULL;
+      for (k=i+7; k<=j-7; k++) {
+         if (abs(tbl_ml_components(i, j) - (tbl_block(i, k) + tbl_comps(k, j))) <= diff) {
+            v1=(struct str3 *) malloc(sizeof(struct str3 ));
+            v1->next = NULL;
+            v1->last = v1;
+            v1->item.alg_mfe = tbl_block(i, k) + tbl_comps(k, j);
+            v1->item.alg_enum = new_Combine_ff(back_block, i, k, back_comps, k, j);
+         }
+         else {
+            v1 = NULL;
+         }
+         /* ---------------------------- v2 = v1 ++ v2 ---------------------------- */
+         if (v1 == NULL) {
+         } else 
+         if (v2 == NULL) {
+            v2 = v1;
+         }
+         else {
+            v1->last->next = v2;
+            v1->last = v2->last;
+            v2 = v1;
+         }
+      }
+   }
+   else {
+      v2 = NULL;
+   }
+   /* -------------------- v2 = combine <<< p block ~~~ p comps ------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------ v4 = minimum(v2) ----------------------------- */
+   v4 = 1.0e7;
+   v3 = v2;
+   while (v3 != NULL) {
+      v4 = v4 < v3->item.alg_mfe ? v4 : v3->item.alg_mfe;
+      v3 = v3->next;
+   }
+   v3 = v2;
+   v6 = NULL;
+   while (v3 != NULL) {
+      if (abs(v4 - v3->item.alg_mfe) <= diff) {
+         update_str_Signature(v3->item.alg_enum->item, diff - abs(v4 - v3->item.alg_mfe));
+         v5=(struct str3 *) malloc(sizeof(struct str3 ));
+         v5->item = v3->item;
+         v5->next = NULL;
+         v5->last = v5;
+         /* ---------------------------- v6 = v5 ++ v6 ---------------------------- */
+         if (v5 == NULL) {
+         } else 
+         if (v6 == NULL) {
+            v6 = v5;
+         }
+         else {
+            v5->last->next = v6;
+            v5->last = v6->last;
+            v6 = v5;
+         }
+      }
+      v3 = v3->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v7 = v6;
+   v8 = NULL;
+   while (v7 != NULL) {
+      /* ---------------------- v8 = v7->item.alg_enum ++ v8 ---------------------- */
+      if (v7->item.alg_enum == NULL) {
+      } else 
+      if (v8 == NULL) {
+         v8 = v7->item.alg_enum;
+      }
+      else {
+         v7->item.alg_enum->last->next = v8;
+         v7->item.alg_enum->last = v8->last;
+         v8 = v7->item.alg_enum;
+      }
+      v7 = v7->next;
+   }
+   return(build_str_Signature(v8));
+}
+
+/* backtracing code for production comps                                            */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_comps(int i, int j, int diff)
+{
+   struct str1 *v13;
+   int v9;
+   struct str3 *v1, *v2, *v3, *v4, *v5, *v6, *v7, *v8, *v10, *v11, *v12;
+   int k, k2;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* --------------------- v2 = cons <<< p block ~~~ p comps --------------------- */
+   if ((j-i) >= 14) {
+      v2 = NULL;
+      for (k=i+7; k<=j-7; k++) {
+         if (abs(tbl_comps(i, j) - (tbl_block(i, k) + tbl_comps(k, j))) <= diff) {
+            v1=(struct str3 *) malloc(sizeof(struct str3 ));
+            v1->next = NULL;
+            v1->last = v1;
+            v1->item.alg_mfe = tbl_block(i, k) + tbl_comps(k, j);
+            v1->item.alg_enum = new_Cons_ff(back_block, i, k, back_comps, k, j);
+         }
+         else {
+            v1 = NULL;
+         }
+         /* ---------------------------- v2 = v1 ++ v2 ---------------------------- */
+         if (v1 == NULL) {
+         } else 
+         if (v2 == NULL) {
+            v2 = v1;
+         }
+         else {
+            v1->last->next = v2;
+            v1->last = v2->last;
+            v2 = v1;
+         }
+      }
+   }
+   else {
+      v2 = NULL;
+   }
+   /* --------------------- v2 = cons <<< p block ~~~ p comps --------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* -------------------------------- v3 = p block ------------------------------- */
+   /* +---------------------------------------------------------------------------- */
+   /* Nonterminal block is implemented as a tabulated                               */
+   /* function which yields atomar results. Since we are in list context,           */
+   /* we need to wrap the result of block into a single list element.               */
+   /* +---------------------------------------------------------------------------- */
+   if ((j-i) >= 7) {
+      v3=(struct str3 *) malloc(sizeof(struct str3 ));
+      v3->item.alg_mfe = tbl_block(i, j);
+      v3->item.alg_enum = new__NTID(back_block, i, j);
+      v3->next = NULL;
+      v3->last = v3;
+   }
+   else {
+      v3 = NULL;
+   }
+   /* ---------------------------------- start of --------------------------------- */
+   /* --------------------- v5 = addss <<< p block ~~~ region --------------------- */
+   if ((j-i) >= 8) {
+      v5 = NULL;
+      for (k2=i+7; k2<=j-1; k2++) {
+         if (abs(tbl_comps(i, j) - (tbl_block(i, k2) + ss_energy(k2, j))) <= diff) {
+            v4=(struct str3 *) malloc(sizeof(struct str3 ));
+            v4->next = NULL;
+            v4->last = v4;
+            v4->item.alg_mfe = tbl_block(i, k2) + ss_energy(k2, j);
+            v4->item.alg_enum = new_Addss_f(back_block, i, k2, k2, j);
+         }
+         else {
+            v4 = NULL;
+         }
+         /* ---------------------------- v5 = v4 ++ v5 ---------------------------- */
+         if (v4 == NULL) {
+         } else 
+         if (v5 == NULL) {
+            v5 = v4;
+         }
+         else {
+            v4->last->next = v5;
+            v4->last = v5->last;
+            v5 = v4;
+         }
+      }
+   }
+   else {
+      v5 = NULL;
+   }
+   /* --------------------- v5 = addss <<< p block ~~~ region --------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------- v6 = v3 ++ v5 ------------------------------- */
+   if (v3 == NULL) {
+      v6 = v5;
+   } else 
+   if (v5 == NULL) {
+      v6 = v3;
+   }
+   else {
+      v3->last->next = v5;
+      v3->last = v5->last;
+      v6 = v3;
+   }
+   /* ------------------------------- v7 = v2 ++ v6 ------------------------------- */
+   if (v2 == NULL) {
+      v7 = v6;
+   } else 
+   if (v6 == NULL) {
+      v7 = v2;
+   }
+   else {
+      v2->last->next = v6;
+      v2->last = v6->last;
+      v7 = v2;
+   }
+   /* ------------------------------ v9 = minimum(v7) ----------------------------- */
+   v9 = 1.0e7;
+   v8 = v7;
+   while (v8 != NULL) {
+      v9 = v9 < v8->item.alg_mfe ? v9 : v8->item.alg_mfe;
+      v8 = v8->next;
+   }
+   v8 = v7;
+   v11 = NULL;
+   while (v8 != NULL) {
+      if (abs(v9 - v8->item.alg_mfe) <= diff) {
+         update_str_Signature(v8->item.alg_enum->item, diff - abs(v9 - v8->item.alg_mfe));
+         v10=(struct str3 *) malloc(sizeof(struct str3 ));
+         v10->item = v8->item;
+         v10->next = NULL;
+         v10->last = v10;
+         /* --------------------------- v11 = v10 ++ v11 -------------------------- */
+         if (v10 == NULL) {
+         } else 
+         if (v11 == NULL) {
+            v11 = v10;
+         }
+         else {
+            v10->last->next = v11;
+            v10->last = v11->last;
+            v11 = v10;
+         }
+      }
+      v8 = v8->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v12 = v11;
+   v13 = NULL;
+   while (v12 != NULL) {
+      /* -------------------- v13 = v12->item.alg_enum ++ v13 --------------------- */
+      if (v12->item.alg_enum == NULL) {
+      } else 
+      if (v13 == NULL) {
+         v13 = v12->item.alg_enum;
+      }
+      else {
+         v12->item.alg_enum->last->next = v13;
+         v12->item.alg_enum->last = v13->last;
+         v13 = v12->item.alg_enum;
+      }
+      v12 = v12->next;
+   }
+   return(build_str_Signature(v13));
+}
+
+/* backtracing code for production block                                            */
+/* -------------------------------------------------------------------------------- */
+static struct str1 *back_block(int i, int j, int diff)
+{
+   struct str1 *v10;
+   int v6;
+   struct str3 *v1, *v2, *v3, *v4, *v5, *v7, *v8, *v9;
+   int k;
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* --------------------------- v1 = ul <<< p initstem -------------------------- */
+   if ((j-i) >= 7) {
+      if (abs(tbl_block(i, j) - (40 + tbl_initstem(i, j))) <= diff) {
+         v1=(struct str3 *) malloc(sizeof(struct str3 ));
+         v1->next = NULL;
+         v1->last = v1;
+         v1->item.alg_mfe = 40 + tbl_initstem(i, j);
+         v1->item.alg_enum = new_Ul_f(back_initstem, i, j);
+      }
+      else {
+         v1 = NULL;
+      }
+   }
+   else {
+      v1 = NULL;
+   }
+   /* --------------------------- v1 = ul <<< p initstem -------------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ---------------------------------- start of --------------------------------- */
+   /* -------------------- v3 = ssadd <<< region ~~~ p initstem ------------------- */
+   if ((j-i) >= 8) {
+      v3 = NULL;
+      for (k=i+1; k<=j-7; k++) {
+         if (abs(tbl_block(i, j) - ((40 + tbl_initstem(k, j)) + ss_energy(i, k))) <= diff) {
+            v2=(struct str3 *) malloc(sizeof(struct str3 ));
+            v2->next = NULL;
+            v2->last = v2;
+            v2->item.alg_mfe = (40 + tbl_initstem(k, j)) + ss_energy(i, k);
+            v2->item.alg_enum = new_Ssadd_f(i, k, back_initstem, k, j);
+         }
+         else {
+            v2 = NULL;
+         }
+         /* ---------------------------- v3 = v2 ++ v3 ---------------------------- */
+         if (v2 == NULL) {
+         } else 
+         if (v3 == NULL) {
+            v3 = v2;
+         }
+         else {
+            v2->last->next = v3;
+            v2->last = v3->last;
+            v3 = v2;
+         }
+      }
+   }
+   else {
+      v3 = NULL;
+   }
+   /* -------------------- v3 = ssadd <<< region ~~~ p initstem ------------------- */
+   /* ---------------------------------- finished --------------------------------- */
+
+   /* ------------------------------- v4 = v1 ++ v3 ------------------------------- */
+   if (v1 == NULL) {
+      v4 = v3;
+   } else 
+   if (v3 == NULL) {
+      v4 = v1;
+   }
+   else {
+      v1->last->next = v3;
+      v1->last = v3->last;
+      v4 = v1;
+   }
+   /* ------------------------------ v6 = minimum(v4) ----------------------------- */
+   v6 = 1.0e7;
+   v5 = v4;
+   while (v5 != NULL) {
+      v6 = v6 < v5->item.alg_mfe ? v6 : v5->item.alg_mfe;
+      v5 = v5->next;
+   }
+   v5 = v4;
+   v8 = NULL;
+   while (v5 != NULL) {
+      if (abs(v6 - v5->item.alg_mfe) <= diff) {
+         update_str_Signature(v5->item.alg_enum->item, diff - abs(v6 - v5->item.alg_mfe));
+         v7=(struct str3 *) malloc(sizeof(struct str3 ));
+         v7->item = v5->item;
+         v7->next = NULL;
+         v7->last = v7;
+         /* ---------------------------- v8 = v7 ++ v8 ---------------------------- */
+         if (v7 == NULL) {
+         } else 
+         if (v8 == NULL) {
+            v8 = v7;
+         }
+         else {
+            v7->last->next = v8;
+            v7->last = v8->last;
+            v8 = v7;
+         }
+      }
+      v5 = v5->next;
+   }
+   /* ------------------------- build candidate structures ------------------------ */
+   v9 = v8;
+   v10 = NULL;
+   while (v9 != NULL) {
+      /* --------------------- v10 = v9->item.alg_enum ++ v10 --------------------- */
+      if (v9->item.alg_enum == NULL) {
+      } else 
+      if (v10 == NULL) {
+         v10 = v9->item.alg_enum;
+      }
+      else {
+         v9->item.alg_enum->last->next = v10;
+         v9->item.alg_enum->last = v10->last;
+         v10 = v9->item.alg_enum;
+      }
+      v9 = v9->next;
+   }
+   return(build_str_Signature(v10));
+}
+
+/* table memory allocation                                                          */
+/* -------------------------------------------------------------------------------- */
+
+static void tableAlloc()
+{
+   int i, dim1, dim2;
+
+   /* calculate offset */
+   offset=(int *) getmem(adp_statmem, (n+1) * sizeof(int ));
+   for (i=0; i<=n; i++) {
+      offset[i] = (i*(i+1))/2;
+   }
+   arr_ml_components=(int *) malloc((offset[n]+n+1) * sizeof(int ));
+   arr_closed=(int *) malloc((offset[n]+n+1) * sizeof(int ));
+   arr_initstem=(int *) malloc((offset[n]+n+1) * sizeof(int ));
+   arr_struct=(int *) malloc((n+1) * sizeof(int ));
+   arr_block=(int *) malloc((offset[n]+n+1) * sizeof(int ));
+   arr_comps=(int *) malloc((offset[n]+n+1) * sizeof(int ));
+}
+
+/* main dynamic programming loop                                                    */
+/* -------------------------------------------------------------------------------- */
+
+static void mainloop()
+{
+   int i, j;
+   int v2, result_score;
+   struct str1 *l;
+   int score;
+
+   tableAlloc();
+   for (j=0; j<=n; j++) {
+      for (i=j; i>=0; i--) {
+         calc_ml_components(i, j);
+         calc_closed(i, j);
+         calc_initstem(i, j);
+         if ((j) == (n)) {
+            calc_struct(i, j);
+         }
+         calc_block(i, j);
+         calc_comps(i, j);
+      }
+   }
+   /* ----------------------------- show axiom: struct ---------------------------- */
+   result_score = tbl_struct(0, n);
+@OUTPUTOPTIMAL@
+   pp_init=(struct str1 ***) getmem(adp_statmem, (n*2) * sizeof(struct str1 **));
+   pp_initA=(struct str1 **) getmem(adp_statmem, (n*2) * sizeof(struct str1 *));
+   pp_rm=(struct str1 ***) getmem(adp_statmem, (n*2) * sizeof(struct str1 **));
+   l = back_struct(0, n, traceback_diff);
+   while ((l != NULL) || (pp_next != NULL)) {
+      pp_next = NULL;
+      pp_initC = (-1);
+      pp_rmC = 0;
+      result_prettyprint[0] = 0;
+      pp_outp = result_prettyprint;
+      score = pp_str_Signature(l);
+      if (abs(result_score - score) <= traceback_diff) {
+@OUTPUTSUBOPTIMAL@
+      }
+      for (i=0; i<=pp_rmC-1; i++) {
+         (*pp_rm[i]) = NULL;
+      }
+      if (pp_next != NULL) {
+         build_str_Signature((*pp_next)->next);
+         (*pp_next) = (*pp_next)->next;
+         if (pp_initC != (-1)) {
+            for (i=0; i<=pp_initC; i++) {
+               (*pp_init[i]) = pp_initA[i];
+            }
+         }
+      }
+      else {
+         if (l->next) {
+            build_str_Signature(l->next);
+         }
+         l = l->next;
+      }
+   }
+@OUTPUTFINISHED@
+}
+
+int main_@MODULENAME@(toptions *_opts, tsequence *_seq)
+{
+   opts = _opts;
+   seq  = _seq;
+   z    = _seq->seq - 1;
+   n    = _seq->length;
+
+   adplib_init(opts,seq);
+   result_prettyprint = (char *) getmem(adp_statmem, 30*n*sizeof(char));
+   @MODULEMAININIT@
+   mainloop();
+   @MODULEMAINFINISH@
+}
+
+

@@ -1,0 +1,146 @@
+This file describes the basic usage of the ADP-Compiler. It is
+shown how you compile ADP programs to C or Java code and how to
+create actual executables from the ADPC output.
+
+During the examples $PREFIX has to be replaced by your actual
+installation-prefix.
+
+Prerequistes
+------------
+The ADP compiler is installed under $PREFIX. See the file INSTALL
+for details.
+
+To test the correct installation execute:
+# adpcompile -v
+
+You should see something like:
+ADP compiler 0.9 (rev 42)
+Copyright (C) 2001-2008 Peter Steffen, Marco Ruether, Christian Lang,
+                        Georg Sauthoff
+[..]
+
+Compile ADP to C
+----------------
+1. Create a working directory:
+# mkdir test && cd test
+
+2. Get an ADP example:
+# cp $PREFIX/share/adpc/examples/ElMamun.lhs .
+
+3. Call the XML-Interfacer:
+# adpc ElMamun.lhs
+
+4. Compile the ADP code to C code and compile the C code:
+# make # (<- GNU make is needed)
+
+5. Execute the resulting executable:
+# ./ElMamun "1+2*3*4+5"
+# ./ElMamun -h
+
+Or you can start a readline based interactive shell via:
+# ./ElMamun
+
+During this interactive you can just enter plainly one input
+sequence after another. You can get help via
+
+-h<RETURN>
+
+or exit the shell via
+
+:q<RETURN>
+
+Compile ADP to Java
+-------------------
+1. Create a working directory:
+# mkdir test && cd test
+
+2. Get an ADP example:
+# cp $PREFIX/share/adpc/examples/ElMamun.lhs .
+
+3. Call the Meta-Frontend:
+# fe ElMamun.lhs
+
+By default a java package which is named like the Haskell module
+name is created in the current working directory. For a list of
+options see
+
+# fe -h
+
+4. Compile the Java source code:
+# javac ElMamun/ElMamun.java
+
+Note, if you didn't adjusted the CLASSPATH environment like
+described in the INSTALL file you have to supply the CLASSPATH to
+the java compiler.
+
+E.g.:
+
+# javac -cp $PREFIX/share/adpc/adpc.jar:.
+
+5. Execute the compiled java code:
+# java ElMamun/ElMamun
+
+or
+
+# java ElMamun.ElMamun
+
+or
+
+# java -cp $PREFIX/share/adpc/adpc.jar:. ElMamun/ElMamun
+
+Without any arguments you get the interactive shell. Just enter
+one sequence after an other, get help via
+
+-h<RETURN>
+
+or quit via
+
+:q<RETURN>
+
+You can just supply the input sequence as an command line
+argument:
+# java ElMamun.ElMamun "1+2*3*4+5"
+
+After the computation, the ADP program ElMamun immediately
+exists.
+
+For more options enter:
+
+# java ElMamun.ElMamun -h
+
+Typecheck your ADP-code
+-----------------------
+If you compile ADP-programs you can typecheck them via
+# fe --typecheck ElMamun.lhs
+
+(using the MetaFrontend fe)
+
+The lowlevel-command adpcompile has a new option '-tc' which enables
+the typechecker, too.
+
+Make sure, that your programs import stdlib.adp, because the typechecker
+need some standard declarations to ouput something useful at all:
+> #import stdlib.adp
+
+Note, that the typechecker is more strict than the compiler, look
+for an example at the ElMamun-prettyprint-Algebra. The types are wrong,
+but the ADPC 'does the right thing'.
+
+
+More examples
+-------------
+You can find more ADP examples in $PREFIX/share/adpc/examples:
+
+RNAfold - implement the RNAfold algorithm. Input just plain rna
+  sequences in ASCII (e.g. acguga).
+
+AffineLocSim.lhs - implements the computation of the local
+  alignment with affine gap costs.
+
+  The input of the two sequence s1 and s2 is expected as
+  s1$reverse(s2).
+
+  Currently the ADP compiler cannot compile the used pretty print
+  algebra, thus you get the term representation of the
+  candidates.
+

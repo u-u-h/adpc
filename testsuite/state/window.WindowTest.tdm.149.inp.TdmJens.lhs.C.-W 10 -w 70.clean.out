@@ -1,0 +1,10 @@
+rm -f TdmJens TdmJens.1 TdmJens.c TdmJens-man.c TdmJens.txt \
+           TdmJens.pod TdmJens.o TdmJens-distr config.h \
+           Makefile adplib.c adplib.o rnalib.o  options.h  \
+           algebras.txt choicefcts.txt energy.txt TdmJens.author \
+           TdmJens_mfe.c TdmJens_mfe.o TdmJens_mfe.adpc  \
+           TdmJens_mfe.sed \
+           TdmJens.h TdmJens.xml TdmJens.sed \
+           TdmJens.tex TdmJens.pdf TdmJens.dvi TdmJens.ps \
+           TdmJens.2.ps \
+           TdmJens.aux TdmJens.log

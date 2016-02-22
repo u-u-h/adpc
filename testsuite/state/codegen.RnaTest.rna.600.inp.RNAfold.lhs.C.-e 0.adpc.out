@@ -1,0 +1,20 @@
+No library given. Trying to guess...
+system call: grep energy RNAfold.lhs > energy.txt
+Energy found in input file. Using RNA lib...
+reading RNAfold.lhs
+Deriving algebras....
+system call: cat RNAfold.lhs | sed '/algebra\[.*\]/s/> #algebra\[\([a-zA-Z]*\)\]/\1/w algebras.txt' > /dev/null
+Found algebras mfe, pp
+Searching for prettyprinting algebra... (testing pp, pretty, prettyprint)
+Found prettyprinting algebra: "pp".
+Deriving choice functions....
+system call: cat RNAfold.lhs| grep '\[minimum\|\[maximum\|\[sum\|\[id' > choicefcts.txt
+Found choice functions minimum, id
+Guessing...:
+mfe -> minimum
+pp -> id
+Creating project: "RNAfold".
+[0;34mMakefile.ai -> Makefile.[0m
+[0;34mrnalib.xml.ai -> RNAfold.xml.[0m
+[0;34mprogname.h.ai -> RNAfold.h.[0m
+[0;32mPhase I successful! Type make to build.[0m

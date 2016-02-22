@@ -1,0 +1,66 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :1+6n, tabulation: 1n^2
+Dependencies:
+Nt: 2, usages: 1
+Nt: 1, usages: 6n
+Nt: 4, usages: 2n
+Nt: 5, usages: 2n
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :3, tabulation: 1n^2
+Dependencies:
+Nt: 3, usages: 2
+Nt: 2, usages: 1
+----------------------------------------
+Nt: 3, user configuration: 2, runtime :10, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 4, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+----------------------------------------
+Nt: 5, user configuration: 2, runtime :1, tabulation: 1n^2
+Dependencies:
+
+
+Mode = 2, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+
+
+Calculate the optimal table configuration of an ADP-program
+
+Some information about the runtime in advance:
+  tabulate all nonterminals      : O(n^3)
+  tabulate no  nonterminals      : O(2^n)
+  optimal runtime                : O(n^3)
+Runtime with respect to the user annotation:
+  tabulate all free nonterminals : O(n^3)
+  tabulate no  free nonterminals : O(2^n)
+  optimal runtime                : O(n^3)
+
+Total number of nonterminals            : 5
+Nonterminals which are not in use       : 0
+Nonterminals requiring < square space   : 0
+Nonterminals defined by user annotation : 0
+Nonterminals defined by reductions      : 4
+  { 1 3 4 5 }
+Nonterminals remaining for optimization : 1
+  { 2 }
+
+Running brute-force-optimization. Please wait ...
+
+Solution update no. 0 :
+Found new intermediate solution in iteration 0 : 2 Tables
+  { 1 2 }
+
+Solution update no. 1 :
+Found new intermediate solution in iteration 1 : 1 Tables
+  { 1 }
+
+Ready! Actual runtime        : 0 seconds
+
+Optimal runtime              : O(n^3)
+Minimum number of tables     : 1
+Optimal table configurations : 1
+  { 1 }  (26n^3)
+
+Optimal table configurations with respect to constant factors : 1
+  { 1 }  (26n^3)
+Returning: 0 0 0 0 0 0 

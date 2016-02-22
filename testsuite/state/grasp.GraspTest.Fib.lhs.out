@@ -1,0 +1,21 @@
+----------------------------------------
+Nt: 1, user configuration: 2, runtime :4, tabulation: 1n
+Dependencies:
+Nt: 2, usages: 1
+----------------------------------------
+Nt: 2, user configuration: 2, runtime :5, tabulation: 1n
+Dependencies:
+Nt: 1, usages: 2
+
+
+Mode = 3, returnmode = 1, Verbosity = 3, max_additional_tables = 0, needed_improvement = 0
+Best asymptotic runtime: 1
+reduced 0 NTs.
+Grammar has 2 NTs
+++++++++++++++++++++++++++++++++++++++++
+Iteration: 0	 Runtime: 8n
+{ 1 } #1
+++++++++++++++++++++++++++++++++++++++++
+needed 4 iterations
+0 sec, 129 usec
+Returning: 0 0 0 

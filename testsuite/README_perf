@@ -1,0 +1,31 @@
+lianu
+
+perf1.tar.gz - nur java und ohne tdmwin
+perf2.tar.gz - nur C mit tdmwin (window_size = seq length)
+perf3.tar.gz - nur java mit tdmwin (window_size = seq length)
+
+nacheinander auspacken, damit die *.err von vorherigen fehlerhaften laeufen
+uberschrieben werden 
+
+alle Daten von C bis hierhin wurden mit gcc 3.4.6 und _ohne_ Optimierung kompiliert -> wegschmeissen und neu messen (hoechstens Gegeueberstellung von optimiert vs. nicht optimiert)
+
+ab hier die alten C dateien loeschen, damit nicht alte dateien, mit einer anderen Schrittweite noch ueberigbleiben
+
+perf4, lianu
+fold shape, step == 20 nur C
+./test -f perf.conf -t perf4.log -o workdir=`pwd`/workdir2 fold shape
+
+perf5, luole
+shape2, step=25, ab 600, C & Java
+./test -f perf.conf -t perf5.log -o workdir=`pwd`/workdir3 shape2
+
+perf6, sunfirev20z
+tdwmwin
+./test -f perf.conf -t perf6.log -o workdir=`pwd`/workdir4 tdmwin
+
+perf7, luole
+shape2, step=25, ab 600, C & Java, Wiederholung von perf5 wegen mehr repeats
+./test -f perf.conf -t perf7.log -o workdir=`pwd`/workdir5 shape3
+
+
+perf4,5,7 sind in perf7.tar.gz
