@@ -30,7 +30,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > )where
 
-> import System(system)
+> import System.Process(system)
 
 > type VarReplace = [(String, String)]
 

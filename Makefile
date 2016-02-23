@@ -95,7 +95,7 @@ GHCPROFILING = # -prof -auto-all
 # Build the ADP-compiler
 adpc: $(LHS) $(HS)
 adpc: $(OBJECTS_C)
-	ghc $(GHCMEM) $(OLDGCCFLAGS) $(HAPPYFLAGSGHC) $(GHCPROFILING) -fffi -ihsutils -itypechecker -iconfig -ijava --make Main.lhs -o adpcompile -optl $(filter %.o,$^)
+	ghc $(GHCMEM) $(OLDGCCFLAGS) $(HAPPYFLAGSGHC) $(GHCPROFILING) -XForeignFunctionInterface -ihsutils -itypechecker -iconfig -ijava --make Main.lhs -o adpcompile -optl $(filter %.o,$^)
 
 sparc: adpc
 windows: adpc

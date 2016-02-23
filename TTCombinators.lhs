@@ -39,7 +39,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > ) where
 
-> import Array
+> import Data.Array
 
 Lexical parsers
 ----------------

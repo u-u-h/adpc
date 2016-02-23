@@ -186,8 +186,8 @@ void set_print(struct set *s) {
   int i, j;
   for (i=0; i<size; i++)
     for (j=0; j<INT_BITS; j++)
-      if ((s->field[i] & 1 << j))
-        printf("%d ", (INT_BITS * i + j));
+      if ((s->field[i] & 1 << j)) 
+        printf("%ld ", (long)(INT_BITS * i + j));
   printf("\n");
 }
 

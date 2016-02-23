@@ -171,8 +171,8 @@ V snd4 opts und Varianten recht unsauber. opts besser als abstrakten
 
 > ) where
 
-> import Char
-> import List
+> import Data.Char
+> import Data.List
 > import Constants
 > import MathExp
 > import TLData

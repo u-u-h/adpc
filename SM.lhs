@@ -36,12 +36,23 @@ SM == State Monad
 >   runSM,
 
 > ) where
+> import Control.Applicative
+> import Control.Monad (liftM, ap)
 
 > rev_SM =  "$Revision$"
 
 > type MType = ([String],Int)
 
 > data SM a = SM (MType -> (a,MType))  -- The monadic type
+
+for ghc 7.10 and later:
+
+> instance Functor SM where
+>   fmap = liftM
+
+> instance Applicative SM where
+>   pure  = return
+>   (<*>) = ap
 
 > instance Monad SM where
 >   -- defines state propagation

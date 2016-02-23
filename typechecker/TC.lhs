@@ -26,7 +26,8 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > module TC where
 > -- module Main where
 
-> import System
+> import System.Environment
+> import System.Process
 > import NewParser
 > import Lexer
 > import ParseMonad

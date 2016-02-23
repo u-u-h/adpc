@@ -64,7 +64,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > import TLData
 > import Tools
 > import Constants
-> import Char
+> import Data.Char
 > import PrettyPrint
 
 > rev_Expr =  "$Revision$"

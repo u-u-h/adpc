@@ -26,10 +26,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > module Helpers
 
 > where
-
-> import List
-> import Maybe
-
+> import Data.List(isPrefixOf)
 
 a generalized words
 
@@ -61,6 +58,7 @@ ghc > 6.4 has it in Data.List
 
 > isInfixOf s (x:xs) = or [ isPrefixOf s xs , isInfixOf s xs]
 > isInfixOf s [] = False
+
 
 better use System.FilePath if available
 

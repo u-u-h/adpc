@@ -28,13 +28,13 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 %if False
 
 > module Typecheck where
-> import List
+> import Data.List
 > import ParseTree
 > import Annotate
 > import TypecheckTree
 > import TypecheckMonad
 > import Tools
-> import Monad
+> import Control.Monad
 
 
 %endif

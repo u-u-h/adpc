@@ -141,14 +141,16 @@ Backends
 
 > module Main where
 
-> import Char
-> import List
+> import Data.Char
+> import Data.List
 
-> import IO(IO, writeFile, readFile, putStrLn, catch)
-> import System(getEnv, getArgs, getProgName)
-> import Time(toCalendarTime, getClockTime, calendarTimeToString)
+> import System.IO(IO, writeFile, readFile, putStrLn)
+> import System.Environment(getEnv, getArgs, getProgName)
+> import Control.Exception
+> import System.IO.Error
+> import System.Time(toCalendarTime, getClockTime, calendarTimeToString)
 
-> import Text.XML.HaXml.Xml2Haskell(fReadXml)
+> import Text.XML.HaXml.XmlContent(fReadXml)
 > import Text.XML.HaXml.OneOfN(OneOf9(..))
 > import Text.XML.HaXml.Wrappers (fix2Args)
 
@@ -1133,7 +1135,9 @@ div. tools
 > accOpt s = "opt->" ++ s;
 
 > myGetEnv :: String -> IO String
-> myGetEnv v = catch (getEnv v) (const (return ""))
+> myGetEnv v = catchJust (\e -> if isDoesNotExistErrorType (ioeGetErrorType e) then Just () else Nothing)
+>                        (getEnv v)
+>                        (\_ -> return "")
 
 > deriveUserName :: String -> IO String
 > deriveUserName project = do

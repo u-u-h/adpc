@@ -27,10 +27,11 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > where
 
 
-> import System
 > import System.Console.GetOpt
-> import Monad
-> import IO
+> import System.Environment(getArgs, getProgName)
+> import System.Exit(exitFailure)
+> import Control.Monad
+> import System.IO
 
 
 > getArguments def options = do

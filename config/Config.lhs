@@ -31,10 +31,11 @@ High-level technique for program options handling, Zielonka, 2004
 
 > where
 
-> import System
+> import System.Environment
+> import System.Exit
 > import System.Console.GetOpt
-> import Monad
-> import IO
+> import Control.Monad
+> import System.IO
 
 
 > data Options = Options {

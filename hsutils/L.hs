@@ -44,8 +44,8 @@ l (t:ts) ms = t:l ts ms
 -- Equations for end of file:
 l [] [] = [{-eoftoken-}]
 l [] (m:ms) = if m/=0
-	      then vrbrace eof:l [] ms
-	      else layout_error eof "missing } at eof"
+              then vrbrace eof:l [] ms
+              else layout_error eof "missing } at eof"
 
 -- There are the tokens inserted by the layout processor:
 vlbrace p = (Layout,(p,"{"))

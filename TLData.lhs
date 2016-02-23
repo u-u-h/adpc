@@ -97,7 +97,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > import MathExp
 > import PrettyPrint
 
-> import List
+> import Data.List
 
 > rev_TLData =  "$Revision$"
 

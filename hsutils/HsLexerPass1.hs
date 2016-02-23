@@ -2,7 +2,7 @@ module HsLexerPass1 where
 import HsLex(haskellLex)
 import HsLexUtils
 import HsLayoutPre(layoutPre,Pos,PosToken)
-import List(mapAccumL)
+import Data.List(mapAccumL)
 
 default(Int)
 

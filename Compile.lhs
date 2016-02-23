@@ -36,9 +36,8 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > ) where
 
 
-> import System
-> import Char
-> import List
+> import Data.Char
+> import Data.List
 > import Constants
 > import Tools
 > import MathExp

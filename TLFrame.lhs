@@ -35,7 +35,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > import Tools
 > import TL
 > import TLData
-> import Char
+> import Data.Char
 > import Track
 
 > rev_TLFrame =  "$Revision$"

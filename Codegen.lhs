@@ -50,9 +50,9 @@ V triang., offset und shifted beliebig kombinierbar. z.B. bt, bto, bo, bs, btos,
 
 > ) where
 
-> import Time
-> import Char
-> import List
+> import System.Time
+> import Data.Char
+> import Data.List
 > import Constants   -- globale Konstanten
 > import Tools
 > import Track
@@ -1840,9 +1840,9 @@ XXX where to we get the type for the contains regions stuff?
 >               MST  -> [(["i","j"], TLInt)]
 >               MTT  -> [(["i1","j1","i2","j2"], TLInt)]
 >     helper= concatMap fdir printedAxioms
->       where fdir (n,rec,(_, dt)) 
->               | elem rec recur && isListDT dt  = [(["v"++ show n, "v"++ show (n+1), "result_score"] ,dt)]
->               | elem rec recur                 = [(["v"++ show (n+1), "result_score"] ,dt)]
+>       where fdir (n,rek,(_, dt)) 
+>               | elem rek recur && isListDT dt  = [(["v"++ show n, "v"++ show (n+1), "result_score"] ,dt)]
+>               | elem rek recur                 = [(["v"++ show (n+1), "result_score"] ,dt)]
 >               | getOptBT optsBT == BTSubOpt    = [(["v"++ show (n+1), "result_score"] ,dt)]
 >               | getOptBT optsBT == BTPF        = [(["v"++ show (n+1), "result_score"] ,dt)]
 >               | getOptBT optsBT == BTSubOptCut = [(["v"++ show (n+1), "result_score"] ,dt)]
@@ -1955,25 +1955,25 @@ XXX where to we get the type for the contains regions stuff?
 >     printedAxioms | showOnlyAxiom  = [prAx (1,axiom)]
 >                   | otherwise      = map prAx (zip [1,3..] (map fst3 il2))
 >        where
->           prAx (n,rec) | elem rec recur = (n, rec, (Direct ("v" ++ show (n+1)),            ntType opts il2dt algebras rec))
->                        | otherwise      = (n, rec, (VANonterm (ptbl prefixes++rec) dimRec, ntType opts il2dt algebras rec))
+>           prAx (n,rek) | elem rek recur = (n, rek, (Direct ("v" ++ show (n+1)),            ntType opts il2dt algebras rek))
+>                        | otherwise      = (n, rek, (VANonterm (ptbl prefixes++rek) dimRec, ntType opts il2dt algebras rek))
 >             where 
 >               dimRec 
 >                 -- falls alle Ergebnisse ausgegeben werden sollen, werden hier i und j eingesetzt:
 >                 | getOptARR opts 
->                   = case getYSize ysizes rec of
->                      (ST (l,u))           -> indexMap opts IMA ysizes imData rec (ST (Var "i", Var "j"))
->                      (TT (l1,u1) (l2,u2)) -> indexMap opts IMA ysizes imData rec (TT (Var "i1", Var "j1") (Var "i2", Var "j2"))
+>                   = case getYSize ysizes rek of
+>                      (ST (l,u))           -> indexMap opts IMA ysizes imData rek (ST (Var "i", Var "j"))
+>                      (TT (l1,u1) (l2,u2)) -> indexMap opts IMA ysizes imData rek (TT (Var "i1", Var "j1") (Var "i2", Var "j2"))
 >                 | otherwise 
->                   = case getYSize ysizes rec of
->                      (ST (l,u))           -> indexMap opts IMA ysizes imData rec (ST (Number 0, (Var "n")))
->                      (TT (l1,u1) (l2,u2)) -> indexMap opts IMA ysizes imData rec (TT (Number 0, (Var "m")) (Number 0, (Var "n")))
+>                   = case getYSize ysizes rek of
+>                      (ST (l,u))           -> indexMap opts IMA ysizes imData rek (ST (Number 0, (Var "n")))
+>                      (TT (l1,u1) (l2,u2)) -> indexMap opts IMA ysizes imData rek (TT (Number 0, (Var "m")) (Number 0, (Var "n")))
 
 >     printAxiom :: (Int, String, VarAccess) -> [TL]
->     printAxiom (n,rec,ax) = [commentLn $ "show axiom: " ++ rec] ++ printRecName ++
+>     printAxiom (n,rek,ax) = [commentLn $ "show axiom: " ++ rek] ++ printRecName ++
 >                             if not (getOptARR opts) 
 >                                 -- falls nur Ergebnis (0,n):
->                                 then printAxiomSingle (n, rec, ax) 
+>                                 then printAxiomSingle (n, rek, ax) 
 >                                 -- ansonsten wird hier die Schleife zusammengebaut:
 >                                 else [TLPrint "\\n\\\\begin{tabular}{c" [],
 >                                       TLFor "i" (Number 0) (Var "n") [TLPrint "|c" []],
@@ -1986,22 +1986,22 @@ XXX where to we get the type for the contains regions stuff?
 >                                             [TLPrint "&" []] ++
 >                                             [TLIf (ExpIOp (ExpTLVar (Direct "j")) "<" (ExpTLVar (Direct "i"))) 
 >                                               [TLPrint "-" []]
->                                               [TLIf bounds (printAxiomSingle (n, rec, ax))
+>                                               [TLIf bounds (printAxiomSingle (n, rek, ax))
 >                                                            [TLPrint "/" []]]]),
 >                                          TLPrint "\\\\\\\\\\n" []],
 >                                       TLPrint "\\\\end{tabular}\\n\\\\newpage\\n" []]
 
 >       where
->         ysize  = getYSize ysizes rec
+>         ysize  = getYSize ysizes rek
 >         bounds = case ysize of
 >                    (ST (l,u)) -> cgBounds (ST (Var "i", Var "j"), ysize)
 >                    otherwise  -> error "4-dimensional table output currently not supported"
 >         printRecName | showOnlyAxiom = []
->                      | otherwise     = [TLPrint ("Result for production " ++ rec ++ ":\\n") []]
+>                      | otherwise     = [TLPrint ("Result for production " ++ rek ++ ":\\n") []]
 
 
 >     -- ein einzelnes Axiom ausgeben; an dieser Stelle wird zwischen listen und atomaren Ergebnissen unterschieden:
->     printAxiomSingle (n,rec,ax) | isListStruct ax =
+>     printAxiomSingle (n,rek,ax) | isListStruct ax =
 >                                     nontabAssign  ++ 
 >                                     optionalOFH "[" ++
 >                                     [TLAssign helper (TLVar ax),
@@ -2017,17 +2017,17 @@ XXX where to we get the type for the contains regions stuff?
 >                                                  else [TLPrint "\\n" []]
 
 >        helper = (Direct "result_score",  snd ax)
->        nontabAssign | elem rec recur               = [TLAssign (toVA (Direct "result_score")) (TLFA (pfct prefixes ++ rec) dim)]
+>        nontabAssign | elem rek recur               = [TLAssign (toVA (Direct "result_score")) (TLFA (pfct prefixes ++ rek) dim)]
 >                     | elem (getOptBT optsBT) [BTSubOpt,BTSubOptCut]  
 >                                                    = [TLAssign (toVA (Direct "result_score")) (TLVar ax)]
 >                     | otherwise                    = []
 >          where
 >            dim | getOptARR opts 
->                  = case getTMode tms rec of
+>                  = case getTMode tms rek of
 >                      MST -> [tlvar (Direct "i"), tlvar (Direct "j")]
 >                      MTT -> error "4-dimensional table output currently not supported"
 >                | otherwise 
->                   = case getTMode tms rec of
+>                   = case getTMode tms rek of
 >                      MST -> [tlnumber 0, tlvar (Direct "n")]
 >                      MTT -> [tlnumber 0, tlvar (Direct "m"), tlnumber 0, tlvar (Direct "n")]
 

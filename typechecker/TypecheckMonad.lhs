@@ -30,10 +30,12 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > module TypecheckMonad where
 > import ParseTree
 > import TypecheckTree
-> import List
+> import Data.List
 > import Tools
-> import Char
-> import Monad
+> import Data.Char
+> import Control.Monad
+> import Control.Applicative 
+
 
 %endif
 
@@ -84,6 +86,13 @@ By convention, the left alternative holds the error
 and the right one holds the right answer.
 
 > data TCMonad a = TCMonad ((Env,State) -> (Either Error a,State))
+
+> instance Functor TCMonad where
+>   fmap = liftM
+
+> instance Applicative TCMonad where
+>   pure  = return
+>   (<*>) = ap
 
 The definition of the |TCMonad| shows how these properties are 
 implemented.

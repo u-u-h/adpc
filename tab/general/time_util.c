@@ -43,7 +43,7 @@ void tval_minus(struct timeval *result,
 
 void tval_print(struct timeval *tv)
 {
-  printf("%ld sec, %ld usec", tv->tv_sec, tv->tv_usec);
+  printf("%ld sec, %ld usec", tv->tv_sec, (long)tv->tv_usec);
 }
 
 

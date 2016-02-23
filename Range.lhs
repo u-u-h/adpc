@@ -36,7 +36,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > ) where
 
-> import List
+> import Data.List
 > import Parse
 > import Syntax
 > import Dss

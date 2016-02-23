@@ -24,7 +24,7 @@ by {n} where n is the indentation of the lexeme.
 -}
 open1 (t1@(Reservedid,(_,"module")):ts) = t1:open2 ts
 open1 (t1@(Special,(_,"{")):ts)         = t1:open2 ts
-open1 ts@((t,(p@(r,c),s)):_)	        = (Open c,(p,"")):open2 ts
+open1 ts@((t,(p@(r,c),s)):_)            = (Open c,(p,"")):open2 ts
 open1 []                                = []
 
 {-+
@@ -37,7 +37,7 @@ open2 (t1:ts1) | isLtoken t1 =
       t2@(_,(p@(r,c),_)):ts2 ->
         if notLBrace t2
         then t1:(Open c,(p,"")):open2 ts1
-	else t1:t2:open2 ts2
+        else t1:t2:open2 ts2
       [] -> t1:(Open 0,(fst (snd t1),"")):[]
   where
     isLtoken (Reservedid,(_,s)) = s `elem` ["let","where","do","of"]

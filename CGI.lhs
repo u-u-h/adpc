@@ -84,10 +84,14 @@ module CGI (
         wrapper2
        ) where
 
-import Char ( ord, chr, toUpper, isDigit, isAlphaNum, isHexDigit )
-import System ( getEnv )
+import Data.Char ( ord, chr, toUpper, isDigit, isAlphaNum, isHexDigit )
+import System.Environment ( getEnv )
 import qualified Pretty ( (<+>), (<>), nest, sep, text, Doc )
-import Monad(MonadPlus(..), guard)
+import Control.Monad(MonadPlus(..), guard)
+import Control.Exception
+import Control.Applicative
+import Control.Monad (liftM, ap)
+
 
 infixr 5 +++
 \end{code}       
@@ -109,6 +113,14 @@ newtype Parser a = Parser (String -> [(a,String)])
 instance Functor Parser where
    -- map :: (a -> b) -> (Parser a -> Parser b)
    fmap f (Parser p) = Parser (\inp -> [(f v, out) | (v, out) <- p inp])
+
+instance Applicative Parser where
+  pure  = return
+  (<*>) = ap
+
+instance Alternative Parser where
+  (<|>) = mplus
+  empty = mzero 
 
 instance Monad Parser where
    -- return :: a -> Parser a
@@ -159,14 +171,14 @@ many :: Parser a -> Parser [a]
 many p = force (many1 p +++ return [])
 
 many1 :: Parser a -> Parser [a]
-many1 p = do {x <- p; xs <- many p; return (x:xs)}
+many1 p = do {x <- p; xs <- CGI.many p; return (x:xs)}
 
 sepby :: Parser a -> Parser b -> Parser [a]
 p `sepby` sep = (p `sepby1` sep) +++ return []
 
 sepby1 :: Parser a -> Parser b -> Parser [a]
 p `sepby1` sep = do x  <- p
-                    xs <- many (do {sep; p})
+                    xs <- CGI.many (do {sep; p})
                     return(x:xs)
 
 char :: Char -> Parser Char
@@ -711,7 +723,7 @@ What is missing is a table of (StatusCode,Reason)-pairs such as
 type StatusCode = Int
 type Reason = String
 
-data Mime a => CgiOut a =
+data CgiOut a =
      Content{mime :: a}
    | Location{url :: URL}
    | Status{status :: StatusCode, reason :: Reason}
@@ -784,12 +796,12 @@ env = (do n <- urlEncoded
 
 urlEncoded :: Parser String
 urlEncoded
- = many ( alphanum `mplus` extra `mplus` safe
+ = CGI.many ( alphanum `mplus` extra `mplus` safe
          `mplus` do{ char '+' ; return ' '}
          `mplus` do{ char '%'
-		   ; d <- hexadecimal
-		   ; return $ chr (hex2int d)
-		   }
+                   ; d <- hexadecimal
+                   ; return $ chr (hex2int d)
+                   }
          )
 
 extra :: Parser Char
@@ -852,7 +864,9 @@ wrapper2 f = do qs      <- getQueryString
 
 
 myGetEnv :: String -> IO String
-myGetEnv v = catch (getEnv v) (const (return ""))
+myGetEnv v = catch (getEnv v) ( \(e::IOError) -> return "")
+
+
                       
 getQueryString :: IO String
 getQueryString = do

@@ -2,7 +2,7 @@
 -- Automatically generated code for a DFA follows:
 --Equal states: [[[2,3],[8,9],[5,31],[10,11],[36,37],[39,40]]]
 module HsLex (haskellLex) where
-import Char
+import Data.Char
 import HsLexUtils
 
 type Output = [(Token,String)]
@@ -215,7 +215,7 @@ cclass c =
     '\222' -> 77
     c | isAscii c -> 0
       | isSpace c -> 3
-      | isSymbol c -> 7
+      | Data.Char.isSymbol c -> 7 -- not sure we want this isSymbol over HsLexUtils's
       | isDigit c -> 18
       | isLower c -> 60
       | isUpper c -> 77

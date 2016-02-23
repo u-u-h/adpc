@@ -31,7 +31,8 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > import L(l)
 > import HsLexerPass1
 > import HsLayoutPre(layoutPre)
-> import List(partition)
+> import Data.List(partition)
+> import Control.Exception
 
 available in ghc > 6.4
 
@@ -68,12 +69,12 @@ available in ghc > 6.4
 >                              [pathSeparator] ++ "adpc" ++ [pathSeparator] ++
 >                               "lib" ++ [pathSeparator] ++ mfile)
 >              input <- catch (readFile mfile)
->                       (\_ -> catch (if path == [] then
+>                       (\(Control.Exception.ErrorCall e) -> catch (if path == [] then
 >                        readFile syspath else
 >                        (readFile (path ++ [pathSeparator] ++ mfile)))
->                         (\_ -> catch 
+>                         (\(Control.Exception.ErrorCall e) -> catch 
 >                          (readFile syspath)
->                            (\_ -> error $ "file " ++ mfile ++ " not found.")))
+>                            (\(Control.Exception.ErrorCall e) -> error $ "file " ++ mfile ++ " not found.")))
 >              input <- return $ stripComments input
 >              processed <- processImports prefix path mfile 1 input
 >              rest'     <- processImports prefix path ifile (ln+1) rest

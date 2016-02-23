@@ -32,9 +32,9 @@ nestedComment as is next = nest 0 as is
   where
     nest n as is =
       case is of
-	'-':'}':is -> if n==0
-		      then next gotError ('}':'-':as) is
-		      else nest (n-1) ('}':'-':as) is
+        '-':'}':is -> if n==0
+                      then next gotError ('}':'-':as) is
+                      else nest (n-1) ('}':'-':as) is
         '{':'-':is -> nest (n+1) ('-':'{':as) is
-	c:is -> nest n (c:as) is
-	_ -> gotError as is -- EOF inside comment
+        c:is -> nest n (c:as) is
+        _ -> gotError as is -- EOF inside comment

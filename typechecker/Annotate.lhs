@@ -33,9 +33,9 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > import TypecheckTree
 > import TypecheckMonad
 > import Tools
-> import List
-> import Char
-> import Monad
+> import Data.List
+> import Data.Char
+> import Control.Monad
 
 %endif
 

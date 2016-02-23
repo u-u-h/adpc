@@ -30,7 +30,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > ) where
 
-> import Char
+> import Data.Char
 > import CGI
 > import CGITools
 > --import SM

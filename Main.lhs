@@ -30,7 +30,9 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > ) where
 
-> import System
+> import System.Environment
+> import System.Exit
+> import Control.Exception
 > import Compile
 > import CGI
 > import LatexRecs_cgi
@@ -62,7 +64,7 @@ a compiler version runnable from the commandline
 
 
 > myGetEnv :: String -> IO String
-> myGetEnv v = catch (getEnv v) (const (return ""))
+> myGetEnv v = catch (getEnv v) (\(e :: IOError) -> return "")
 >                       
 > getQueryString :: IO (Maybe String)
 > getQueryString = do

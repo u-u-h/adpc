@@ -11,7 +11,35 @@ are sure that their original code is concerned.
 On the other hand, I'd be happy if any of the original contributors
 would be interested in further work on this.
 
+Until we have autoconf infrastructure, the original build and install
+instructions found in [INSTALL](INSTALL) apply. 
+Basically, you'll need a working Haskell installation. For now I'm 
+aiming at GHC 7.10 or later. Backward compatibility is probably lost along
+the way.
+
+* For OSx: 
+
+	```
+	$ brew install Caskroom/cask/haskell-platform
+	```
+
+* For Debian-based Linuxes: 
+
+	```
+	$ apt-get install haskell-platform
+	```
+
+and also install the haxml package: 
+
+```
+$ cabal update  
+$ cabal install haxml
+```
+	
+Be sure to have the directory where cabal installs executables in you path, e.g.
+`~/Library/Haskell/bin/` on OSx.
+	
 Look at the original [README](README) file for usage instructions. The
 code is free under [GPL V2](COPYING) license.
 
-uuh/2016-02-22
+uuh/2016-02-23

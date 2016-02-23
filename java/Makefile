@@ -4,7 +4,7 @@ LHS_HI = $(LHS:.lhs=.hi)
 
 
 all:
-	ghc --make FrontEnd.lhs -i../typechecker -i../hsutils  -i../config -i../ -o fe -fffi -optl ../libtab.a $(HFLAGS)
+	ghc --make FrontEnd.lhs -i../typechecker -i../hsutils  -i../config -i../ -o fe -XForeignFunctionInterface -optl ../libtab.a $(HFLAGS)
 
 
 dist:

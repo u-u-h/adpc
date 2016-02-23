@@ -24,7 +24,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 
 > module Main where
-> import System
+> import System.Environment
 
 > main :: IO ()
 > main = do

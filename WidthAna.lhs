@@ -53,7 +53,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > ) where
 
-> import List
+> import Data.List
 > import Constants
 > import Tools
 > import StringLib
@@ -64,11 +64,10 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > import Poly
 > import Track
 
-> import System
+> import System.IO.Unsafe
 > import Foreign
 > import Foreign.C.Types
 > import Foreign.Ptr
-> import MarshalArray
 
 > foreign import ccall "tabulate" tabulate :: Ptr CInt -> Ptr CInt
 

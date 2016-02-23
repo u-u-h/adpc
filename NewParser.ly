@@ -33,7 +33,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > ) where
 
-> import Char
+> import Data.Char
 > import Lexer
 > import ParseMonad
 > import qualified ParseTree
@@ -129,7 +129,7 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 >     '^^^'         { ADPNextHHH }
 
 
-Assoziativit‰t und Bindungsst‰rke festlegen
+Assoziativit√§t und Bindungsst√§rke festlegen
 
  %nonassoc ',' '<-'
  %nonassoc '..'  '|' 

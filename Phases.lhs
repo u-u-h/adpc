@@ -34,10 +34,11 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 > ) where
 
-> import Random
-> import List
-> import Time
-> import System
+> import System.Random
+> import System.Time
+> import System.Process
+> import System.Exit
+> import Data.List
 > import Constants   -- globale Konstanten
 > import Tools       -- häufig benötigte Funktionen
 > import MathExp     -- mathematische Ausdrücke
@@ -62,8 +63,8 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > import Range       -- Indexbereichsanalyse
 > import PrettyPrint -- enthaelt die Klasse Pretty um alle PrettyPrinter zu vereinheitlichen
 
-> import IO(hPutStrLn, stderr)
-> import Monad
+> import System.IO(hPutStrLn, stderr)
+> import Control.Monad
 
 > -- import "FMP/FMPADP"
 

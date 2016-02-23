@@ -28,12 +28,11 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 > where
 
 
-> import System
 > import System.Console.GetOpt
-> import Monad
-> import IO
-> import List
-> import Maybe
+> import Control.Monad
+> import System.IO
+> import Data.List
+> import Data.Maybe
 
 are not available in ghc 6.4 - thus until now they are in Helpers ...
  import System.FilePath
@@ -53,7 +52,9 @@ are not available in ghc 6.4 - thus until now they are in Helpers ...
 > import Compile(cmainInt)
 > import Constants
 
-> import Directory
+> import System.Directory
+> import System.Exit
+> import System.Environment(getProgName)
 
 > import TC(getTCresult)
 
@@ -312,7 +313,7 @@ only Debug Test
 >   searchAlg (Algebra _ _ (AlgebraFunDef _ _ _ funDefs)) =
 >     or $ concatMap searchFunDef funDefs
 >   searchFunDef (FunDef _ _ _ expression) =  expressionMap f expression
->   f (FunAp ident _) = [isInfixOf "energy" ident]
+>   f (FunAp ident _) = [Helpers.isInfixOf "energy" ident]
 >   f _ = [False]
 
 > setMode opts p = do

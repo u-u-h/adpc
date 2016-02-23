@@ -34,9 +34,9 @@ along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 
 > import Prelude
-> import Char
+> import Data.Char
+> import Data.List
 > import AlggenParse
-> import List
 
 > toLowerS  = map toLower
 

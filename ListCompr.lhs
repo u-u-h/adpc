@@ -73,8 +73,8 @@ LC -> TL einfacb zu beschreiben
 
 > module ListCompr where
 
-> import Char
-> import List
+> import Data.Char
+> import Data.List
 > import Constants
 > import Dss
 > import PrettyPrint
@@ -83,6 +83,9 @@ LC -> TL einfacb zu beschreiben
 > import Expr
 > import TL
 > import TLData
+> import Control.Applicative
+> import Control.Monad (liftM, ap)
+
 
 %endif
 
@@ -1003,6 +1006,15 @@ static void calc_alignment(int i, int j)
 > type MType_LC = ([VarAccess],[String],String)
 
 > data SM_LC a = SM_LC (MType_LC -> (a,MType_LC))  -- The monadic type
+
+for ghc 7.10 and later:
+
+> instance Functor SM_LC where
+>   fmap = liftM
+
+> instance Applicative SM_LC where
+>   pure  = return
+>   (<*>) = ap
 
 > instance Monad SM_LC where
 >   -- defines state propagation

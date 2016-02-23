@@ -37,7 +37,7 @@ werden.
 > {
 > module Parse (parse, lexer, ppParse, extractArea, ADPProgram, ppADPProgram,
 >               ParseResult(Ok, Failed), failed, getFailed, catchEr, rev_Parse) where
-> import Char
+> import Data.Char
 > import Tools
 > import StringLib
 > import Syntax
@@ -130,7 +130,7 @@ werden.
 }
 
 
-Bindungsst‰rken und Assoziativit‰ten der Kombinatoren
+Bindungsst√§rken und Assoziativit√§ten der Kombinatoren
 
  infix  5 ...
  infixr 6 ||| , |<|

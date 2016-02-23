@@ -37,15 +37,13 @@ TODO
 >                  beautifyTL,
 >                  rev_Beautify ) where
 
-> import Char
-> import List
+> import Data.Char
 > import Tools
 > import TL
 > import TLData
 > import SM
 
 > import TTCombinators
-> import Array
 
 
 > rev_Beautify =  "$Revision$"

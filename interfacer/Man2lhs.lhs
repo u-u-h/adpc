@@ -23,8 +23,8 @@ You should have received a copy of the GNU General Public License
 along with ADPC.  If not, see <http://www.gnu.org/licenses/>.
 
 
-> import Char
-> import System
+> import Data.Char
+> import System.Environment
 
 > main				:: IO ()
 > main				=  do
